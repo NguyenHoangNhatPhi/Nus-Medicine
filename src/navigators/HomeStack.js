@@ -6,13 +6,15 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
     SignInScreen,
     HomeScreen,
+    ProfileScreen
 } from '../screens';
 
 import { hiddenTabbar } from '../utils/func';
 
 const HomeStack = createStackNavigator({
     Home: HomeScreen,
-    SignIn: SignInScreen
+    Profile: ProfileScreen,
+
 }, {
         transitionConfig: getSlideFromRightTransition,
         headerMode: 'none',

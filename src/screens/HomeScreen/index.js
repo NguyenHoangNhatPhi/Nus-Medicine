@@ -21,7 +21,7 @@ class HomeScreen extends Layout {
     }
 
     showMoreApp = () => {
-        this.props.navigation.navigate('Auth');
+        this.props.navigation.navigate('Profile');
     };
 
     signOutAsync = async () => {

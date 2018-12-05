@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/navigation_v3.iml" filepath="$PROJECT_DIR$/navigation_v3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KimAnThamDinh.iml" filepath="$PROJECT_DIR$/KimAnThamDinh.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android/react-native-linear-gradient.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android/react-native-linear-gradient.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thamdinh/thamdinh.iml" filepath="$PROJECT_DIR$/thamdinh/thamdinh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thuno/thuno.iml" filepath="$PROJECT_DIR$/thuno/thuno.iml" />
     </modules>
   </component>
 </project>

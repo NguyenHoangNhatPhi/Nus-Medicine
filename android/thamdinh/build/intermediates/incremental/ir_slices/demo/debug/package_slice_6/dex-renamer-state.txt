@@ -1,0 +1,4 @@
+#Wed Dec 05 16:11:39 ICT 2018
+base.0=/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/transforms/dexMerger/demo/debug/6
+path.0=classes.dex
+renamed.0=classes.dex
