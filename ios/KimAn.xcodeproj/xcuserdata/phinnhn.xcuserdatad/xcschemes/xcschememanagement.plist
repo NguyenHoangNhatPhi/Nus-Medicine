@@ -6,23 +6,20 @@
 	<dict>
 		<key>KimAnThamDinh-tvOS.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>KimAnThamDinh.xcscheme_^#shared#^_</key>
-		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
 		<key>ThamDinh.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>ThuNo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<key>navigation_v3-tvOS.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,6 +34,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00E356ED1AD99517003FC87E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>13B07F861A680F5B00A75B9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D4F4044A21B9033700630858</key>
 		<dict>
 			<key>primary</key>

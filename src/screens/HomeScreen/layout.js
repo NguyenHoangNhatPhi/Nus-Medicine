@@ -9,6 +9,8 @@ import { Button } from '../../components';
 import commonStyles from '../../commonStyles';
 
 export default class Layout extends React.Component {
+
+
     render() {
         return (
             <View style={commonStyles.containerCenter}>
