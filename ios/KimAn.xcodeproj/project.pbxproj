@@ -458,6 +458,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		D40B82EA21BA63DD007E03F9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ThamDinh/Info.plist; sourceTree = "<group>"; };
 		D4767C3A21A4178F00D7EF4C /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		D4767C3B21A4178F00D7EF4C /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
 		D4767C3C21A4178F00D7EF4C /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
@@ -479,7 +480,6 @@
 		D47770C821B919C70001143A /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		D4F4047321B9033700630858 /* ThamDinh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThamDinh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F4049E21B9049500630858 /* ThuNo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThuNo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4F404A321B90A7500630858 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4F404CD21B90E2900630858 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = KimAnThamDinh/Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -864,8 +864,8 @@
 		D4F404A421B90A7D00630858 /* ThamDinh */ = {
 			isa = PBXGroup;
 			children = (
+				D40B82EA21BA63DD007E03F9 /* Info.plist */,
 				D4F404CD21B90E2900630858 /* Images.xcassets */,
-				D4F404A321B90A7500630858 /* Info.plist */,
 			);
 			name = ThamDinh;
 			sourceTree = "<group>";

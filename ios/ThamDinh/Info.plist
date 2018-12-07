@@ -5,7 +5,7 @@
 	<key>AppRegisterJS</key>
 	<string>com.kiman.thamdinh</string>
 	<key>JsCodeLocation</key>
-	<string>app/thamdinh/index</string>
+	<string>src/apps/thamdinh/index</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>EvilIcons.ttf</string>

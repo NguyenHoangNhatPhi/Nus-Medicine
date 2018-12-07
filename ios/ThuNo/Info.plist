@@ -5,7 +5,7 @@
 	<key>AppRegisterJS</key>
 	<string>com.kiman.thuno</string>
 	<key>JsCodeLocation</key>
-	<string>app/thuno/index</string>
+	<string>src/apps/thuno/index</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>EvilIcons.ttf</string>

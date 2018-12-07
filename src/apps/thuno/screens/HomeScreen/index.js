@@ -15,7 +15,7 @@ class HomeScreen extends Layout {
     }
 
     componentDidMount() {
-        // SplashScreen.hide();
+        SplashScreen.hide();
         this.navListener = this.props.navigation.addListener('didFocus', () => {
         });
         this.phi = this.props.navigation.addListener('didBlur', () => {
