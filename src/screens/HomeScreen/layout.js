@@ -9,10 +9,12 @@ import { Button } from '../../components';
 import commonStyles from '../../commonStyles';
 
 export default class Layout extends React.Component {
+
+
     render() {
         return (
             <View style={commonStyles.containerCenter}>
-                <Text>Home Screen</Text>
+                <Text>Home Screen Thu No</Text>
                 <Button onPress={this.showMoreApp} style={{
                     backgroundColor: 'red', padding: 20, borderRadius: 20,
                 }} >

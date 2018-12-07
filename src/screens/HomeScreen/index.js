@@ -1,6 +1,7 @@
 import {
     AsyncStorage
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen'
 
 import Layout from './layout';
 import { isPlatformIOS } from '../../utils/func';
@@ -14,6 +15,7 @@ class HomeScreen extends Layout {
     }
 
     componentDidMount() {
+        SplashScreen.hide();
         this.navListener = this.props.navigation.addListener('didFocus', () => {
         });
         this.phi = this.props.navigation.addListener('didBlur', () => {
