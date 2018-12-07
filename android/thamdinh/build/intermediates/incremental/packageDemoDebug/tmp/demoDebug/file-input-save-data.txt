@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Dec 05 16:11:40 ICT 2018
+#Fri Dec 07 12:14:58 ICT 2018
 5.base=/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/transforms/mergeJniLibs/demo/debug/0
 22.path=lib/x86/libfb.so
 32.set=DEX

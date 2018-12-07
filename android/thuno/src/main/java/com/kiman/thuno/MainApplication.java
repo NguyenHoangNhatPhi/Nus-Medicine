@@ -9,7 +9,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
               new RNGestureHandlerPackage(),
-              new VectorIconsPackage(),
-              new LinearGradientPackage()
+              new VectorIconsPackage()
       );
     }
 

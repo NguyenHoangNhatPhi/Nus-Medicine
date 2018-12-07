@@ -6,99 +6,99 @@
     density="xxxhdpi"
     format="10"
     plugin-version="3.2.1"
-    timestamp="1544001106531"
+    timestamp="1544159683601"
     token="-7181559941778554678"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1099" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="622" />
     <task
         name="verifier"
-        duration="0" />
+        duration="556" />
 
     <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_7.apk"
-        type="SPLIT" />
-    <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/dep/dependencies.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_3.apk"
-        type="SPLIT" />
-    <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_4.apk"
         type="SPLIT" />
     <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_6.apk"
+        type="SPLIT" />
+    <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_8.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/instant-run-apk/demo/debug/2018120516_1.0.0_demoDebug_Employee.apk"
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/instant-run-apk/demo/debug/2018120712_1.0.0_demoDebug_Employee.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1544001106531"
+        timestamp="1544159683601"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_7.apk"
-            type="SPLIT" />
-        <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/dep/dependencies.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_3.apk"
-            type="SPLIT" />
-        <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_4.apk"
             type="SPLIT" />
         <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/instant-run-apk/demo/debug/2018120516_1.0.0_demoDebug_Employee.apk"
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thamdinh/build/intermediates/instant-run-apk/demo/debug/2018120712_1.0.0_demoDebug_Employee.apk"
             type="SPLIT_MAIN" />
     </build>
 

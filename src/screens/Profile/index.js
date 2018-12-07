@@ -4,7 +4,7 @@ class ProfileScreen extends Layout {
     constructor(props) {
         super(props);
         this.gotoDetail = this.gotoDetail.bind(this);
-        console.log('constructor Home')
+        alert('constructor Home')
     }
 
     static getDrivedStateFromProps(props, state) {

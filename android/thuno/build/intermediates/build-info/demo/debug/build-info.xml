@@ -6,31 +6,37 @@
     density="xxxhdpi"
     format="10"
     plugin-version="3.2.1"
-    timestamp="1544001040104"
+    timestamp="1544158555659"
     token="-8776598392133908879"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1560" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="1132" />
     <task
         name="verifier"
-        duration="0" />
+        duration="541" />
 
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/instant-run-apk/demo/debug/thuno-demo-debug.apk"
+        type="SPLIT_MAIN" />
     <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/dep/dependencies.apk"
         type="SPLIT" />
     <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
         type="SPLIT" />
     <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_2.apk"
@@ -48,30 +54,30 @@
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_4.apk"
-        type="SPLIT" />
-    <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_8.apk"
         type="SPLIT" />
     <artifact
         location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_7.apk"
         type="SPLIT" />
-    <artifact
-        location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/instant-run-apk/demo/debug/thuno-demo-debug.apk"
-        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1544001040104"
+        timestamp="1544158555659"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/instant-run-apk/demo/debug/thuno-demo-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_9.apk"
             type="SPLIT" />
         <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_2.apk"
@@ -89,17 +95,11 @@
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_4.apk"
-            type="SPLIT" />
-        <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
             location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/split-apk/demo/debug/slices/slice_7.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/instant-run-apk/demo/debug/thuno-demo-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

@@ -11,49 +11,49 @@ import {
     HomeScreen,
     SignInScreen,
     OtherScreen,
-    LoadingScreen
+    LoadingScreen,
 } from '../screens';
 
-import HomeStack from './HomeStack';
+// import HomeStack from './HomeStack';
 
-const AppStack = createBottomTabNavigator({
-    Home: HomeStack,
-    Other: OtherScreen
-},
-    {
-        defaultNavigationOptions: ({ navigation }) => ({
-            tabBarIcon: ({ focused, horizontal, tintColor }) => {
-                const { routeName } = navigation.state;
-                let iconName;
-                if (routeName === 'Home') {
-                    iconName = `home`;
-                } else if (routeName === 'Other') {
-                    iconName = `settings`;
-                }
+// const AppStack = createBottomTabNavigator({
+//     Home: HomeStack,
+//     Other: OtherScreen
+// },
+//     {
+//         defaultNavigationOptions: ({ navigation }) => ({
+//             tabBarIcon: ({ focused, horizontal, tintColor }) => {
+//                 const { routeName } = navigation.state;
+//                 let iconName;
+//                 if (routeName === 'Home') {
+//                     iconName = `home`;
+//                 } else if (routeName === 'Other') {
+//                     iconName = `settings`;
+//                 }
 
-                return <Ionicons name={iconName} size={!focused ? 20 : 25} color={tintColor} />;
-            },
-        }),
-        tabBarOptions: {
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
-            safeAreaInset: {
-                bottom: 'always',
-                top: 'never'
-            },
-            tabStyle: {
-            },
-            style: {
-                height: 58
-            },
-            labelStyle: {
-                fontSize: 12,
-                marginTop: 0,
-                marginBottom: 5
-            },
-        },
-    }
-);
+//                 return <Ionicons name={iconName} size={!focused ? 20 : 25} color={tintColor} />;
+//             },
+//         }),
+//         tabBarOptions: {
+//             activeTintColor: 'tomato',
+//             inactiveTintColor: 'gray',
+//             safeAreaInset: {
+//                 bottom: 'always',
+//                 top: 'never'
+//             },
+//             tabStyle: {
+//             },
+//             style: {
+//                 height: 58
+//             },
+//             labelStyle: {
+//                 fontSize: 12,
+//                 marginTop: 0,
+//                 marginBottom: 5
+//             },
+//         },
+//     }
+// );
 
 const AuthStack = createStackNavigator({
     Sigin: SignInScreen
@@ -69,7 +69,7 @@ const AuthStack = createStackNavigator({
 
 export default createNavigationContainer(createSwitchNavigator({
     Loading: LoadingScreen,
-    App: AppStack,
+    App: HomeScreen,
     Auth: AuthStack,
 },
     {

@@ -6,18 +6,12 @@ import {
     StatusBar,
     StyleSheet
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class Layout extends React.Component {
 
     render() {
         return (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-                    <Text style={styles.buttonText}>
-                        Sign in with Facebook
-  </Text>
-                </LinearGradient>
             </View>
         );
     }
