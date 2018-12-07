@@ -5,7 +5,7 @@ import SplashScreen from 'react-native-splash-screen'
 
 import Layout from './layout';
 import { isPlatformIOS } from '../../../../core/utils/func';
-import connectRedux from '../../redux/ConnectRedux';
+import connectRedux from '../../redux/connectRedux';
 
 class HomeScreen extends Layout {
     constructor(props) {
