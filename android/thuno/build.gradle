@@ -75,7 +75,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "app/thuno/index.js"
+    entryFile: "src/apps/thuno/index.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"

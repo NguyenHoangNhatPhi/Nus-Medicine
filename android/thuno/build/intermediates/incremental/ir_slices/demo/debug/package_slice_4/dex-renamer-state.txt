@@ -1,4 +1,4 @@
-#Fri Dec 07 11:56:19 ICT 2018
+#Fri Dec 07 14:08:33 ICT 2018
 base.0=/Users/phinnhn/Desktop/Dinovatie/KimAn_ThamDinh/android/thuno/build/intermediates/transforms/dexMerger/demo/debug/4
 path.0=classes.dex
 renamed.0=classes.dex
