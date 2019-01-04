@@ -1,84 +1,30 @@
 import React from 'react';
 import {
+    createStackNavigator,
+    createSwitchNavigator,
     createNavigationContainer,
-    createBottomTabNavigator,
-    createDrawerNavigator
+    createBottomTabNavigator
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Feather';
 
-import TabHomeStack from './TabHomeStack';
-import TabSettingsStack from './TabSettingStack';
-import { hiddenTabbar } from '../utils/func';
 import {
-    MyHomeScreen,
-    MyNotificationsScreen
+    HomeScreen,
+    OtherScreen,
+    LoginScreen
+    // LoadingScreen
 } from '../screens';
 
-// hiddenTabbar(TabHomeStack);
-// hiddenTabbar(TabSettingsStack);
+// import HomeStack from './HomeStack';
 
-const TabNavigator = createBottomTabNavigator({
-    Home: TabHomeStack,
-    Settings: TabSettingsStack,
+
+
+
+
+export default createNavigationContainer(createSwitchNavigator({
+    Login : LoginScreen
 },
     {
-        defaultNavigationOptions: ({ navigation }) => ({
-            tabBarIcon: ({ focused, horizontal, tintColor }) => {
-                const { routeName } = navigation.state;
-                let iconName;
-                if (routeName === 'Home') {
-                    iconName = `home`;
-                } else if (routeName === 'Settings') {
-                    iconName = `settings`;
-                }
-
-                return <Ionicons name={iconName} size={!focused ? 20 : 25} color={tintColor} />;
-            },
-        }),
-        tabBarOptions: {
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
-            safeAreaInset: {
-                bottom: 'always',
-                top: 'never'
-            },
-            tabStyle: {
-            },
-            style: {
-                height: 58
-            },
-            labelStyle: {
-                fontSize: 12,
-                marginTop: 0,
-                marginBottom: 5
-            },
-        },
+        initialRouteName: 'Login'
     }
-)
 
-const DrawerExample = createDrawerNavigator(
-    {
-        Home: {
-            path: '/',
-            screen: TabHomeStack,
-        },
-        Profile: {
-            path: '/sent',
-            screen: TabSettingsStack,
-        },
-    },
-
-    {
-        initialRouteName: 'Home',
-        DrawerNavigatorConfig:{
-            drawerPosition:'right'
-        },
-        contentOptions: {
-            activeTintColor: 'red',
-        },
-    }
-);
-
-
-
-export default createNavigationContainer(DrawerExample);
+))

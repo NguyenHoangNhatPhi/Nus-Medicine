@@ -4,7 +4,6 @@ import getSlideFromRightTransition from 'react-navigation-slide-from-right-trans
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {
-    SignInScreen,
     HomeScreen,
 } from '../screens';
 

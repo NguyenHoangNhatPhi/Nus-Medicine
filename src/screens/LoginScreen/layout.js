@@ -12,12 +12,7 @@ export default class Layout extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>SignIn Screen</Text>
-                <Button title="Sign in!" onPress={this.signInAsync} />
-                <Button
-                    title="Go back to other examples"
-                    onPress={() => this.props.navigation.goBack(null)}
-                />
+                <Text>Login Screen</Text>
                
             </View>
         );

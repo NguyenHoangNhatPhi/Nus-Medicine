@@ -4,7 +4,7 @@ import { AppRegistry, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
-import AppNavigators from './src/navigators/SwitchWithStacks';
+import AppNavigators from './src/navigators/AppNavigator';
 import configureStore from './src/redux/store';
 import { name as appName } from './app.json';
 
