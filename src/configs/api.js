@@ -1,5 +1,5 @@
 const apiConfigs = {
-    BASE_API: "https://customers.jaga-api.com/dev/v1/"
+    BASE_API: ""
 }
 
 export default apiConfigs;
