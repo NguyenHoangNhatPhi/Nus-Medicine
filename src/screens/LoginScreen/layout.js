@@ -1,13 +1,12 @@
 import React from 'react';
 import {
     View,
-    Button,
-    StatusBar
 } from 'react-native';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
+import Configs from '../../configs';
 
 export default class Layout extends React.Component {
     render() {
@@ -22,17 +21,36 @@ export default class Layout extends React.Component {
                 <View style={styles.containerCard} >
                     <View style={styles.containerForm} >
                         <TextInputCustom
+                            ref={this.emailInputRef}
                             placeholder="Email"
+                            onSubmitEditing={this.focusTextInputPassword}
                         />
-                          <View style={{ height: scaleSzie(20) }} />
-                         <TextInputCustom
+                        <View style={{ height: scaleSzie(20) }} />
+                        <TextInputCustom
+                            ref={this.passwordInputRef}
                             placeholder="Password"
+                            onSubmitEditing={this.login}
                         />
                         <View style={{ height: scaleSzie(40) }} />
                         <ButtonSubmit
                             onPress={this.login}
                             title="Log In"
                         />
+                        <View style={{ marginTop: scaleSzie(25), flexDirection: 'row', justifyContent: 'center' }} >
+                            <Button onPress={this.gotoForgotScreen} >
+                                <Text style={styles.textFormLogin} >
+                                    Forgot Password
+                            </Text>
+                            </Button>
+                            <Text style={[styles.textFormLogin, { marginHorizontal: scaleSzie(17) }]} >
+                                {`|`}
+                            </Text>
+                            <Button onPress={this.gotoRegisterScreen} >
+                                <Text style={styles.textFormLogin} >
+                                    Register
+                            </Text>
+                            </Button>
+                        </View>
                     </View>
                 </View>
             </View>

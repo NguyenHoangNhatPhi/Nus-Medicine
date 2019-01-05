@@ -24,5 +24,10 @@ export default StyleSheet.create({
         borderRadius:scaleSzie(10),
         paddingHorizontal: scaleSzie(20),
         paddingTop: scaleSzie(25)
+    },
+    textFormLogin:{
+        color: Configs.ORANGE, 
+        fontSize: scaleSzie(12), 
+        fontWeight: '400',
     }
 })
