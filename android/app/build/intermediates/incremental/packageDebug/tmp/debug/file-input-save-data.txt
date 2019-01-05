@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Jan 05 10:40:02 ICT 2019
+#Sat Jan 05 14:36:28 ICT 2019
 5.base=/Users/phinnhn/Desktop/Dinovatie/Nus-Medicine/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 22.path=lib/armeabi-v7a/libimagepipeline.so
 32.set=DEX
