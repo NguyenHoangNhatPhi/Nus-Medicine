@@ -33,7 +33,7 @@ export default class Layout extends React.Component {
                         <View style={{ marginTop: scaleSzie(25), flexDirection: 'row', justifyContent: 'center' }} >
                             <Button onPress={this.gotoForgotScreen} >
                                 <Text style={styles.textFormLogin} >
-                                    Having problems? Please contact us 
+                                    Having problems? Please contact us
                             </Text>
                             </Button>
                         </View>

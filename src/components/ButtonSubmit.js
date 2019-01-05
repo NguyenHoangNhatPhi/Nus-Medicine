@@ -13,19 +13,26 @@ export default class ButtonSubmit extends React.PureComponent {
         this.onPress = this.onPress.bind(this);
     }
 
-    onPress(){
+    onPress() {
         this.props.onPress()
     }
 
     render() {
-        const {title} = this.props;
+        const { title,
+            backgroundButton,
+            titleColor,
+            border 
+        } = this.props;
+        const temptBackground = backgroundButton ? backgroundButton : Configs.ORANGE;
+        const temptTitleColor = titleColor ? titleColor : '#ffffff';
+        const temptBorder = border ? border : null
         return (
             <Button onPress={this.onPress} style={[{
-                height: scaleSzie(50), backgroundColor: Configs.ORANGE,
+                height: scaleSzie(50), backgroundColor: temptBackground,
                 borderRadius: scaleSzie(4)
-            }, commonStyles.shadowApp,commonStyles.centerHorVer
-        ]} >
-                 <Text style={{color:'#ffffff',fontSize:scaleSzie(18),fontWeight: '400',}} >
+            }, commonStyles.shadowApp, commonStyles.centerHorVer,temptBorder
+            ]} >
+                <Text style={{ color: temptTitleColor, fontSize: scaleSzie(18), fontWeight: '400', }} >
                     {title}
                 </Text>
             </Button>

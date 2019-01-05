@@ -7,23 +7,13 @@ import {
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Feather';
 
-import {
-    LoginScreen,
-    ForgotPasswordScreen
-} from '../screens';
-
-// import HomeStack from './HomeStack';
-
-
-
-
+import AuthStack from './AuthStack';
 
 export default createNavigationContainer(createSwitchNavigator({
-    Login : LoginScreen,
-    ForgotPassword:ForgotPasswordScreen
+    Auth:AuthStack
 },
     {
-        initialRouteName: 'ForgotPassword'
+        initialRouteName: 'Auth'
     }
 
 ))
