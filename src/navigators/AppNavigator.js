@@ -8,10 +8,8 @@ import {
 import Ionicons from 'react-native-vector-icons/Feather';
 
 import {
-    HomeScreen,
-    OtherScreen,
-    LoginScreen
-    // LoadingScreen
+    LoginScreen,
+    ForgotPasswordScreen
 } from '../screens';
 
 // import HomeStack from './HomeStack';
@@ -21,10 +19,11 @@ import {
 
 
 export default createNavigationContainer(createSwitchNavigator({
-    Login : LoginScreen
+    Login : LoginScreen,
+    ForgotPassword:ForgotPasswordScreen
 },
     {
-        initialRouteName: 'Login'
+        initialRouteName: 'ForgotPassword'
     }
 
 ))

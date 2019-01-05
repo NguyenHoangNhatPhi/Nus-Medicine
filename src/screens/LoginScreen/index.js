@@ -10,24 +10,24 @@ class LoginScreen extends Layout {
         this.passwordInputRef = React.createRef();
 
         this.login = this.login.bind(this);
-        this.focusTextInputPassword= this.focusTextInputPassword.bind(this);
+        this.focusTextInputPassword = this.focusTextInputPassword.bind(this);
         this.gotoForgotScreen = this.gotoForgotScreen.bind(this);
         this.gotoRegisterScreen = this.gotoRegisterScreen.bind(this);
     }
 
-    login(){
+    login() {
         alert('ddd')
     }
 
-    focusTextInputPassword(){
+    focusTextInputPassword() {
         this.passwordInputRef.current.onFocusTextInput();
     }
 
-    gotoForgotScreen(){
-        alert('gotoForgotScreen')
+    gotoForgotScreen() {
+        this.props.navigation.navigate('ForgotPassword');
     }
 
-    gotoRegisterScreen(){
+    gotoRegisterScreen() {
         alert('gotoRegisterScreen')
     }
 
