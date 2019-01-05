@@ -12,7 +12,9 @@ export default class Layout extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <HeaderScreen />
+                <HeaderScreen 
+                    navigation={this.props.navigation}
+                />
                 <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
                     <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
                         Log In

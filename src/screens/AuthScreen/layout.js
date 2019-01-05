@@ -12,7 +12,9 @@ export default class Layout extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <HeaderScreen />
+                <HeaderScreen 
+                hideIconLeft={true}
+                />
                 <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
                     <Text style={styles.textTitle} >
                         {`We invite you to join the NUS Medicine Alumni community and`}
