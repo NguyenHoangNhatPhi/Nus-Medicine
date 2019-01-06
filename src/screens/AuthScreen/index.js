@@ -12,6 +12,7 @@ class AuthScreen extends Layout {
     }
 
     register() {
+        this.props.navigation.navigate('Register');
     }
 
     login(){

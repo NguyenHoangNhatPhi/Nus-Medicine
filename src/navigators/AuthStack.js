@@ -7,14 +7,16 @@ import {
     LoginScreen,
     ForgotPasswordScreen,
     AuthScreen,
-    FAQScreen
+    FAQScreen,
+    RegisterScreen
 } from '../screens';
 
 const AuthStack = createStackNavigator({
     Login: LoginScreen,
     ForgotPassword: ForgotPasswordScreen,
     Auth: AuthScreen,
-    FAQ:FAQScreen
+    FAQ:FAQScreen,
+    Register:RegisterScreen
 }, {
         initialRouteName: "Auth",
         transitionConfig: getSlideFromRightTransition,
