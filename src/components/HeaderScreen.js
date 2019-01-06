@@ -28,7 +28,7 @@ export default class HeaderScreen extends React.PureComponent {
                 <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(10), paddingLeft: scaleSzie(12) }} >
                 {
                     !this.props.hideIconLeft ? <Button onPress={this.back} >
-                    <MaterialIcons name="arrow-back" size={30} color="#000" />
+                    <MaterialIcons name="arrow-back" size={scaleSzie(30)} color="#000" />
                 </Button> : null
                 }
                     

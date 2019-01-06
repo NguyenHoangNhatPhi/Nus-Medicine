@@ -10,6 +10,7 @@ import AuthScreen from './AuthScreen';
 import FAQScreen from './FAQScreen';
 import RegisterScreen from './RegisterScreen';
 import ContactUsScreen from './ContactUsScreen';
+import ClassReunionScreen from './ClassReunionScreen';
 
 module.exports = {
     HomeScreen,
@@ -21,5 +22,6 @@ module.exports = {
     AuthScreen,
     FAQScreen,
     RegisterScreen,
-    ContactUsScreen
+    ContactUsScreen,
+    ClassReunionScreen
 }

@@ -9,7 +9,8 @@ import {
     AuthScreen,
     FAQScreen,
     RegisterScreen,
-    ContactUsScreen
+    ContactUsScreen,
+    ClassReunionScreen
 } from '../screens';
 
 const AuthStack = createStackNavigator({
@@ -18,9 +19,10 @@ const AuthStack = createStackNavigator({
     Auth: AuthScreen,
     FAQ: FAQScreen,
     Register: RegisterScreen,
-    ContactUs: ContactUsScreen
+    ContactUs: ContactUsScreen,
+    ClassReunion: ClassReunionScreen
 }, {
-        initialRouteName: "ContactUs",
+        initialRouteName: "ClassReunion",
         transitionConfig: getSlideFromRightTransition,
         headerMode: 'none',
     }
