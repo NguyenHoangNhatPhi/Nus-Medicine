@@ -6,19 +6,13 @@ class HomePageScreen extends Layout {
     constructor(props) {
         super(props);
 
-        this.emailInputRef = React.createRef();
-
-        this.resetPassword = this.resetPassword.bind(this);
-        this.gotoContactScreen = this.gotoContactScreen.bind(this);
+        this.gotoRenuion = this.gotoRenuion.bind(this);
     }
 
-    resetPassword() {
+    gotoRenuion() {
         alert('ddd')
     }
 
-    gotoContactScreen() {
-        this.props.navigation.navigate('ContactUs');
-    }
 
 
 }

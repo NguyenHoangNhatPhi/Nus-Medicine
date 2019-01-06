@@ -29,21 +29,29 @@ export default class Layout extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.containerContent} >
-                    <Image source={USER_GRADUATION} style={{ width: scaleSzie(45), height: (45) }} />
+                    <Button onPress={this.gotoRenuion} >
+                        <Image source={USER_GRADUATION} style={{ width: scaleSzie(45), height: (45) }} />
+                    </Button>
                     <Text style={styles.textHomePage} >
                         CLASS REUNION CONCIERGE
                     </Text>
-                    <Entypo name="hand" size={40} color="#fff" />
+                    <Button onPress={this.gotoRenuion} >
+                        <Entypo name="hand" size={40} color="#fff" />
+                    </Button>
                     <Text style={styles.textHomePage} >
                         GIVING PORTAL
                     </Text>
-                    <Image source={CHAT} style={{ width: scaleSzie(45), height: (45) }} />
+                    <Button onPress={this.gotoRenuion} >
+                        <Image source={CHAT} style={{ width: scaleSzie(45), height: (45) }} />
+                    </Button>
                     <Text style={styles.textHomePage} >
-                       MESSAGING
+                        MESSAGING
                     </Text>
-                    <Entypo name="info-with-circle" size={40} color="#fff" />
+                    <Button onPress={this.gotoRenuion} >
+                        <Entypo name="info-with-circle" size={40} color="#fff" />
+                    </Button>
                     <Text style={styles.textHomePage} >
-                       USEFUL INFO
+                        USEFUL INFO
                     </Text>
                 </View>
             </View>
