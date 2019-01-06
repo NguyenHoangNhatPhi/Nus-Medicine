@@ -16,7 +16,7 @@ class LoginScreen extends Layout {
     }
 
     login() {
-        alert('ddd')
+     
     }
 
     focusTextInputPassword() {
@@ -28,7 +28,7 @@ class LoginScreen extends Layout {
     }
 
     gotoRegisterScreen() {
-        alert('gotoRegisterScreen')
+        this.props.navigation.navigate('Register')
     }
 
 
