@@ -42,5 +42,19 @@ export default StyleSheet.create({
         borderRadius: scaleSzie(4),
         flexDirection: 'row',
         paddingLeft: scaleSzie(10)
+    },
+    boxdateSelect: {
+        flex: 1.5,
+        borderWidth: scaleSzie(2),
+        borderColor: Configs.ORANGE,
+        borderRadius: scaleSzie(4),
+        justifyContent: 'center',
+        paddingLeft: scaleSzie(15)
+    },
+    containerModal: {
+        width: width ,
+        height:scaleSzie(300),
+        backgroundColor:'#fff',
+        // borderRadius:scaleSzie(4)
     }
 })

@@ -1,29 +1,33 @@
 import React from 'react';
-import { Linking } from 'react-native';
+import {
+    DatePickerIOS,
+    DatePickerAndroid
+} from 'react-native';
 
 import Layout from './layout';
 
 class ClassReunionScreen extends Layout {
     constructor(props) {
         super(props);
+        this.state = {
+            chosenDate: new Date(),
+            visiblePickerDateIOS: false
+        };
 
-        this.emailInputRef = React.createRef();
-        this.sendMessage = this.sendMessage.bind(this);
+        this.showPick = this.showPick.bind(this);
+        this.setDate = this.setDate.bind(this);
     }
 
-    sendMessage() {
-        alert('ddd')
+    setDate(newDate) {
+        this.setState({chosenDate: newDate})
+      }
+
+    showPick() {
+        this.setState({
+            visiblePickerDateIOS:true
+        })
     }
 
-    gotoSocial(urlSocial) {
-        Linking.canOpenURL(urlSocial).then(supported => {
-            if (!supported) {
-                console.log('Can\'t handle url: ' + url);
-            } else {
-                return Linking.openURL(urlSocial);
-            }
-        }).catch(err => console.error('An error occurred', err));
-    }
 
 }
 
