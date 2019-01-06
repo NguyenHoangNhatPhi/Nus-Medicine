@@ -9,10 +9,15 @@ class ForgotPasswordScreen extends Layout {
         this.emailInputRef = React.createRef();
 
         this.resetPassword = this.resetPassword.bind(this);
+        this.gotoContactScreen = this.gotoContactScreen.bind(this);
     }
 
     resetPassword(){
         alert('ddd')
+    }
+
+    gotoContactScreen(){
+       this.props.navigation.navigate('ContactUs');
     }
 
 

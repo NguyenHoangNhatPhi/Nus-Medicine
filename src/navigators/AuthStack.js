@@ -8,17 +8,19 @@ import {
     ForgotPasswordScreen,
     AuthScreen,
     FAQScreen,
-    RegisterScreen
+    RegisterScreen,
+    ContactUsScreen
 } from '../screens';
 
 const AuthStack = createStackNavigator({
     Login: LoginScreen,
     ForgotPassword: ForgotPasswordScreen,
     Auth: AuthScreen,
-    FAQ:FAQScreen,
-    Register:RegisterScreen
+    FAQ: FAQScreen,
+    Register: RegisterScreen,
+    ContactUs: ContactUsScreen
 }, {
-        initialRouteName: "Auth",
+        initialRouteName: "ContactUs",
         transitionConfig: getSlideFromRightTransition,
         headerMode: 'none',
     }

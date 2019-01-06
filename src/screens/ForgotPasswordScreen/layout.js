@@ -33,7 +33,7 @@ export default class Layout extends React.Component {
                             title="Send Reset Password Link"
                         />
                         <View style={{ marginTop: scaleSzie(25), flexDirection: 'row', justifyContent: 'center' }} >
-                            <Button onPress={this.gotoForgotScreen} >
+                            <Button onPress={this.gotoContactScreen} >
                                 <Text style={styles.textFormLogin} >
                                     Having problems? Please contact us
                             </Text>
