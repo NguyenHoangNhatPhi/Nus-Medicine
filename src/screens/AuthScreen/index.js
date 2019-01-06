@@ -15,11 +15,11 @@ class AuthScreen extends Layout {
     }
 
     login(){
-        this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('Login');
     }
 
     faq(){
-
+        this.props.navigation.navigate('FAQ');
     }
 
 }

@@ -7,6 +7,7 @@ import LoadingScreen from './LoadingScreen';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
 import LoginScreen from './LoginScreen';
 import AuthScreen from './AuthScreen';
+import FAQScreen from './FAQScreen'
 
 module.exports = {
     HomeScreen,
@@ -15,5 +16,6 @@ module.exports = {
     OtherScreen,
     LoadingScreen,
     ForgotPasswordScreen,
-    AuthScreen
+    AuthScreen,
+    FAQScreen
 }
