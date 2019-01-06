@@ -7,13 +7,17 @@ import {
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Feather';
 
+import {
+    HomePageScreen,
+} from '../screens';
 import AuthStack from './AuthStack';
 
 export default createNavigationContainer(createSwitchNavigator({
-    Auth:AuthStack
+    Auth:AuthStack,
+    HomePage:HomePageScreen
 },
     {
-        initialRouteName: 'Auth'
+        initialRouteName: 'HomePage'
     }
 
 ))
