@@ -15,6 +15,8 @@ import {
     HomePageScreen
 } from '../screens';
 
+import Configs from '../configs';
+import SideMenu from '../screens/SideMenu';
 
 const DrawerStack = createDrawerNavigator({
     Login: LoginScreen,
@@ -28,7 +30,7 @@ const DrawerStack = createDrawerNavigator({
     HomePage:HomePageScreen
 },{
         initialRouteName: "HomePage",
-        headerMode: 'none',
+        contentComponent: SideMenu,
     }
 )
 

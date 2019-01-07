@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     View,
-    Dimensions
+    Dimensions,
+    Image
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -9,6 +10,7 @@ import { scaleSzie, isIphoneX } from '../utils/func';
 import Button from './Button';
 
 const { width, height } = Dimensions.get('window');
+const LOGO = require('../resources/Logo.png');
 
 export default class HeaderScreen extends React.PureComponent {
 
@@ -33,7 +35,10 @@ export default class HeaderScreen extends React.PureComponent {
                 }
                     
                 </View>
-                <View style={{ flex: 1 }} >
+                <View style={{ flex: 3 ,justifyContent:'flex-end',alignItems:'center'}} >
+                    <Image source={LOGO} style={{
+                        width:scaleSzie(140),height:scaleSzie(28),marginBottom:scaleSzie(6)
+                    }} />
                 </View>
                 <View style={{ flex: 1 }} >
 
