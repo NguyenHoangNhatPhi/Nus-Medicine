@@ -17,7 +17,7 @@ export default createNavigationContainer(createSwitchNavigator({
     HomePage:HomePageScreen
 },
     {
-        initialRouteName: 'HomePage'
+        initialRouteName: 'Auth'
     }
 
 ))
