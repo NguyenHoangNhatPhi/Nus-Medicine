@@ -23,5 +23,9 @@ export default StyleSheet.create({
         marginTop: scaleSzie(5),
         fontWeight: '600',
         marginBottom: scaleSzie(45)
+    },
+    textInput:{
+        // flex:1
+        
     }
 })

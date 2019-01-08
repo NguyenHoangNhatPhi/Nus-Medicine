@@ -1,10 +1,12 @@
 import React from 'react';
 import {
     View,
-    Image
+    Image,
+    TextInput
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat } from '../../components/react-native-gifted-chat';
+import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
 import styles from './styles';
@@ -15,6 +17,19 @@ const USER_GRADUATION = require('../../resources/graduation.png');
 const CHAT = require('../../resources/chat.png');
 
 export default class Layout extends React.Component {
+
+    renderFooter(props){
+        return(
+            <View style={{width:Configs.FULL_WIDTH,backgroundColor:'red',
+            }} >
+                <AutoGrowingTextInput style={styles.textInput} 
+                placeholder={'Your Message'} 
+                maxHeight={200}
+                minHeight={45}
+                />
+            </View>
+        );
+    }
 
     render() {
         return (
@@ -29,6 +44,7 @@ export default class Layout extends React.Component {
                         user={{
                             _id: 1,
                         }}
+                        // renderInputToolbar={this.renderFooter}
                     />
                 </View>
             </View>

@@ -31,7 +31,7 @@ const DrawerStack = createDrawerNavigator({
     HomePage:HomePageScreen,
     Chat:ChatScreen
 },{
-        initialRouteName: "HomePage",
+        initialRouteName: "Chat",
         contentComponent: SideMenu,
     }
 )
