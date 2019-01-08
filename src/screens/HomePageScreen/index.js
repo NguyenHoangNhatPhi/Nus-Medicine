@@ -7,10 +7,15 @@ class HomePageScreen extends Layout {
         super(props);
 
         this.gotoRenuion = this.gotoRenuion.bind(this);
+        this.gotoListChat = this.gotoListChat.bind(this);
     }
 
     gotoRenuion() {
         alert('ddd')
+    }
+
+    gotoListChat(){
+        this.props.navigation.navigate('Chat');
     }
 
 

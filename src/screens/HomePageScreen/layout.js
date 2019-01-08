@@ -41,7 +41,7 @@ export default class Layout extends React.Component {
                     <Text style={styles.textHomePage} >
                         GIVING PORTAL
                     </Text>
-                    <Button onPress={this.gotoRenuion} >
+                    <Button onPress={this.gotoListChat} >
                         <Image source={CHAT} style={{ width: scaleSzie(45), height: (45) }} />
                     </Button>
                     <Text style={styles.textHomePage} >

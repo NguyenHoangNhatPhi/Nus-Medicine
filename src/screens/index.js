@@ -12,6 +12,7 @@ import ContactUsScreen from './ContactUsScreen';
 import ClassReunionScreen from './ClassReunionScreen';
 import OtherLamuniScreen from './OtherLamuniScreen';
 import HomePageScreen from './HomePageScreen';
+import ChatScreen from './ChatScreen';
 
 module.exports = {
     SettingsScreen,
@@ -25,5 +26,6 @@ module.exports = {
     ContactUsScreen,
     ClassReunionScreen,
     OtherLamuniScreen,
-    HomePageScreen
+    HomePageScreen,
+    ChatScreen
 }
