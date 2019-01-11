@@ -8,10 +8,11 @@ class ChatScreen extends Layout {
     constructor(props) {
         super(props);
         this.state = {
+            value:'',
             messages: [
                 {
                     _id: 1,
-                    text: 'Hello developer',
+                    text: 'Hello Phi',
                     createdAt: new Date(),
                     user: {
                         _id: 2,
@@ -21,7 +22,7 @@ class ChatScreen extends Layout {
                 },
                 {
                     _id: 2,
-                    text: 'Hello developer',
+                    text: 'Hi',
                     createdAt: new Date(),
                     user: {
                         _id: 1,
@@ -33,6 +34,9 @@ class ChatScreen extends Layout {
         }
         this.gotoRenuion = this.gotoRenuion.bind(this);
         this.onSend = this.onSend.bind(this);
+    }
+
+    componentDidMount(){
     }
 
     gotoRenuion() {

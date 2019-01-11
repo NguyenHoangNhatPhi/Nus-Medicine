@@ -2,12 +2,16 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, View, Keyboard, ViewPropTypes } from 'react-native';
+import { StyleSheet, View, Keyboard, ViewPropTypes ,TouchableOpacity} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import Composer from './Composer';
 import Send from './Send';
 import Actions from './Actions';
 import Color from './Color';
+
+import { scaleSzie } from '../../../utils/func';
+import Configs from '../../../configs';
 
 export default class InputToolbar extends React.Component {
 
@@ -87,9 +91,14 @@ export default class InputToolbar extends React.Component {
         <View style={[styles.primary, this.props.primaryStyle]}>
           {this.renderActions()}
           {this.renderComposer()}
-          <View style={{width:10,height:10,backgroundColor:'red'}} >
-
-          </View>
+          <TouchableOpacity
+          onPress={()=>this.props.showEmotion()}
+          style={{
+            width: scaleSzie(40), height: scaleSzie(44),
+            paddingTop: scaleSzie(5), alignItems: 'flex-end'
+          }} >
+            <FontAwesome name="smile-o" size={scaleSzie(30)} color={Configs.ORANGE} />
+          </TouchableOpacity>
           {this.renderSend()}
         </View>
         {this.renderAccessory()}
@@ -114,7 +123,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   accessory: {
-    height: 44,
+    height: scaleSzie(44),
   },
 });
 
@@ -126,7 +135,7 @@ InputToolbar.defaultProps = {
   containerStyle: {},
   primaryStyle: {},
   accessoryStyle: {},
-  onPressActionButton: () => {},
+  onPressActionButton: () => { },
 };
 
 InputToolbar.propTypes = {

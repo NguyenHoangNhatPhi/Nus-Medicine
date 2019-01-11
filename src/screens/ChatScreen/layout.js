@@ -6,7 +6,8 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
-import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
+import EmojiPicker from 'react-native-simple-emoji-picker';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
 import styles from './styles';
@@ -18,20 +19,22 @@ const CHAT = require('../../resources/chat.png');
 
 export default class Layout extends React.Component {
 
-    renderFooter(props){
-        return(
-            <View style={{width:Configs.FULL_WIDTH,backgroundColor:'red',
+    renderFooter(props) {
+        return (
+            <View style={{
+                width: Configs.FULL_WIDTH, backgroundColor: 'red',
             }} >
-                <AutoGrowingTextInput style={styles.textInput} 
-                placeholder={'Your Message'} 
-                maxHeight={200}
-                minHeight={45}
+                <AutoGrowingTextInput style={styles.textInput}
+                    placeholder={'Your Message'}
+                    maxHeight={200}
+                    minHeight={45}
                 />
             </View>
         );
     }
 
     render() {
+        const {value} = this.state;
         return (
             <View style={styles.container}>
                 <HeaderScreen
@@ -44,7 +47,11 @@ export default class Layout extends React.Component {
                         user={{
                             _id: 1,
                         }}
-                        // renderInputToolbar={this.renderFooter}
+                        onInputTextChanged={value => this.setState({value})}
+                        text={value}
+                    />
+                    <EmojiPicker
+                        onPick={emoji => console.log(emoji)}
                     />
                 </View>
             </View>
