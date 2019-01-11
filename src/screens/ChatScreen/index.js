@@ -1,6 +1,8 @@
 import React from 'react';
+import {
+    Keyboard
+} from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
-
 
 import Layout from './layout';
 
@@ -8,7 +10,8 @@ class ChatScreen extends Layout {
     constructor(props) {
         super(props);
         this.state = {
-            value:'',
+            value: '',
+            visibleEmoji: false,
             messages: [
                 {
                     _id: 1,
@@ -34,9 +37,39 @@ class ChatScreen extends Layout {
         }
         this.gotoRenuion = this.gotoRenuion.bind(this);
         this.onSend = this.onSend.bind(this);
+        this.keyboardWillShow = this.keyboardWillShow.bind(this);
+        this.keyboardDidHide = this.keyboardDidHide.bind(this);
+        this.showshowEmotion = this.showshowEmotion.bind(this);
+        this.addEmoji = this.addEmoji.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+    }
+
+    addEmoji(emoji) {
+        this.setState(prevState => ({
+            value: `${prevState.value} ${emoji}`
+        }))
+    }
+
+    keyboardWillShow() {
+        // console.log('Keyboard Shown');
+        // this.setState({
+        //     visibleEmoji: false
+        // })
+    }
+
+    keyboardDidHide() {
+        console.log('Keyboard Hidden');
+    }
+
+    showshowEmotion() {
+        Keyboard.dismiss();
+        this.setState({
+            visibleEmoji: true
+        })
     }
 
     gotoRenuion() {

@@ -7,7 +7,7 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
-import EmojiPicker from 'react-native-simple-emoji-picker';
+import EmojiPicker from '../../components/Emoji';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
 import styles from './styles';
@@ -34,7 +34,7 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {value} = this.state;
+        const { value, visibleEmoji } = this.state;
         return (
             <View style={styles.container}>
                 <HeaderScreen
@@ -47,12 +47,16 @@ export default class Layout extends React.Component {
                         user={{
                             _id: 1,
                         }}
-                        onInputTextChanged={value => this.setState({value})}
+                        onInputTextChanged={value => this.setState({ value })}
                         text={value}
+                        showEmotion={this.showshowEmotion}
                     />
-                    <EmojiPicker
-                        onPick={emoji => console.log(emoji)}
-                    />
+                    {
+                        visibleEmoji ? <EmojiPicker
+                            onPick={this.addEmoji}
+                        /> : <View   />
+                    }
+
                 </View>
             </View>
         );
