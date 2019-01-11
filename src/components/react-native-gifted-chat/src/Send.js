@@ -5,8 +5,12 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, ViewPropTypes } from 'react-native';
 import Color from './Color';
 
+import { scaleSzie } from '../../../utils/func';
+import Configs from '../../../configs';
+
 export default function Send({ text, containerStyle, onSend, children, textStyle, label, alwaysShowSend }) {
-  if (alwaysShowSend || text.trim().length > 0) {
+  const temptColorButtonSend= text.trim().length > 0 ? Configs.ORANGE :'grey';
+  const temptActiveOpacity = text.trim().length > 0 ? 0.5 : 1;
     return (
       <TouchableOpacity
         testID="send"
@@ -14,15 +18,31 @@ export default function Send({ text, containerStyle, onSend, children, textStyle
         accessibilityLabel="send"
         style={[styles.container, containerStyle]}
         onPress={() => {
-          onSend({ text: text.trim() }, true);
+          if(text.trim().length > 0){
+            onSend({ text: text.trim() }, true);
+          }
+          
         }}
+        activeOpacity={temptActiveOpacity}
         accessibilityTraits="button"
       >
-        <View>{children || <Text style={[styles.text, textStyle]}>{label}</Text>}</View>
+        {/* <View>{children || <Text style={[styles.text, textStyle]}>{`label`}</Text>}</View> */}
+        <View>{children || <View style={{
+          width: scaleSzie(100), height: scaleSzie(50),
+          paddingHorizontal: scaleSzie(10), paddingVertical: (10)
+        }} >
+          <View style={{
+            flex: 1, backgroundColor: temptColorButtonSend, justifyContent: 'center',
+            borderRadius: scaleSzie(4),
+            alignItems: 'center'
+          }} >
+            <Text style={[styles.text, textStyle, { color: '#fff' }]}>{label}</Text>
+          </View>
+
+        </View>}</View>
+
       </TouchableOpacity>
     );
-  }
-  return <View />;
 }
 
 const styles = StyleSheet.create({
@@ -31,19 +51,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   text: {
-    color: Color.defaultBlue,
-    fontWeight: '600',
-    fontSize: 17,
-    backgroundColor: Color.backgroundTransparent,
-    marginBottom: 12,
-    marginLeft: 10,
-    marginRight: 10,
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: scaleSzie(15),
   },
 });
 
 Send.defaultProps = {
   text: '',
-  onSend: () => {},
+  onSend: () => { },
   label: 'Send',
   containerStyle: {},
   textStyle: {},
