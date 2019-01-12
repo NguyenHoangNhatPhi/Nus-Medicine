@@ -5,13 +5,15 @@ import {
 import { GiftedChat } from 'react-native-gifted-chat';
 
 import Layout from './layout';
+import { scaleSzie } from '../../utils/func';
 
 class ChatScreen extends Layout {
     constructor(props) {
         super(props);
         this.state = {
             value: '',
-            visibleEmoji: false,
+            temptHeightEmoji: 0,
+            zIndex: -1,
             messages: [
                 {
                     _id: 1,
@@ -35,17 +37,18 @@ class ChatScreen extends Layout {
                 },
             ]
         }
+        this.emojiRef = React.createRef();
+        this.containerHeight = 0;
+
         this.gotoRenuion = this.gotoRenuion.bind(this);
         this.onSend = this.onSend.bind(this);
-        this.keyboardWillShow = this.keyboardWillShow.bind(this);
-        this.keyboardDidHide = this.keyboardDidHide.bind(this);
         this.showshowEmotion = this.showshowEmotion.bind(this);
         this.addEmoji = this.addEmoji.bind(this);
+        this.onChangeMessage = this.onChangeMessage.bind(this);
+        this.hideEmoji = this.hideEmoji.bind(this);
     }
 
     componentDidMount() {
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
     }
 
     addEmoji(emoji) {
@@ -54,22 +57,26 @@ class ChatScreen extends Layout {
         }))
     }
 
-    keyboardWillShow() {
-        // console.log('Keyboard Shown');
-        // this.setState({
-        //     visibleEmoji: false
-        // })
+    onChangeMessage(messages) {
+        this.setState({
+            value: messages,
+        })
     }
 
-    keyboardDidHide() {
-        console.log('Keyboard Hidden');
+
+
+    async  hideEmoji(heightKeyboard) {
+        this.emojiRef.current.setHeightEmoji(0);
+        await this.setState(prevState => ({
+            value: `${prevState.value} `,
+            temptHeightEmoji: heightKeyboard
+        }));
     }
 
     showshowEmotion() {
         Keyboard.dismiss();
-        this.setState({
-            visibleEmoji: true
-        })
+        const temptHeightEmoji = this.state.temptHeightEmoji === 0 ? scaleSzie(240) : this.state.temptHeightEmoji
+        this.emojiRef.current.setHeightEmoji(temptHeightEmoji);
     }
 
     gotoRenuion() {

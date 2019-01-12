@@ -19,19 +19,6 @@ const CHAT = require('../../resources/chat.png');
 
 export default class Layout extends React.Component {
 
-    renderFooter(props) {
-        return (
-            <View style={{
-                width: Configs.FULL_WIDTH, backgroundColor: 'red',
-            }} >
-                <AutoGrowingTextInput style={styles.textInput}
-                    placeholder={'Your Message'}
-                    maxHeight={200}
-                    minHeight={45}
-                />
-            </View>
-        );
-    }
 
     render() {
         const { value, visibleEmoji } = this.state;
@@ -47,15 +34,15 @@ export default class Layout extends React.Component {
                         user={{
                             _id: 1,
                         }}
-                        onInputTextChanged={value => this.setState({ value })}
+                        onInputTextChanged={this.onChangeMessage}
                         text={value}
                         showEmotion={this.showshowEmotion}
+                        hideEmoji={this.hideEmoji}
                     />
-                    {
-                        visibleEmoji ? <EmojiPicker
+                        <EmojiPicker
+                            ref={this.emojiRef}
                             onPick={this.addEmoji}
-                        /> : <View   />
-                    }
+                        />
 
                 </View>
             </View>

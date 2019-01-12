@@ -9,6 +9,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Animated, Platform, StyleSheet, View } from 'react-native';
+import EmojiPicker from '../../Emoji';
 
 import ActionSheet from '@expo/react-native-action-sheet';
 import moment from 'moment';
@@ -247,8 +248,10 @@ class GiftedChat extends React.Component {
   }
 
   onKeyboardWillShow(e) {
+    const heightKeyboard = e.endCoordinates ? e.endCoordinates.height : e.end.height;
+    this.props.hideEmoji(heightKeyboard);
     this.setIsTypingDisabled(true);
-    this.setKeyboardHeight(e.endCoordinates ? e.endCoordinates.height : e.end.height);
+    this.setKeyboardHeight(heightKeyboard);
     this.setBottomOffset(this.props.bottomOffset);
     const newMessagesContainerHeight = this.getMessagesContainerHeightWithKeyboard();
     if (this.props.isAnimated === true) {
@@ -269,6 +272,7 @@ class GiftedChat extends React.Component {
     this.setBottomOffset(0);
     const newMessagesContainerHeight = this.getBasicMessagesContainerHeight();
     if (this.props.isAnimated === true) {
+      // alert('ddd')
       Animated.timing(this.state.messagesContainerHeight, {
         toValue: newMessagesContainerHeight,
         duration: 210,
@@ -479,6 +483,8 @@ class GiftedChat extends React.Component {
           <View style={styles.container} onLayout={this.onMainViewLayout}>
             {this.renderMessages()}
             {this.renderInputToolbar()}
+            {/* <EmojiPicker
+            /> */}
           </View>
         </ActionSheet>
       );

@@ -25,7 +25,7 @@ const EmojiCategory = ({ headerStyle, emojiSize, name, items, onPick }) => (
     </View>
 );
 
-const EmojiPicker = ({ headerStyle, containerHeight, containerBackgroundColor, emojiSize, onPick }) => (
+const EmojiPicker1 = ({ headerStyle, containerHeight, containerBackgroundColor, emojiSize, onPick }) => (
     <View style={{ ...styles.picker, height: containerHeight, backgroundColor: containerBackgroundColor }}>
         <ScrollView horizontal={true}>
             {emoji.map((category, idx) => (
@@ -41,6 +41,42 @@ const EmojiPicker = ({ headerStyle, containerHeight, containerBackgroundColor, e
         </ScrollView>
     </View>
 );
+
+class EmojiPicker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            containerHeight : 0
+        }
+    }
+
+    setHeightEmoji(number){
+        this.setState({
+            containerHeight:number
+        })
+    }
+
+    render() {
+        const { headerStyle, containerHeight, containerBackgroundColor, emojiSize, onPick } = this.props
+        return (
+            <View style={{ ...styles.picker, height:this.state.containerHeight, backgroundColor: containerBackgroundColor }}>
+                <ScrollView horizontal={true}>
+                    {emoji.map((category, idx) => (
+                        <EmojiCategory
+                            key={idx}
+                            headerStyle={headerStyle}
+                            emojiSize={emojiSize}
+                            name={category.category}
+                            items={category.items}
+                            onPick={onPick}
+                        />
+                    ))}
+                </ScrollView>
+            </View>
+        );
+    }
+
+}
 
 EmojiPicker.propTypes = {
     onPick: PropTypes.func,
