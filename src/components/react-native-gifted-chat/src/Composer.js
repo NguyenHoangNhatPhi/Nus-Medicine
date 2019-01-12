@@ -29,6 +29,8 @@ export default class Composer extends React.Component {
     this.props.onTextChanged(text);
   }
 
+  
+
   render() {
     return (
       <TextInput

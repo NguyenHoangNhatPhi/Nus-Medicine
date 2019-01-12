@@ -53,7 +53,7 @@ class ChatScreen extends Layout {
 
     addEmoji(emoji) {
         this.setState(prevState => ({
-            value: `${prevState.value} ${emoji}`
+            value: `${prevState.value}${emoji}`
         }))
     }
 
