@@ -4,6 +4,7 @@ import HeaderScreen from './HeaderScreen';
 import ButtonSubmit from './ButtonSubmit';
 import TextInputCustom from './TextInputCustom';
 import ModalCustom from './ModalCustom';
+import Loading from './Loading';
 
 module.exports = {
     Button,
@@ -11,5 +12,6 @@ module.exports = {
     HeaderScreen,
     ButtonSubmit,
     TextInputCustom,
-    ModalCustom
+    ModalCustom,
+    Loading
 }

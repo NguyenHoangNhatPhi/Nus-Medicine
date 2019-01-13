@@ -28,7 +28,7 @@ export const scaleSzie = size => {
 }
 
 export const requestAPI = async (action, headers = {}) => {
-
+   
     let method = action.method || 'GET';
     let request = {
         method: method,
@@ -51,4 +51,9 @@ export const isIphoneX = () => {
     const { height, width } = Dimensions.get('window');
     return (Platform.OS === 'ios' && (height === 812 || width === 812)
     );
+}
+
+export const validateEmail = (email) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }

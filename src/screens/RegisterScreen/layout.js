@@ -3,7 +3,7 @@ import {
     View,
 } from 'react-native';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button,Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -88,6 +88,7 @@ export default class Layout extends React.Component {
                         </ScrollView>
                     </View>
                 </View>
+                <Loading  visible={this.props.loadingRegister}/>
             </View>
         );
     }

@@ -1,11 +1,14 @@
 import { put, takeLatest, all } from "redux-saga/effects";
 
+import { requestAPI } from '../../utils/func';
+
 function* registerUser(action) {
     try {
-        console.log('=== test app ==== ');
         // yield put({ ...action, type: "APP_GET_LINKS_WEBVIEW_SUCCESS" });
+        const responses = yield requestAPI(action);
+        console.log('=== test app ====  : ' + JSON.stringify(responses));
     } catch (error) {
-
+        console.log('error :', error)
     }
 }
 

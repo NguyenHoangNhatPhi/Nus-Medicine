@@ -56,6 +56,8 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+      <key>http://13.228.84.156:3000</key>
+			<string></string>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

@@ -1,7 +1,9 @@
 import React from 'react';
+import {Keyboard} from 'react-native';
 
 import connectRedux from '../../redux/ConnectRedux';
 import Layout from './layout';
+import { validateEmail } from '../../utils/func';
 
 class RegisterScreen extends Layout {
     constructor(props) {
@@ -42,11 +44,42 @@ class RegisterScreen extends Layout {
         const confirmPassword = this.confirmPasswordRef.current.state.value;
 
 
-        alert(fullname)
+        if (fullname === '' || fullname.length < 4) {
+            alert('The full name must be over 2 words');
+            return;
+        }
+        if (email === '') {
+            alert('Email not empty !')
+            return;
+        }
+        if (graduationYear === '') {
+            alert('Graduation Year not empty !')
+            return;
+        }
+        if (password === '' || password.length < 4) {
+            alert('The password must be over 4 words !')
+            return;
+        }
+        if (confirmPassword === '' || confirmPassword.length < 4) {
+            alert('The confirm password must be over 4 words !')
+            return;
+        }
+        if (!validateEmail(email)) {
+            alert('Wrong Email');
+            return;
+        }
 
-        // this.props.actions.app.registerUser({
-        //     name: 'abc'
-        // })
+        if(password !== confirmPassword){
+            alert('Password and confirm password not match ! ');
+            return;
+        }
+        Keyboard.dismiss();
+        this.props.actions.app.registerUser({
+            fullname,
+            email,
+            graduationYear: parseInt(graduationYear),
+            password
+        });
     }
 
     focusTextInputConfirmPassword() {
@@ -77,15 +110,15 @@ class RegisterScreen extends Layout {
         alert('gotoRegisterScreen')
     }
 
-    scrollTo(number){
-        this.scrollRef.current.scrollTo({x: 0, y: number, animated: true})
+    scrollTo(number) {
+        this.scrollRef.current.scrollTo({ x: 0, y: number, animated: true })
     }
 
 
 }
 
 const mapStateToProps = state => ({
-
+    loadingRegister : state.app.loadingRegister
 })
 
 export default connectRedux(mapStateToProps, RegisterScreen);

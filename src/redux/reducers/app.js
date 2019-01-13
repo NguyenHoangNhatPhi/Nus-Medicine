@@ -1,6 +1,7 @@
 const initialState = {
     test: false,
-    routeName : 'HomePage'
+    routeName : 'HomePage',
+    loadingRegister:false
 }
 
 function appReducer(state = initialState, action) {
