@@ -66,11 +66,16 @@ class ChatScreen extends Layout {
 
 
     async  hideEmoji(heightKeyboard) {
-        this.emojiRef.current.setHeightEmoji(0);
-        await this.setState(prevState => ({
-            value: `${prevState.value} `,
-            temptHeightEmoji: heightKeyboard
-        }));
+        if (this.emojiRef.current.state.containerHeight !== 0) {
+            this.emojiRef.current.setHeightEmoji(0);
+            await this.setState(prevState => ({
+                value: `${prevState.value} `,
+            }), () => {
+                if (this.state.temptHeightEmoji === 0) {
+                    this.setState({ temptHeightEmoji: heightKeyboard })
+                }
+            });
+        }
     }
 
     showshowEmotion() {
@@ -80,7 +85,6 @@ class ChatScreen extends Layout {
     }
 
     gotoRenuion() {
-        alert('ddd')
     }
 
     onSend(messages = []) {

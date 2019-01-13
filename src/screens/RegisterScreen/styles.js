@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },
     containerCard:{
         width,
-        height: scaleSzie(465),
+        height: scaleSzie(550),
         paddingHorizontal: scaleSzie(25)
     },
     containerForm:{

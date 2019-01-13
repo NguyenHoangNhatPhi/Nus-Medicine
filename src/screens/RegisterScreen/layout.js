@@ -23,32 +23,47 @@ export default class Layout extends React.Component {
                 </View>
                 <View style={styles.containerCard} >
                     <View style={styles.containerForm} >
-                        <ScrollView 
-                        keyboardShouldPersistTaps="always"
-                        showsVerticalScrollIndicator={false}
+                        <ScrollView
+                            ref={this.scrollRef}
+                            keyboardShouldPersistTaps="always"
+                            showsVerticalScrollIndicator={false}
                         >
                             <TextInputCustom
                                 ref={this.fullNameRef}
                                 placeholder="Full Name"
                                 onSubmitEditing={this.focusTextInputEmail}
+
                             />
                             <View style={{ height: scaleSzie(20) }} />
                             <TextInputCustom
                                 ref={this.emailInputRef}
                                 placeholder="Email"
                                 onSubmitEditing={this.focusTextInputGraduation}
+                                keyboardType="email-address"
                             />
                             <View style={{ height: scaleSzie(20) }} />
                             <TextInputCustom
                                 ref={this.graduationRef}
                                 placeholder="Graduation Year (eg. 1989)"
                                 onSubmitEditing={this.focusTextInputPassword}
+                                keyboardType="numeric"
+                                maxLength={4}
                             />
                             <View style={{ height: scaleSzie(20) }} />
                             <TextInputCustom
                                 ref={this.passwordInputRef}
                                 placeholder="Password"
+                                onSubmitEditing={this.focusTextInputConfirmPassword}
+                                secureTextEntry={true}
+                                onFocus={() => this.scrollTo(scaleSzie(150))}
+                            />
+                            <View style={{ height: scaleSzie(20) }} />
+                            <TextInputCustom
+                                ref={this.confirmPasswordRef}
+                                placeholder="Confirm Password"
                                 onSubmitEditing={this.register}
+                                secureTextEntry={true}
+                                onFocus={() => this.scrollTo(scaleSzie(150))}
                             />
                             <View style={{ height: scaleSzie(40) }} />
                             <ButtonSubmit
@@ -69,7 +84,7 @@ export default class Layout extends React.Component {
                                     {`Here`}
                                 </Text>
                             </View>
-                            <View style={{height:scaleSzie(200)}} />
+                            <View style={{ height: scaleSzie(200) }} />
                         </ScrollView>
                     </View>
                 </View>

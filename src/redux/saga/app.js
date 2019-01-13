@@ -1,9 +1,9 @@
 import { put, takeLatest, all } from "redux-saga/effects";
 
-function* testApp(action) {
+function* registerUser(action) {
     try {
         console.log('=== test app ==== ');
-        yield put({ ...action, type: "APP_GET_LINKS_WEBVIEW_SUCCESS" });
+        // yield put({ ...action, type: "APP_GET_LINKS_WEBVIEW_SUCCESS" });
     } catch (error) {
 
     }
@@ -11,6 +11,6 @@ function* testApp(action) {
 
 export default function* saga() {
     yield all([
-        takeLatest('TEST_APP', testApp)
+        takeLatest('REGISTER_USER', registerUser)
     ])
 }

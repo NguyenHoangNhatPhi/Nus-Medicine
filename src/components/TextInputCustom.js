@@ -17,6 +17,14 @@ export default class TextInputCustom extends React.PureComponent {
         this.onChangeText = this.onChangeText.bind(this);
         this.onSubmitEditing = this.onSubmitEditing.bind(this);
         this.textinputRef = React.createRef();
+        this.onFocus = this.onFocus.bind(this);
+    }
+
+    onFocus() {
+        if (this.props.onFocus) {
+            this.props.onFocus();
+        }
+
     }
 
     onChangeText(value) {
@@ -34,7 +42,7 @@ export default class TextInputCustom extends React.PureComponent {
     }
 
     render() {
-        const { placeholder } = this.props;
+        const { placeholder, keyboardType, secureTextEntry, maxLength } = this.props;
         const { value } = this.state;
         return (
             <View style={[{
@@ -50,6 +58,10 @@ export default class TextInputCustom extends React.PureComponent {
                     style={{
                         flex: 1
                     }}
+                    keyboardType={keyboardType || "default"}
+                    secureTextEntry={secureTextEntry}
+                    maxLength={maxLength}
+                    onFocus={this.onFocus}
 
                 />
 

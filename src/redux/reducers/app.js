@@ -11,7 +11,6 @@ function appReducer(state = initialState, action) {
                 test: true
             }
         default:
-            console.log('ddddddd')
             return state
     }
 }

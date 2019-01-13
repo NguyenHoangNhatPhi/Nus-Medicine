@@ -24,7 +24,7 @@ const AuthStack = createStackNavigator({
     ClassReunion: ClassReunionScreen,
     OtherLamuni:OtherLamuniScreen
 }, {
-        initialRouteName: "ClassReunion",
+        initialRouteName: "Auth",
         transitionConfig: getSlideFromRightTransition,
         headerMode: 'none',
     }

@@ -18,7 +18,7 @@ export default createNavigationContainer(createSwitchNavigator({
     Drawer:DrawerStack
 },
     {
-        initialRouteName: 'Drawer'
+        initialRouteName: 'Auth'
     }
 
 ))

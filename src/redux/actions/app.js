@@ -1,8 +1,6 @@
-export function test() {
+export function registerUser(body) {
     return {
-        type :'TEST_APP',
-        payload :{
-            
-        }
+        type: 'REGISTER_USER',
+        payload: body
     }
 }
