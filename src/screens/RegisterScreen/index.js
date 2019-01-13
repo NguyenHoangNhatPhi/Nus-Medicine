@@ -118,7 +118,8 @@ class RegisterScreen extends Layout {
 }
 
 const mapStateToProps = state => ({
-    loadingRegister : state.app.loadingRegister
+    loadingRegister : state.app.loadingRegister,
+    messageRegisterError:state.app.messageRegisterError
 })
 
 export default connectRedux(mapStateToProps, RegisterScreen);

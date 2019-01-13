@@ -3,7 +3,7 @@ import {
     View,
 } from 'react-native';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <HeaderScreen 
+                <HeaderScreen
                     navigation={this.props.navigation}
                 />
                 <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
@@ -33,7 +33,11 @@ export default class Layout extends React.Component {
                             placeholder="Password"
                             onSubmitEditing={this.login}
                         />
-                        <View style={{ height: scaleSzie(40) }} />
+                        <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >
+                            <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
+                                {this.props.messageLoginError}
+                            </Text>
+                        </View>
                         <ButtonSubmit
                             onPress={this.login}
                             title="Log In"
@@ -55,6 +59,7 @@ export default class Layout extends React.Component {
                         </View>
                     </View>
                 </View>
+                <Loading visible={this.props.loadingLogin} />
             </View>
         );
     }

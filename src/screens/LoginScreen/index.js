@@ -1,6 +1,9 @@
 import React from 'react';
+import { Keyboard } from 'react-native';
 
 import Layout from './layout';
+import { validateEmail } from '../../utils/func';
+import connectRedux from '../../redux/ConnectRedux';
 
 class LoginScreen extends Layout {
     constructor(props) {
@@ -16,7 +19,25 @@ class LoginScreen extends Layout {
     }
 
     login() {
-     
+        const email = this.emailInputRef.current.state.value;
+        const password = this.passwordInputRef.current.state.value;
+        if (email === '') {
+            alert('The email not empty !');
+            return;
+        }
+        if (password === '') {
+            alert('The password not empty !');
+            return
+        }
+        if (!validateEmail(email)) {
+            alert('Wrong Email');
+            return;
+        }
+        Keyboard.dismiss();
+        this.props.actions.app.login({
+            email,
+            password
+        })
     }
 
     focusTextInputPassword() {
@@ -31,8 +52,11 @@ class LoginScreen extends Layout {
         this.props.navigation.navigate('Register')
     }
 
-
 }
 
+const mapStateToProps = state => ({
+    loadingLogin: state.app.loadingLogin,
+    messageLoginError: state.app.messageLoginError
+})
 
-export default LoginScreen;
+export default connectRedux(mapStateToProps, LoginScreen);;

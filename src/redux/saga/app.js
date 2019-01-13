@@ -4,9 +4,22 @@ import { requestAPI } from '../../utils/func';
 
 function* registerUser(action) {
     try {
-        // yield put({ ...action, type: "APP_GET_LINKS_WEBVIEW_SUCCESS" });
         const responses = yield requestAPI(action);
-        console.log('=== test app ====  : ' + JSON.stringify(responses));
+        responses.status ?
+            yield put({ ...action, type: "REGISTER_USER_SUCCESS", payload: responses })
+            : yield put({ ...action, type: "REGISTER_USER_FAIL", payload: responses })
+    } catch (error) {
+        console.log('error :', error)
+    }
+}
+
+function* login(action) {
+    try {
+        const responses = yield requestAPI(action);
+        console.log('responses login : ' + JSON.stringify(responses))
+        responses.status ?
+            yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses })
+            : yield put({ ...action, type: "USER_LOGIN_FAIL", payload: responses })
     } catch (error) {
         console.log('error :', error)
     }
@@ -14,6 +27,7 @@ function* registerUser(action) {
 
 export default function* saga() {
     yield all([
-        takeLatest('REGISTER_USER', registerUser)
+        takeLatest('REGISTER_USER', registerUser),
+        takeLatest('USER_LOGIN', login),
     ])
 }

@@ -3,7 +3,7 @@ import {
     View,
 } from 'react-native';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button,Loading } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -65,7 +65,11 @@ export default class Layout extends React.Component {
                                 secureTextEntry={true}
                                 onFocus={() => this.scrollTo(scaleSzie(150))}
                             />
-                            <View style={{ height: scaleSzie(40) }} />
+                            <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
+                                    {this.props.messageRegisterError}
+                                </Text>
+                            </View>
                             <ButtonSubmit
                                 onPress={this.register}
                                 title="Register"
@@ -88,7 +92,7 @@ export default class Layout extends React.Component {
                         </ScrollView>
                     </View>
                 </View>
-                <Loading  visible={this.props.loadingRegister}/>
+                <Loading visible={this.props.loadingRegister} />
             </View>
         );
     }

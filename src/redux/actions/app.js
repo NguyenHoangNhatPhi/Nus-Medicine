@@ -8,3 +8,12 @@ export function registerUser(body) {
         body
     }
 }
+
+export function login(body) {
+    return {
+        type: 'USER_LOGIN',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}login`,
+        body
+    }
+}
