@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Keyboard
 } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat } from '../../components/react-native-gifted-chat';
 
 import Layout from './layout';
 import { scaleSzie } from '../../utils/func';

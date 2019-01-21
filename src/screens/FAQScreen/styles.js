@@ -23,14 +23,16 @@ export default StyleSheet.create({
         paddingRight: scaleSzie(5),
         flexDirection: 'row',
     },
-    textHeaderItemCollap:{
-        color:'#fff',
-        fontSize:scaleSzie(16),
-        fontWeight:'bold'
+    textHeaderItemCollap: {
+        color: '#fff',
+        fontSize: scaleSzie(16),
+        fontWeight: 'bold'
     },
-    contentItemCollap:{
-        paddingVertical:scaleSzie(20),
-        paddingHorizontal: scaleSzie(17),
-        backgroundColor:'#fff'
+    contentItemCollap: {
+        paddingVertical: 20,
+        paddingLeft: 17,
+        // paddingRight:10,
+        backgroundColor: '#fff',
+        width:Configs.FULL_WIDTH,
     }
 })

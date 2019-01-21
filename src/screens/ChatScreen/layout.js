@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 import EmojiPicker from '../../components/Emoji';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';

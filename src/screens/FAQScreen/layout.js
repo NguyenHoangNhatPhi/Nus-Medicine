@@ -1,16 +1,22 @@
 import React from 'react';
 import {
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions,
+    WebView,
+    Platform
 } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import HTML from 'react-native-render-html';
+import HTMLView from 'react-native-htmlview';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
 import { ScrollView } from 'react-native-gesture-handler';
+import FAQ from '../../configs/faq';
 
 const SECTIONS = [
     {
@@ -35,9 +41,14 @@ export default class Layout extends React.Component {
             borderTopColor: 'rgba(256,256,256,0.2)',
         }
         return (
-            <View style={[styles.headerItemCollap,temptBorderTop]}  >
+            <View style={[styles.headerItemCollap, temptBorderTop]}  >
                 <View style={{ flex: 1, justifyContent: 'center' }} >
-                    <Text style={styles.textHeaderItemCollap} >{section.title}</Text>
+                    <HTML html={section.title}
+                        baseFontStyle={{
+                            color: '#fff'
+                        }}
+                        width={Dimensions.get('window').width}
+                    />
                 </View>
                 <View style={{ justifyContent: 'center' }} >
                     <MaterialIcons name="keyboard-arrow-down" size={30} color={'#fff'} />
@@ -48,8 +59,14 @@ export default class Layout extends React.Component {
 
     renderContentItemCollap = section => {
         return (
-            <View style={styles.contentItemCollap} >
-                <Text>dfssffsfdfsfsfdfsfdsfdsfdfdsf</Text>
+            <View style={[styles.contentItemCollap,{height:section.heightContent}]} >
+                <WebView
+                    originWhitelist={['*']}
+                    source={{ html: section.content }}
+                    style={{
+                    }}
+                    scalesPageToFit={(Platform.OS === 'ios') ? false : true}
+                />
             </View>
         );
     };
@@ -63,7 +80,7 @@ export default class Layout extends React.Component {
         return (
             <Accordion
                 activeSections={activeSections}
-                sections={SECTIONS}
+                sections={FAQ}
                 renderHeader={this.renderHeaderItemCollap}
                 renderContent={this.renderContentItemCollap}
                 duration={400}
