@@ -2,18 +2,18 @@ import React from 'react';
 import {
     View,
     Text,
-    
+
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Button} from '../../components';
+import { Button } from '../../components';
 import { scaleSzie } from '../../utils/func';
 import styles from './style';
 
 export default class Layout extends React.Component {
 
     renderRowContact() {
-        const nameIcon= this.props.isSettingContactable ? "md-checkbox" : "md-square-outline"
+        const nameIcon = this.props.isSettingContactable ? "md-checkbox" : "md-square-outline"
         return (
             <Button onPress={this.changeSettingContact} style={{ flex: 1, flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(16), }} >
@@ -32,7 +32,7 @@ export default class Layout extends React.Component {
     }
 
     renderRowNoti() {
-        const nameIcon= this.props.isSettingNoti ? "md-checkbox" : "md-square-outline"
+        const nameIcon = this.props.isSettingNoti ? "md-checkbox" : "md-square-outline"
         return (
             <Button onPress={this.changeSettingNoti} style={{ flex: 1, flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(16), }} >
@@ -56,12 +56,11 @@ export default class Layout extends React.Component {
                 <Text style={styles.textSetting} >
                     My Settings
                 </Text>
-                <Text style={[styles.textSetting, {
-                    color: 'rgb(33,33,33)', marginTop: scaleSzie(20),
-                    marginBottom: scaleSzie(20)
-                }]} >
-                    My Profile
+                <Button onPress={this.gotoProfile} style={{ height: scaleSzie(75),justifyContent:'center' }} >
+                    <Text style={[styles.textSetting, {color: 'rgb(33,33,33)',marginTop:0 }]} >
+                        My Profile
                 </Text>
+                </Button>
                 <View style={styles.containerContent} >
                     {this.renderRowContact()}
                     <View style={styles.line} />

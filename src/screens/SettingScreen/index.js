@@ -6,6 +6,7 @@ class SettingScreen extends Layout {
         super(props);
         this.changeSettingContact = this.changeSettingContact.bind(this);
         this.changeSettingNoti = this.changeSettingNoti.bind(this);
+        this.gotoProfile= this.gotoProfile.bind(this);
     }
 
     changeSettingContact() {
@@ -16,6 +17,10 @@ class SettingScreen extends Layout {
     changeSettingNoti() {
         const { isSettingNoti } = this.props;
         this.props.actions.app.changeSettingNoti(isSettingNoti);
+    }
+
+    gotoProfile(){
+        this.props.navigation.navigate('Profile');
     }
 
 }
