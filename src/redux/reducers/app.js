@@ -3,10 +3,10 @@ const initialState = {
     routeName: 'HomePage',
     loadingRegister: false,
     messageRegisterError: '',
-    messageLoginError :'',
+    messageLoginError: '',
     loadingLogin: false,
-    isSettingContactable:false,
-    isSettingNoti:true
+    isSettingContactable: false,
+    isSettingNoti: true
 
 }
 
@@ -22,7 +22,7 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 loadingLogin: true,
-                messageLoginError:''
+                messageLoginError: ''
             }
         case 'USER_LOGIN_SUCCESS':
             return {
@@ -33,7 +33,7 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 loadingLogin: false,
-                messageLoginError:'Wrong email or password'
+                messageLoginError: 'Wrong email or password'
             }
         case 'REGISTER_USER_SUCCESS':
             return {
@@ -45,6 +45,16 @@ function appReducer(state = initialState, action) {
                 ...state,
                 loadingRegister: false,
                 messageRegisterError: action.payload.message
+            }
+        case 'CHANGE_SETTING_CONTACT':
+            return {
+                ...state,
+                isSettingContactable: action.payload
+            }
+        case 'CHANGE_SETTING_NOTI':
+            return {
+                ...state,
+                isSettingNoti: action.payload
             }
         default:
             return state

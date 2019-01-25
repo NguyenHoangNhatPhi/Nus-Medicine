@@ -17,3 +17,17 @@ export function login(body) {
         body
     }
 }
+
+export function changeSettingContact(status) {
+    return {
+        type: 'CHANGE_SETTING_CONTACT',
+        payload: !status
+    }
+}
+
+export function changeSettingNoti(status) {
+    return {
+        type: 'CHANGE_SETTING_NOTI',
+        payload: !status
+    }
+}

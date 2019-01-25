@@ -8,19 +8,21 @@ class SettingScreen extends Layout {
         this.changeSettingNoti = this.changeSettingNoti.bind(this);
     }
 
-    changeSettingContact(){
-        alert('dd')
+    changeSettingContact() {
+        const { isSettingContactable } = this.props;
+        this.props.actions.app.changeSettingContact(isSettingContactable);
     }
 
-    changeSettingNoti(){
-        
+    changeSettingNoti() {
+        const { isSettingNoti } = this.props;
+        this.props.actions.app.changeSettingNoti(isSettingNoti);
     }
 
 }
 
-const mapStateToProps = state =>({
-    isSettingContactable : state.app.isSettingContactable,
+const mapStateToProps = state => ({
+    isSettingContactable: state.app.isSettingContactable,
     isSettingNoti: state.app.isSettingNoti
 })
 
-export default connectRedux(mapStateToProps,SettingScreen) ;
+export default connectRedux(mapStateToProps, SettingScreen);
