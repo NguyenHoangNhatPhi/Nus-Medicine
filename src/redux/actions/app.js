@@ -31,3 +31,10 @@ export function changeSettingNoti(status) {
         payload: !status
     }
 }
+
+export function changeRouterDrawer(router) {
+    return {
+        type: 'CHANGE_ROUTER_DRAWER',
+        payload: router
+    }
+}

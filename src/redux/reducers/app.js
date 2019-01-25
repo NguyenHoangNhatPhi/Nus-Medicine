@@ -56,6 +56,12 @@ function appReducer(state = initialState, action) {
                 ...state,
                 isSettingNoti: action.payload
             }
+        case 'CHANGE_ROUTER_DRAWER':
+            return {
+                ...state,
+                routeName: action.payload
+            }
+
         default:
             return state
     }

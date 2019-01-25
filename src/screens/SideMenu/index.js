@@ -7,6 +7,7 @@ import connectRedux from '../../redux/ConnectRedux';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import { Text, Button } from '../../components';
+import Configs from '../../configs';
 
 const USER_GRADUATION = require('../../resources/graduation.png');
 const CHAT = require('../../resources/chat.png');
@@ -17,28 +18,30 @@ const SCHOOL = require('../../resources/schoolNus.png')
 
 class SideMenu extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
-  navigateToScreen = (route) => {
+  navigateToScreen = (route, title) => {
+    console.log(route)
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
+    this.props.actions.app.changeRouterDrawer(title)
   }
 
   renderItemSideVector(icon, title, route) {
-    const {routeName} = this.props;
-    const temptIconColor = routeName === route ? 'red':"#fff";
-    const temptTitleColor =routeName === route ? 'red':"#fff";
+    const { routeName } = this.props;
+    const temptIconColor = routeName === title ? Configs.ORANGE : "#fff";
+    const temptTitleColor = routeName === title ? Configs.ORANGE : "#fff";
     return (
-      <Button onPress={() => this.navigateToScreen(route)} style={{ flexDirection: 'row', height: scaleSzie(55) }} >
+      <Button onPress={() => this.navigateToScreen(route, title)} style={{ flexDirection: 'row', height: scaleSzie(55) }} >
         <View style={{ width: scaleSzie(70), paddingLeft: scaleSzie(15), justifyContent: 'flex-end' }} >
           <Entypo name={icon} size={25} color={temptIconColor} />
         </View>
         <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(5) }} >
-          <Text style={[styles.textMenu,{color:temptTitleColor}]} >
+          <Text style={[styles.textMenu, { color: temptTitleColor }]} >
             {title}
           </Text>
         </View>
@@ -48,7 +51,7 @@ class SideMenu extends Component {
 
   renderItemSideImage(icon, title, style, route) {
     return (
-      <Button onPress={() => this.navigateToScreen(route)} style={{ flexDirection: 'row', height: scaleSzie(55) }} >
+      <Button onPress={() => this.navigateToScreen(route, title)} style={{ flexDirection: 'row', height: scaleSzie(55) }} >
         <View style={{ width: scaleSzie(70), paddingLeft: scaleSzie(15), justifyContent: 'flex-end' }} >
           <Image source={icon} style={style} />
         </View>
@@ -77,9 +80,9 @@ class SideMenu extends Component {
         </View>
         <View style={{ flex: 1 }} >
           {this.renderItemSideVector('home', 'Home', 'HomePage')}
-          {this.renderItemSideImage(EVENT, 'Events', { width: scaleSzie(28), height: scaleSzie(28) })}
-          {this.renderItemSideImage(NEWS, 'News', { width: scaleSzie(28), height: scaleSzie(28) })}
-          {this.renderItemSideImage(CHAT, 'Messaging', { width: scaleSzie(28), height: scaleSzie(28) })}
+          {this.renderItemSideImage(EVENT, 'Events', { width: scaleSzie(28), height: scaleSzie(28) }, 'Events')}
+          {this.renderItemSideImage(NEWS, 'News', { width: scaleSzie(28), height: scaleSzie(28) }, 'News')}
+          {this.renderItemSideImage(CHAT, 'Messaging', { width: scaleSzie(28), height: scaleSzie(28) }, 'Messaging')}
           {this.renderItemSideImage(USER_GRADUATION, 'Class Reunion', { width: scaleSzie(28), height: scaleSzie(28) }, 'ClassReunion')}
           {this.renderItemSideVector('hand', 'Giving Portal')}
           {this.renderItemSideVector('info-with-circle', 'Useful Info')}
