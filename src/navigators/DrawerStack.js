@@ -13,7 +13,9 @@ import {
     ClassReunionScreen,
     OtherLamuniScreen,
     HomePageScreen,
-    ChatScreen
+    ChatScreen,
+    ProfileScreen,
+    SettingScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -28,10 +30,12 @@ const DrawerStack = createDrawerNavigator({
     ContactUs: ContactUsScreen,
     ClassReunion: ClassReunionScreen,
     OtherLamuni: OtherLamuniScreen,
-    HomePage:HomePageScreen,
-    Chat:ChatScreen
-},{
-        initialRouteName: "Chat",
+    HomePage: HomePageScreen,
+    Chat: ChatScreen,
+    Profile: ProfileScreen,
+    Setting:SettingScreen
+}, {
+        initialRouteName: "Setting",
         contentComponent: SideMenu,
     }
 )

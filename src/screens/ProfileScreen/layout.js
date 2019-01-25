@@ -5,12 +5,12 @@ import {
     Button
 } from 'react-native';
 
+import styles from './style';
+
 export default class Layout extends React.Component {
     render() {
-        console.log('render Home')
         return (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <Text>Profile Screen</Text>
+            <View style={styles.container}>
             </View>
         );
     }

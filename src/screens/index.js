@@ -1,4 +1,4 @@
-import SettingsScreen from './Setting';
+import SettingScreen from './SettingScreen';
 import OtherScreen from './OtherScreen';
 import LoadingScreen from './LoadingScreen';
 
@@ -13,9 +13,9 @@ import ClassReunionScreen from './ClassReunionScreen';
 import OtherLamuniScreen from './OtherLamuniScreen';
 import HomePageScreen from './HomePageScreen';
 import ChatScreen from './ChatScreen';
+import ProfileScreen from './ProfileScreen';
 
 module.exports = {
-    SettingsScreen,
     LoginScreen,
     OtherScreen,
     LoadingScreen,
@@ -27,5 +27,7 @@ module.exports = {
     ClassReunionScreen,
     OtherLamuniScreen,
     HomePageScreen,
-    ChatScreen
+    ChatScreen,
+    ProfileScreen,
+    SettingScreen,
 }

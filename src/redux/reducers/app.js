@@ -4,7 +4,9 @@ const initialState = {
     loadingRegister: false,
     messageRegisterError: '',
     messageLoginError :'',
-    loadingLogin: false
+    loadingLogin: false,
+    isSettingContactable:false,
+    isSettingNoti:true
 
 }
 
