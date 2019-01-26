@@ -5,6 +5,7 @@ import ButtonSubmit from './ButtonSubmit';
 import TextInputCustom from './TextInputCustom';
 import ModalCustom from './ModalCustom';
 import Loading from './Loading';
+import AutoGrowingTextInput from './AutoGrowingTextInput';
 
 module.exports = {
     Button,
@@ -13,5 +14,6 @@ module.exports = {
     ButtonSubmit,
     TextInputCustom,
     ModalCustom,
-    Loading
+    Loading,
+    AutoGrowingTextInput
 }

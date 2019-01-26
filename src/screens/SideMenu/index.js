@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation';
 import { ScrollView, View, Image, ImageBackground } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import connectRedux from '../../redux/ConnectRedux';
 import styles from './styles';
@@ -36,7 +37,8 @@ class SideMenu extends Component {
     const temptIconColor = routeName === title ? Configs.ORANGE : "#fff";
     const temptTitleColor = routeName === title ? Configs.ORANGE : "#fff";
     return (
-      <Button onPress={() => this.navigateToScreen(route, title)} style={{ flexDirection: 'row', height: scaleSzie(55) }} >
+      <Button onPress={() => this.navigateToScreen(route, title)}
+       style={{ flexDirection: 'row', height: scaleSzie(48) }} >
         <View style={{ width: scaleSzie(70), paddingLeft: scaleSzie(15), justifyContent: 'flex-end' }} >
           <Entypo name={icon} size={25} color={temptIconColor} />
         </View>
@@ -51,12 +53,32 @@ class SideMenu extends Component {
 
   renderItemSideImage(icon, title, style, route) {
     return (
-      <Button onPress={() => this.navigateToScreen(route, title)} style={{ flexDirection: 'row', height: scaleSzie(55) }} >
+      <Button onPress={() => this.navigateToScreen(route, title)} 
+      style={{ flexDirection: 'row', height: scaleSzie(48) }} >
         <View style={{ width: scaleSzie(70), paddingLeft: scaleSzie(15), justifyContent: 'flex-end' }} >
           <Image source={icon} style={style} />
         </View>
         <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(5) }} >
           <Text style={styles.textMenu} >
+            {title}
+          </Text>
+        </View>
+      </Button>
+    );
+  }
+
+  renderItemSideVectorIonicons(icon, title, route) {
+    const { routeName } = this.props;
+    const temptIconColor = routeName === title ? Configs.ORANGE : "#fff";
+    const temptTitleColor = routeName === title ? Configs.ORANGE : "#fff";
+    return (
+      <Button onPress={() => this.navigateToScreen(route, title)}
+       style={{ flexDirection: 'row', height: scaleSzie(48) }} >
+        <View style={{ width: scaleSzie(70), paddingLeft: scaleSzie(15), justifyContent: 'flex-end' }} >
+          <Ionicons name={icon} size={25} color={temptIconColor} />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(5) }} >
+          <Text style={[styles.textMenu, { color: temptTitleColor }]} >
             {title}
           </Text>
         </View>
@@ -87,7 +109,7 @@ class SideMenu extends Component {
           {this.renderItemSideVector('hand', 'Giving Portal')}
           {this.renderItemSideVector('info-with-circle', 'Useful Info')}
           {this.renderItemSideImage(CONTACT, 'Contact Us', { width: scaleSzie(28), height: scaleSzie(28) }, 'ContactUs')}
-
+          {this.renderItemSideVectorIonicons('md-settings', 'Setting','Setting')}
         </View>
       </View>
     );

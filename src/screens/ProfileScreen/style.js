@@ -29,7 +29,7 @@ export default StyleSheet.create({
         })
     },
     containerContent:{
-        height:scaleSzie(150),
+        height:scaleSzie(160),
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderTopColor:'rgb(230,230,230)',
