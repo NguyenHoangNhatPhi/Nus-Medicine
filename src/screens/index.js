@@ -14,6 +14,7 @@ import OtherLamuniScreen from './OtherLamuniScreen';
 import HomePageScreen from './HomePageScreen';
 import ChatScreen from './ChatScreen';
 import ProfileScreen from './ProfileScreen';
+import ChangePasswordScreen from './ChangePasswordScreen';
 
 module.exports = {
     LoginScreen,
@@ -30,4 +31,5 @@ module.exports = {
     ChatScreen,
     ProfileScreen,
     SettingScreen,
+    ChangePasswordScreen
 }

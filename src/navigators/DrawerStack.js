@@ -15,7 +15,8 @@ import {
     HomePageScreen,
     ChatScreen,
     ProfileScreen,
-    SettingScreen
+    SettingScreen,
+    ChangePasswordScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -33,7 +34,8 @@ const DrawerStack = createDrawerNavigator({
     HomePage: HomePageScreen,
     Chat: ChatScreen,
     Profile: ProfileScreen,
-    Setting: SettingScreen
+    Setting: SettingScreen,
+    ChangePassword:ChangePasswordScreen
 }, {
         initialRouteName: "HomePage",
         contentComponent: SideMenu,
