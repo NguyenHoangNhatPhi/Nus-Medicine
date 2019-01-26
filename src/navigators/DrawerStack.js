@@ -37,7 +37,7 @@ const DrawerStack = createDrawerNavigator({
     Setting: SettingScreen,
     ChangePassword:ChangePasswordScreen
 }, {
-        initialRouteName: "HomePage",
+        initialRouteName: "ChangePassword",
         contentComponent: SideMenu,
     }
 )

@@ -8,12 +8,12 @@ import createSagaMiddleware from 'redux-saga';
 
 import sagaRoot from "../saga";
 import reducers from '../reducers';
-import { customMiddleware } from '../middlewares';
+import { authMiddleware } from '../middlewares';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = createReactNavigationReduxMiddleware("root", state => state.nav);
 const createAppStore = composeWithDevTools(applyMiddleware(
-    customMiddleware,
+    authMiddleware,
     middleware,
     sagaMiddleware,
 ))(createStore);

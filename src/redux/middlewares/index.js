@@ -1,6 +1,5 @@
-import customMiddleware from './customMiddleware';
-
+import authMiddleware from './authMiddleware';
 
 module.exports = {
-    customMiddleware,
+    authMiddleware,
 }

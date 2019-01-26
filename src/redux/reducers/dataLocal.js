@@ -9,6 +9,11 @@ function dataLocal(state = initialState, action) {
                 ...state,
                 profile: true
             }
+        case 'SAVE_PROFILE_TEMPT':
+            return {
+                ...state,
+                profile: action.payload
+            }
         default:
             return state
     }

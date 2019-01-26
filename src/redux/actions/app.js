@@ -38,3 +38,13 @@ export function changeRouterDrawer(router) {
         payload: router
     }
 }
+
+export function changePassword(body) {
+    return {
+        type: 'CHANG_PASSWORD',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/change-password`,
+        body,
+        token: true
+    }
+}
