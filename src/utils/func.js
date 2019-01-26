@@ -28,7 +28,7 @@ export const scaleSzie = size => {
 }
 
 export const requestAPI = async (action, headers = {}) => {
-   
+
     let method = action.method || 'GET';
     let request = {
         method: method,
@@ -40,10 +40,14 @@ export const requestAPI = async (action, headers = {}) => {
     if (action.token) {
         request.headers['Authorization'] = "Bearer " + action.token;
     }
+    if (action.email) {
+        request.headers['email'] = action.email;
+    }
     if ((method == "POST" || method == "DELETE" || method == "PUT") && action.body) {
         request['body'] = JSON.stringify(action.body);
     }
     let response = await fetch(action.api, request);
+    console.log('response : ', response);
     return await response.json();
 }
 

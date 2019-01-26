@@ -45,6 +45,7 @@ export function changePassword(body) {
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/change-password`,
         body,
-        token: true
+        token: true,
+        email: true
     }
 }
