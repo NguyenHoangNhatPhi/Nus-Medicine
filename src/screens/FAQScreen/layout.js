@@ -11,7 +11,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HTML from 'react-native-render-html';
 import HTMLView from 'react-native-htmlview';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button,BackgroundView } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -95,6 +95,7 @@ export default class Layout extends React.Component {
 
     render() {
         return (
+            <BackgroundView>
             <View style={styles.container}>
                 <HeaderScreen
                     navigation={this.props.navigation}
@@ -106,6 +107,7 @@ export default class Layout extends React.Component {
                     </ScrollView>
                 </View>
             </View>
+            </BackgroundView>
         );
     }
 }

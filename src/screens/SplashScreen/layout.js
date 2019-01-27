@@ -8,18 +8,16 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import Shimmer from 'react-native-shimmer';
 
-import { Button, HeaderScreen, AutoGrowingTextInput } from '../../components';
+import { BackgroundView } from '../../components';
 import { scaleSzie } from '../../utils/func';
 import styles from './style';
 import Configs from '../../configs';
-
-const BACKGROUND = require('../../resources/background.png');
 
 export default class Layout extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={BACKGROUND} style={styles.container}>
+            <BackgroundView>
                 <View style={{ flex: 1, backgroundColor: Configs.COLOR_MAIN_APP ,  justifyContent: 'center',alignContent: 'center',}} >
                     <View style={{ alignItems: 'center', marginBottom: scaleSzie(50) }} >
                         <Shimmer>
@@ -34,7 +32,7 @@ export default class Layout extends React.Component {
                     />
                 </View>
 
-            </ImageBackground>
+            </BackgroundView>
         );
     }
 }

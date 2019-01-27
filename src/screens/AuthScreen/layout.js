@@ -5,7 +5,7 @@ import {
     Dimensions
 } from 'react-native';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, BackgroundView} from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 
@@ -16,7 +16,7 @@ const BACKGROUND = require('../../resources/background.png');
 export default class Layout extends React.Component {
     render() {
         return (
-            <ImageBackground source={BACKGROUND} style={{ flex:1 }}>
+            <BackgroundView>
                 <View style={styles.container}>
                     <HeaderScreen
                         hideIconLeft={true}
@@ -53,7 +53,7 @@ export default class Layout extends React.Component {
                         />
                     </View>
                 </View>
-            </ImageBackground>
+                </BackgroundView>
         );
     }
 }

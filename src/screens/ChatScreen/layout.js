@@ -8,7 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
 import EmojiPicker from '../../components/Emoji';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button } from '../../components';
+import { HeaderScreen, BackgroundView } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -22,6 +22,7 @@ export default class Layout extends React.Component {
     render() {
         const { value, visibleEmoji } = this.state;
         return (
+            <BackgroundView>
             <View style={styles.container}>
                 <HeaderScreen
                     navigation={this.props.navigation}
@@ -42,9 +43,9 @@ export default class Layout extends React.Component {
                             ref={this.emojiRef}
                             onPick={this.addEmoji}
                         />
-
                 </View>
             </View>
+            </BackgroundView>
         );
     }
 }

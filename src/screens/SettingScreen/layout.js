@@ -56,8 +56,8 @@ export default class Layout extends React.Component {
                 <Text style={styles.textSetting} >
                     My Settings
                 </Text>
-                <Button onPress={this.gotoProfile} style={{ height: scaleSzie(75),justifyContent:'center' }} >
-                    <Text style={[styles.textSetting, {color: 'rgb(33,33,33)',marginTop:0 }]} >
+                <Button onPress={this.gotoProfile} style={{ height: scaleSzie(75), justifyContent: 'center' }} >
+                    <Text style={[styles.textSetting, { color: 'rgb(33,33,33)', marginTop: 0 }]} >
                         My Profile
                 </Text>
                 </Button>
