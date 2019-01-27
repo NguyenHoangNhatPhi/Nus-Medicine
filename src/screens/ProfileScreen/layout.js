@@ -76,7 +76,7 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const { disableEditProfile } = this.state;
+        const { disableEditProfile, fullname, email, graduationYear } = this.state;
         return (
             <View style={styles.container}>
                 <HeaderScreen
@@ -88,9 +88,11 @@ export default class Layout extends React.Component {
                 <View style={{ height: scaleSzie(80) }} >
                     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: scaleSzie(16) }} >
                         <AutoGrowingTextInput
+                            ref={this.fullnameRef}
                             placeholder={'Full Name'}
-                            value={'Phi'}
+                            value={fullname}
                             disable={disableEditProfile}
+                            onChangeTextValue={fullname => this.setState({ fullname })}
                         />
                     </View>
                 </View>
@@ -98,16 +100,21 @@ export default class Layout extends React.Component {
                     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: scaleSzie(16) }} >
                         <AutoGrowingTextInput
                             placeholder={'Email'}
-                            value={'abc@gmail.com'}
-                            disable={disableEditProfile}
+                            value={email}
+                            disable={true}
                         />
                     </View>
                     <View style={styles.line} />
                     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: scaleSzie(16) }} >
                         <AutoGrowingTextInput
+                            ref={this.graduationYearRef}
                             placeholder={'Graduation Year'}
-                            value={'1990'}
+                            value={`${graduationYear}`}
                             disable={disableEditProfile}
+                            onChangeTextValue={graduationYear => this.setState({ graduationYear })}
+                            maxLength={4}
+                            keyboardType="numeric"
+
                         />
                     </View>
                 </View>

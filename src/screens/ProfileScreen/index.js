@@ -1,49 +1,50 @@
+import React from 'react';
+
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
 
 class ProfileScreen extends Layout {
     constructor(props) {
         super(props);
-        this.state ={
-            disableEditProfile :true
+        const { fullname, email, graduationYear } = this.props.profile;
+        this.state = {
+            disableEditProfile: true,
+            fullname,
+            email,
+            graduationYear
         }
-        this.changeSettingContact = this.changeSettingContact.bind(this);
-        this.changeSettingNoti = this.changeSettingNoti.bind(this);
+
+        this.fullnameRef = React.createRef();
+        this.graduationYearRef = React.createRef();
+
         this.editProfile = this.editProfile.bind(this);
         this.cancleEditProfile = this.cancleEditProfile.bind(this);
         this.submitEditProfile = this.submitEditProfile.bind(this);
         this.gotoChangePassword = this.gotoChangePassword.bind(this);
     }
 
-    changeSettingContact() {
-        const { isSettingContactable } = this.props;
-        this.props.actions.app.changeSettingContact(isSettingContactable);
-    }
-
-    changeSettingNoti() {
-        const { isSettingNoti } = this.props;
-        this.props.actions.app.changeSettingNoti(isSettingNoti);
-    }
-
     editProfile() {
         this.setState({
-            disableEditProfile:false
+            disableEditProfile: false
         })
     }
 
-    cancleEditProfile(){
+    cancleEditProfile() {
+        const { fullname, graduationYear } = this.props.profile;
+        this.fullnameRef.current.setText(fullname);
+        this.graduationYearRef.current.setText(`${graduationYear}`)
         this.setState({
-            disableEditProfile:true
+            disableEditProfile: true
         })
     }
 
-    submitEditProfile(){
+    submitEditProfile() {
         this.setState({
-            disableEditProfile:true
+            disableEditProfile: true
         })
     }
 
-    gotoChangePassword(){
+    gotoChangePassword() {
         this.props.navigation.navigate('ChangePassword');
     }
 
@@ -51,10 +52,7 @@ class ProfileScreen extends Layout {
 }
 
 const mapStateToProps = state => ({
-    isSettingContactable: state.app.isSettingContactable,
-    isSettingNoti: state.app.isSettingNoti
+    profile: state.dataLocal.profile,
 })
-
-
 
 export default connectRedux(mapStateToProps, ProfileScreen);
