@@ -27,7 +27,8 @@ class SettingScreen extends Layout {
 
 const mapStateToProps = state => ({
     isSettingContactable: state.app.isSettingContactable,
-    isSettingNoti: state.app.isSettingNoti
+    isSettingNoti: state.app.isSettingNoti,
+    profile: state.dataLocal.profile,
 })
 
 export default connectRedux(mapStateToProps, SettingScreen);

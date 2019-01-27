@@ -73,4 +73,5 @@ export function logOut() {
         api: `${apiConfigs.BASE_API}user/logout`,
         token: true,
     }
-} 
+}
+

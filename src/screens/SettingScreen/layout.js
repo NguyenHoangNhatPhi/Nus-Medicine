@@ -6,14 +6,15 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { Button,HeaderScreen } from '../../components';
+import { Button, HeaderScreen } from '../../components';
 import { scaleSzie } from '../../utils/func';
 import styles from './style';
 
 export default class Layout extends React.Component {
 
     renderRowContact() {
-        const nameIcon = this.props.isSettingContactable ? "md-checkbox" : "md-square-outline"
+        const { profile } = this.props;
+        const nameIcon = profile.isContactable ? "md-checkbox" : "md-square-outline"
         return (
             <Button onPress={this.changeSettingContact} style={{ flex: 1, flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(16), }} >
@@ -32,7 +33,8 @@ export default class Layout extends React.Component {
     }
 
     renderRowNoti() {
-        const nameIcon = this.props.isSettingNoti ? "md-checkbox" : "md-square-outline"
+        const { profile } = this.props;
+        const nameIcon = profile.isEnablePopup ? "md-checkbox" : "md-square-outline"
         return (
             <Button onPress={this.changeSettingNoti} style={{ flex: 1, flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(16), }} >
