@@ -8,8 +8,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
-
 import { Button, HeaderScreen, AutoGrowingTextInput } from '../../components';
 import { scaleSzie } from '../../utils/func';
 import styles from './style';
@@ -76,7 +74,7 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const { disableEditProfile, 
+        const { disableEditProfile,
             // fullname, email, graduationYear 
         } = this.state;
         const { fullname, email, graduationYear } = this.props.profile;
@@ -85,9 +83,22 @@ export default class Layout extends React.Component {
                 <HeaderScreen
                     navigation={this.props.navigation}
                 />
-                <Text style={styles.textSetting} >
-                    My Profile
-                </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} >
+                    <Text style={styles.textSetting} >
+                        My Profile
+                    </Text>
+                    {
+                        !disableEditProfile ? <View /> :
+                            <Button onPress={this.logOut} style={{ marginRight: scaleSzie(16), alignItems: 'flex-end', flexDirection: 'row' }} >
+                                <Feather name="log-out" size={20} color={Configs.ORANGE} />
+                                <Text style={styles.textLogout} >
+                                    LogOut
+                        </Text>
+                            </Button>
+                    }
+
+                </View>
+
                 <View style={{ height: scaleSzie(80) }} >
                     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: scaleSzie(16) }} >
                         <AutoGrowingTextInput

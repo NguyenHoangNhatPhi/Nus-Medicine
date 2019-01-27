@@ -9,9 +9,7 @@ import {
     AuthScreen,
     FAQScreen,
     RegisterScreen,
-    ContactUsScreen,
-    ClassReunionScreen,
-    OtherLamuniScreen
+    
 } from '../screens';
 
 const AuthStack = createStackNavigator({
@@ -20,9 +18,6 @@ const AuthStack = createStackNavigator({
     Auth: AuthScreen,
     FAQ: FAQScreen,
     Register: RegisterScreen,
-    ContactUs: ContactUsScreen,
-    ClassReunion: ClassReunionScreen,
-    OtherLamuni:OtherLamuniScreen
 }, {
         initialRouteName: "Auth",
         transitionConfig: getSlideFromRightTransition,

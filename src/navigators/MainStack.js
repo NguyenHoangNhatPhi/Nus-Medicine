@@ -7,11 +7,6 @@ import getSlideFromRightTransition from 'react-navigation-slide-from-right-trans
 
 
 import {
-    LoginScreen,
-    ForgotPasswordScreen,
-    AuthScreen,
-    FAQScreen,
-    RegisterScreen,
     ContactUsScreen,
     ClassReunionScreen,
     OtherLamuniScreen,
@@ -30,16 +25,11 @@ const SettingStack = createStackNavigator({
     Profile: ProfileScreen,
     Setting: SettingScreen,
 }, {
-    initialRouteName: "Setting",
-    headerMode: 'none',
-})
+        initialRouteName: "Setting",
+        headerMode: 'none',
+    })
 
 const MainStack = createDrawerNavigator({
-    Login: LoginScreen,
-    ForgotPassword: ForgotPasswordScreen,
-    Auth: AuthScreen,
-    FAQ: FAQScreen,
-    Register: RegisterScreen,
     ContactUs: ContactUsScreen,
     ClassReunion: ClassReunionScreen,
     OtherLamuni: OtherLamuniScreen,

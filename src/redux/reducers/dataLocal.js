@@ -14,6 +14,11 @@ function dataLocal(state = initialState, action) {
                 ...state,
                 profile: action.payload.user
             }
+        case 'CLEAR_PROFILE_LOCAL':
+            return {
+                ...state,
+                profile: {}
+            }
         default:
             return state
     }

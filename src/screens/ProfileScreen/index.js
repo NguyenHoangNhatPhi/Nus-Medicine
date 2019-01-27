@@ -1,7 +1,9 @@
 import React from 'react';
+import { Alert } from 'react-native';
 
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
+import { from } from 'rxjs';
 
 class ProfileScreen extends Layout {
     constructor(props) {
@@ -17,6 +19,7 @@ class ProfileScreen extends Layout {
         this.cancleEditProfile = this.cancleEditProfile.bind(this);
         this.submitEditProfile = this.submitEditProfile.bind(this);
         this.gotoChangePassword = this.gotoChangePassword.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     editProfile() {
@@ -42,7 +45,8 @@ class ProfileScreen extends Layout {
             return;
         }
         if (graduationYear.length !== 4) {
-            alert('The graduation year invalid !')
+            alert('The graduation year invalid !');
+            return;
         }
         this.props.actions.app.updateProfile({
             fullname,
@@ -57,6 +61,27 @@ class ProfileScreen extends Layout {
         this.props.navigation.navigate('ChangePassword');
     }
 
+    logOut() {
+        Alert.alert(
+            'Are you sure want log out ?',
+            '',
+            [
+
+                {
+                    text: 'Cancel',
+                    onPress: () => { },
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => this.clearDataLoca() },
+            ],
+            { cancelable: false },
+        );
+    }
+
+    clearDataLoca() {
+       this.props.navigation.navigate('Auth');
+       this.props.actions.app.logOut();
+    }
 
 }
 

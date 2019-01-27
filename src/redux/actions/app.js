@@ -53,7 +53,6 @@ export function changePassword(body) {
         api: `${apiConfigs.BASE_API}user/change-password`,
         body,
         token: true,
-        email: true
     }
 }
 
@@ -64,6 +63,14 @@ export function updateProfile(body) {
         api: `${apiConfigs.BASE_API}user/update-user-info`,
         body,
         token: true,
-        email: true
     }
 }
+
+export function logOut() {
+    return {
+        type: 'LOG_OUT_APP',
+        method: 'GET',
+        api: `${apiConfigs.BASE_API}user/logout`,
+        token: true,
+    }
+} 

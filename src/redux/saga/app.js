@@ -46,7 +46,22 @@ function* updateProfile(action) {
             // yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses });
             yield put({ ...action, type: "SAVE_PROFILE_LOCAL", payload: responses })
         } else {
-            yield put({ ...action, type: "USER_LOGIN_FAIL", payload: responses })
+            yield put({ ...action, type: "UPDATE_PROFILE_FAIL", payload: responses })
+        }
+    } catch (error) {
+        console.log('error :', error)
+    }
+}
+
+function* logOut(action) {
+    try {
+        const responses = yield requestAPI(action);
+        console.log(responses)
+        if (responses.status) {
+            // yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses });
+            yield put({ ...action, type: "CLEAR_PROFILE_LOCAL", payload: responses })
+        } else {
+            yield put({ ...action, type: "LOG_OUT_APP_FAIL", payload: responses })
         }
     } catch (error) {
         console.log('error :', error)
@@ -60,6 +75,6 @@ export default function* saga() {
         takeLatest('USER_LOGIN', login),
         takeLatest('CHANG_PASSWORD', changePassword),
         takeLatest('UPDATE_PROFILE', updateProfile),
-
+        takeLatest('LOG_OUT_APP', logOut),
     ])
 }
