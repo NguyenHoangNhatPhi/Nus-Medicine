@@ -70,8 +70,8 @@ class ChangePasswordScreen extends Layout {
 }
 
 const mapStateToProps = state => ({
-    loadingRegister: state.app.loadingRegister,
-    messageRegisterError: state.app.messageRegisterError
+    isLoadingChangePassword: state.app.isLoadingChangePassword,
+    messageChangePassword: state.app.messageChangePassword
 })
 
 export default connectRedux(mapStateToProps, ChangePasswordScreen);

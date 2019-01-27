@@ -11,14 +11,14 @@ import {
     HomePageScreen,
 } from '../screens';
 import AuthStack from './AuthStack';
-import DrawerStack from './DrawerStack';
+import MainStack from './MainStack';
 
 export default createNavigationContainer(createSwitchNavigator({
-    Auth:AuthStack,
-    Drawer:DrawerStack
+    Auth: AuthStack,
+    Main: MainStack
 },
     {
-        initialRouteName: 'Drawer'
+        initialRouteName: 'Main'
     }
 
 ))

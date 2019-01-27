@@ -18,6 +18,13 @@ export function login(body) {
     }
 }
 
+export function resetStateLogin() {
+    return {
+        type: 'RESET_STATE_LOGIN',
+        payload: false
+    }
+}
+
 export function changeSettingContact(status) {
     return {
         type: 'CHANGE_SETTING_CONTACT',

@@ -52,11 +52,19 @@ class LoginScreen extends Layout {
         this.props.navigation.navigate('Register')
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.isLoginApp) {
+            this.props.navigation.navigate('Drawer');
+            this.props.actions.app.resetStateLogin();
+        }
+    }
+
 }
 
 const mapStateToProps = state => ({
     loadingLogin: state.app.loadingLogin,
-    messageLoginError: state.app.messageLoginError
+    messageLoginError: state.app.messageLoginError,
+    isLoginApp: state.app.isLoginApp
 })
 
 export default connectRedux(mapStateToProps, LoginScreen);;

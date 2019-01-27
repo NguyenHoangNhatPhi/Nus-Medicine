@@ -52,7 +52,7 @@ export default class Layout extends React.Component {
                             />
                             <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >
                                 <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
-                                    {this.props.messageRegisterError}
+                                    {this.props.messageChangePassword}
                                 </Text>
                             </View>
                             <ButtonSubmit
@@ -63,7 +63,7 @@ export default class Layout extends React.Component {
                         </ScrollView>
                     </View>
                 </View>
-                <Loading visible={this.props.loadingRegister} />
+                <Loading visible={this.props.isLoadingChangePassword} />
             </View>
         );
     }

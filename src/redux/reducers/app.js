@@ -4,9 +4,12 @@ const initialState = {
     loadingRegister: false,
     messageRegisterError: '',
     messageLoginError: '',
+    isLoginApp: false,
     loadingLogin: false,
     isSettingContactable: false,
-    isSettingNoti: true
+    isSettingNoti: true,
+    isLoadingChangePassword: false,
+    messageChangePassword: ''
 
 }
 
@@ -27,7 +30,8 @@ function appReducer(state = initialState, action) {
         case 'USER_LOGIN_SUCCESS':
             return {
                 ...state,
-                loadingLogin: false
+                loadingLogin: false,
+                isLoginApp: true
             }
         case 'USER_LOGIN_FAIL':
             return {
@@ -61,6 +65,29 @@ function appReducer(state = initialState, action) {
                 ...state,
                 routeName: action.payload
             }
+        case 'CHANG_PASSWORD':
+            return {
+                ...state,
+                isLoadingChangePassword: true,
+                messageChangePassword: ''
+            }
+        case 'CHANG_PASSWORD_FAIL':
+            return {
+                ...state,
+                isLoadingChangePassword: false,
+                messageChangePassword: action.payload.message
+            }
+        case 'CHANG_PASSWORD_SUCCESS':
+            return {
+                ...state,
+                isLoadingChangePassword: false,
+            }
+        case 'RESET_STATE_LOGIN':
+            return {
+                ...state,
+                isLoginApp: action.payload,
+            }
+
 
         default:
             return state

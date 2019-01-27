@@ -31,6 +31,7 @@ export default class Layout extends React.Component {
                         <TextInputCustom
                             ref={this.passwordInputRef}
                             placeholder="Password"
+                            secureTextEntry={true}
                             onSubmitEditing={this.login}
                         />
                         <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >

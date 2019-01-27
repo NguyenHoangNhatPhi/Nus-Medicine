@@ -16,7 +16,6 @@ function* registerUser(action) {
 function* login(action) {
     try {
         const responses = yield requestAPI(action);
-        // console.log('responses login : ' + JSON.stringify(responses))
         responses.status ?
             yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses })
             : yield put({ ...action, type: "USER_LOGIN_FAIL", payload: responses })
@@ -27,9 +26,11 @@ function* login(action) {
 
 function* changePassword(action) {
     try {
-        console.log('action changePassword : ' + JSON.stringify(action))
         const responses = yield requestAPI(action);
-        console.log('responses changePassword : ' + JSON.stringify(responses))
+        responses.status ?
+            yield put({ ...action, type: "CHANG_PASSWORD_SUCCESS", payload: responses })
+            : yield put({ ...action, type: "CHANG_PASSWORD_FAIL", payload: responses })
+        // console.log('responses changePassword : ' + JSON.stringify(responses))
     } catch (error) {
         console.log('error :', error)
     }
@@ -40,6 +41,6 @@ export default function* saga() {
     yield all([
         takeLatest('REGISTER_USER', registerUser),
         takeLatest('USER_LOGIN', login),
-        takeLatest('CHANG_PASSWORD',changePassword)
+        takeLatest('CHANG_PASSWORD', changePassword)
     ])
 }

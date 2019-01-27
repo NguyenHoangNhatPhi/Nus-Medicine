@@ -1,7 +1,10 @@
 import React from 'react';
 import {
-    createDrawerNavigator
+    createDrawerNavigator,
+    createStackNavigator
 } from 'react-navigation';
+import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';
+
 
 import {
     LoginScreen,
@@ -22,7 +25,16 @@ import {
 import Configs from '../configs';
 import SideMenu from '../screens/SideMenu';
 
-const DrawerStack = createDrawerNavigator({
+const SettingStack = createStackNavigator({
+    ChangePassword: ChangePasswordScreen,
+    Profile: ProfileScreen,
+    Setting: SettingScreen,
+}, {
+    initialRouteName: "Setting",
+    headerMode: 'none',
+})
+
+const MainStack = createDrawerNavigator({
     Login: LoginScreen,
     ForgotPassword: ForgotPasswordScreen,
     Auth: AuthScreen,
@@ -33,13 +45,12 @@ const DrawerStack = createDrawerNavigator({
     OtherLamuni: OtherLamuniScreen,
     HomePage: HomePageScreen,
     Chat: ChatScreen,
-    Profile: ProfileScreen,
-    Setting: SettingScreen,
-    ChangePassword:ChangePasswordScreen
+    Setting: SettingStack,
 }, {
-        initialRouteName: "ChangePassword",
+        initialRouteName: "HomePage",
         contentComponent: SideMenu,
     }
-)
+);
 
-export default DrawerStack;
+
+export default MainStack;
