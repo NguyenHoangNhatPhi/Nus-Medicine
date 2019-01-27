@@ -7,7 +7,7 @@ const configs = {
     FULL_WIDTH: Dimensions.get('window').width,
     // app's color 
     ORANGE :"rgb(249,115,0)",
-    COLOR_MAIN_APP: "rgb(51,73,131)"
+    COLOR_MAIN_APP: "rgba(51,73,131,0.6)"
 }
 
 export default configs; 

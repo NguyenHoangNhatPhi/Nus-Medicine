@@ -11,7 +11,7 @@ const {width,height} = Dimensions.get('window');
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor :Configs.COLOR_MAIN_APP
+        backgroundColor: Configs.COLOR_MAIN_APP
     },
     containerCard:{
         width,

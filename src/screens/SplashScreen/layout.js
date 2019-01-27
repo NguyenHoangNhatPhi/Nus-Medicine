@@ -20,17 +20,20 @@ export default class Layout extends React.Component {
     render() {
         return (
             <ImageBackground source={BACKGROUND} style={styles.container}>
-                <View style={{alignItems:'center',marginBottom:scaleSzie(50)}} >
-                    <Shimmer>
-                        <Text
-                            style={{color:'#fff',fontSize:scaleSzie(35),fontWeight:'bold'}}
-                        >Nus Medicine</Text>
-                    </Shimmer>
+                <View style={{ flex: 1, backgroundColor: Configs.COLOR_MAIN_APP ,  justifyContent: 'center',alignContent: 'center',}} >
+                    <View style={{ alignItems: 'center', marginBottom: scaleSzie(50) }} >
+                        <Shimmer>
+                            <Text
+                                style={{ color: '#fff', fontSize: scaleSzie(35), fontWeight: 'bold' }}
+                            >Nus Medicine</Text>
+                        </Shimmer>
+                    </View>
+                    <ActivityIndicator
+                        color="#fff"
+                        size="large"
+                    />
                 </View>
-                <ActivityIndicator
-                    color="#fff"
-                    size="large"
-                />
+
             </ImageBackground>
         );
     }
