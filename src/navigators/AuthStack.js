@@ -9,7 +9,7 @@ import {
     AuthScreen,
     FAQScreen,
     RegisterScreen,
-    
+
 } from '../screens';
 
 const AuthStack = createStackNavigator({

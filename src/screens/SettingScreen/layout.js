@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { Button } from '../../components';
+import { Button,HeaderScreen } from '../../components';
 import { scaleSzie } from '../../utils/func';
 import styles from './style';
 
@@ -53,6 +53,10 @@ export default class Layout extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <HeaderScreen
+                    navigation={this.props.navigation}
+                    menu={true}
+                />
                 <Text style={styles.textSetting} >
                     My Settings
                 </Text>

@@ -52,6 +52,7 @@ export default class Layout extends React.Component {
             <View style={styles.container}>
                 <HeaderScreen
                     navigation={this.props.navigation}
+                    menu={true}
                 />
                 <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
                     <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >

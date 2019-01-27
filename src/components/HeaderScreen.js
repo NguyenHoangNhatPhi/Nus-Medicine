@@ -19,25 +19,31 @@ export default class HeaderScreen extends React.PureComponent {
         this.back = this.back.bind(this);
     }
 
-    back(){
-        this.props.navigation.goBack();
+    back() {
+        if (this.props.menu) {
+            this.props.navigation.openDrawer();
+        } else {
+            this.props.navigation.goBack();
+        }
+
     }
 
     render() {
+        const iconLeft = this.props.menu ? 'menu' : 'arrow-back'
         const heightHeader = isIphoneX() ? 95 : 60;
         return (
             <View style={{ width, height: scaleSzie(heightHeader), backgroundColor: '#ffffff', flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(10), paddingLeft: scaleSzie(12) }} >
-                {
-                    !this.props.hideIconLeft ? <Button onPress={this.back} >
-                    <MaterialIcons name="arrow-back" size={scaleSzie(30)} color="#000" />
-                </Button> : null
-                }
-                    
+                    {
+                        !this.props.hideIconLeft ? <Button onPress={this.back} >
+                            <MaterialIcons name={iconLeft} size={scaleSzie(30)} color="#000" />
+                        </Button> : null
+                    }
+
                 </View>
-                <View style={{ flex: 3 ,justifyContent:'flex-end',alignItems:'center'}} >
+                <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'center' }} >
                     <Image source={LOGO} style={{
-                        width:scaleSzie(140),height:scaleSzie(28),marginBottom:scaleSzie(6)
+                        width: scaleSzie(140), height: scaleSzie(28), marginBottom: scaleSzie(6)
                     }} />
                 </View>
                 <View style={{ flex: 1 }} >
