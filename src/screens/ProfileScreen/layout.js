@@ -76,7 +76,10 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const { disableEditProfile, fullname, email, graduationYear } = this.state;
+        const { disableEditProfile, 
+            // fullname, email, graduationYear 
+        } = this.state;
+        const { fullname, email, graduationYear } = this.props.profile;
         return (
             <View style={styles.container}>
                 <HeaderScreen
@@ -92,7 +95,6 @@ export default class Layout extends React.Component {
                             placeholder={'Full Name'}
                             value={fullname}
                             disable={disableEditProfile}
-                            onChangeTextValue={fullname => this.setState({ fullname })}
                         />
                     </View>
                 </View>
@@ -111,7 +113,6 @@ export default class Layout extends React.Component {
                             placeholder={'Graduation Year'}
                             value={`${graduationYear}`}
                             disable={disableEditProfile}
-                            onChangeTextValue={graduationYear => this.setState({ graduationYear })}
                             maxLength={4}
                             keyboardType="numeric"
 

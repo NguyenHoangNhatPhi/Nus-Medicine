@@ -6,12 +6,8 @@ import connectRedux from '../../redux/ConnectRedux';
 class ProfileScreen extends Layout {
     constructor(props) {
         super(props);
-        const { fullname, email, graduationYear } = this.props.profile;
         this.state = {
             disableEditProfile: true,
-            fullname,
-            email,
-            graduationYear
         }
 
         this.fullnameRef = React.createRef();
@@ -39,6 +35,19 @@ class ProfileScreen extends Layout {
     }
 
     submitEditProfile() {
+        const fullname = this.fullnameRef.current.state.text;
+        const graduationYear = this.graduationYearRef.current.state.text;
+        if (fullname.length < 4) {
+            alert('The full name must be over 2 words !');
+            return;
+        }
+        if (graduationYear.length !== 4) {
+            alert('The graduation year invalid !')
+        }
+        this.props.actions.app.updateProfile({
+            fullname,
+            graduationYear: parseInt(graduationYear)
+        })
         this.setState({
             disableEditProfile: true
         })

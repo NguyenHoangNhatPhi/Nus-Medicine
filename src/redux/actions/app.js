@@ -56,3 +56,14 @@ export function changePassword(body) {
         email: true
     }
 }
+
+export function updateProfile(body) {
+    return {
+        type: 'UPDATE_PROFILE',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/update-user-info`,
+        body,
+        token: true,
+        email: true
+    }
+}
