@@ -16,9 +16,12 @@ function* registerUser(action) {
 function* login(action) {
     try {
         const responses = yield requestAPI(action);
-        responses.status ?
-            yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses })
-            : yield put({ ...action, type: "USER_LOGIN_FAIL", payload: responses })
+        if(responses.status){
+            yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses });
+            yield put({ ...action, type: "SAVE_PROFILE_LOCAL", payload: responses })
+        }else{
+            yield put({ ...action, type: "USER_LOGIN_FAIL", payload: responses })
+        }
     } catch (error) {
         console.log('error :', error)
     }

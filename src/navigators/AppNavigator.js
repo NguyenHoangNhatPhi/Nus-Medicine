@@ -8,17 +8,19 @@ import {
 import Ionicons from 'react-native-vector-icons/Feather';
 
 import {
-    HomePageScreen,
+    SplashScreen
 } from '../screens';
+
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 
 export default createNavigationContainer(createSwitchNavigator({
     Auth: AuthStack,
-    Main: MainStack
+    Main: MainStack,
+    Splash:SplashScreen
 },
     {
-        initialRouteName: 'Main'
+        initialRouteName: 'Splash'
     }
 
 ))

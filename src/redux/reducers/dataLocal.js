@@ -9,10 +9,10 @@ function dataLocal(state = initialState, action) {
                 ...state,
                 profile: true
             }
-        case 'SAVE_PROFILE_TEMPT':
+        case 'SAVE_PROFILE_LOCAL':
             return {
                 ...state,
-                profile: action.payload
+                profile: action.payload.user
             }
         default:
             return state

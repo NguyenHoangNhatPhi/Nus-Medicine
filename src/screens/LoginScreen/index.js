@@ -54,7 +54,7 @@ class LoginScreen extends Layout {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.isLoginApp) {
-            this.props.navigation.navigate('Drawer');
+            this.props.navigation.navigate('Main');
             this.props.actions.app.resetStateLogin();
         }
     }
