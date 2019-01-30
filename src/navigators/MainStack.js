@@ -14,7 +14,8 @@ import {
     ChatScreen,
     ProfileScreen,
     SettingScreen,
-    ChangePasswordScreen
+    ChangePasswordScreen,
+    EventsScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -35,6 +36,7 @@ const MainStack = createDrawerNavigator({
     OtherLamuni: OtherLamuniScreen,
     HomePage: HomePageScreen,
     Chat: ChatScreen,
+    Events:EventsScreen,
     Setting: SettingStack,
 }, {
         initialRouteName: "HomePage",
