@@ -20,6 +20,7 @@ import EventsScreen from './EventsScreen';
 import NewsScreen from './NewsScreen';
 import GivingScreen from './GivingScreen';
 import MessagingScreen from './MessagingScreen';
+import ListChatScreen from './ListChatScreen';
 
 module.exports = {
     LoginScreen,
@@ -41,5 +42,6 @@ module.exports = {
     EventsScreen,
     NewsScreen,
     GivingScreen,
-    MessagingScreen
+    MessagingScreen,
+    ListChatScreen
 }

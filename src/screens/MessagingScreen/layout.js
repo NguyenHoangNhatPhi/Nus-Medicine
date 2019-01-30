@@ -43,7 +43,7 @@ export default class Layout extends React.Component {
                         <View style={styles.containerForm} >
                             <ButtonGroupChat
                                 title='CLASS OFF 2009'
-                                onPress={() => alert('ddd')}
+                                onPress={()=> this.props.navigation.navigate('ListChat')}
                             />
                              <ButtonGroupChat
                                 title='OTHER ALUMINI'

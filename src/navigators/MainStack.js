@@ -18,7 +18,8 @@ import {
     EventsScreen,
     NewsScreen,
     GivingScreen,
-    MessagingScreen
+    MessagingScreen,
+    ListChatScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -35,7 +36,8 @@ const SettingStack = createStackNavigator({
 const MessagingStack = createStackNavigator({
     Messaging: MessagingScreen,
     OtherLamuni: OtherLamuniScreen,
-
+    Chat: ChatScreen,
+    ListChat: ListChatScreen
 }, {
         initialRouteName: "Messaging",
         headerMode: 'none',
@@ -44,9 +46,7 @@ const MessagingStack = createStackNavigator({
 const MainStack = createDrawerNavigator({
     ContactUs: ContactUsScreen,
     ClassReunion: ClassReunionScreen,
-
     HomePage: HomePageScreen,
-    Chat: ChatScreen,
     Events: EventsScreen,
     Setting: SettingStack,
     News: NewsScreen,
