@@ -29,13 +29,13 @@ export default class Layout extends React.Component {
                     </Text>
                     </View>
                     <View style={styles.containerContent} >
-                        <Button onPress={this.gotoRenuion} >
+                        <Button onPress={() => this.gotoRenuion('CLASS')} >
                             <Image source={USER_GRADUATION} style={{ width: scaleSzie(45), height: (45) }} />
                         </Button>
                         <Text style={styles.textHomePage} >
                             CLASS REUNION CONCIERGE
                     </Text>
-                        <Button onPress={this.gotoRenuion} >
+                        <Button onPress={() => this.gotoRenuion('GIVING')} >
                             <Entypo name="hand" size={40} color="#fff" />
                         </Button>
                         <Text style={styles.textHomePage} >
@@ -47,7 +47,7 @@ export default class Layout extends React.Component {
                         <Text style={styles.textHomePage} >
                             MESSAGING
                     </Text>
-                        <Button onPress={this.gotoRenuion} >
+                        <Button onPress={() =>this.gotoRenuion('USEFUL')} >
                             <Entypo name="info-with-circle" size={40} color="#fff" />
                         </Button>
                         <Text style={styles.textHomePage} >

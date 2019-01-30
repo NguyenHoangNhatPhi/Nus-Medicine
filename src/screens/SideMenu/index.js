@@ -23,19 +23,19 @@ class SideMenu extends Component {
     super(props);
   }
 
-  navigateToScreen = (route, title) => {
-    console.log(route)
+  navigateToScreen = (route) => {
+    // console.log(`route : ${route} - title: ${title}`)
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
-    this.props.actions.app.changeRouterDrawer(title)
+    this.props.actions.app.changeRouterDrawer(route)
   }
 
   renderItemSideVector(icon, title, route) {
     const { routeName } = this.props;
-    const temptIconColor = routeName === title ? Configs.ORANGE : "#fff";
-    const temptTitleColor = routeName === title ? Configs.ORANGE : "#fff";
+    const temptIconColor = routeName === route ? Configs.ORANGE : "#fff";
+    const temptTitleColor = routeName === route ? Configs.ORANGE : "#fff";
     return (
       <Button onPress={() => this.navigateToScreen(route, title)}
        style={{ flexDirection: 'row', height: scaleSzie(48) }} >
@@ -52,6 +52,9 @@ class SideMenu extends Component {
   }
 
   renderItemSideImage(icon, title, style, route) {
+    const { routeName } = this.props;
+    const temptIconColor = routeName === route ? Configs.ORANGE : "#fff";
+    const temptTitleColor = routeName === route ? Configs.ORANGE : "#fff";
     return (
       <Button onPress={() => this.navigateToScreen(route, title)} 
       style={{ flexDirection: 'row', height: scaleSzie(48) }} >
@@ -59,7 +62,7 @@ class SideMenu extends Component {
           <Image source={icon} style={style} />
         </View>
         <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(5) }} >
-          <Text style={styles.textMenu} >
+        <Text style={[styles.textMenu, { color: temptTitleColor }]} >
             {title}
           </Text>
         </View>
@@ -106,7 +109,7 @@ class SideMenu extends Component {
           {this.renderItemSideImage(NEWS, 'News', { width: scaleSzie(28), height: scaleSzie(28) }, 'News')}
           {this.renderItemSideImage(CHAT, 'Messaging', { width: scaleSzie(28), height: scaleSzie(28) }, 'Messaging')}
           {this.renderItemSideImage(USER_GRADUATION, 'Class Reunion', { width: scaleSzie(28), height: scaleSzie(28) }, 'ClassReunion')}
-          {this.renderItemSideVector('hand', 'Giving Portal')}
+          {this.renderItemSideVector('hand', 'Giving Portal','Giving')}
           {this.renderItemSideVector('info-with-circle', 'Useful Info')}
           {this.renderItemSideImage(CONTACT, 'Contact Us', { width: scaleSzie(28), height: scaleSzie(28) }, 'ContactUs')}
           {this.renderItemSideVectorIonicons('md-settings', 'Setting','Setting')}

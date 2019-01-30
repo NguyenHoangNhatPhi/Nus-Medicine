@@ -6,12 +6,13 @@ class HomePageScreen extends Layout {
     constructor(props) {
         super(props);
 
-        this.gotoRenuion = this.gotoRenuion.bind(this);
         this.gotoListChat = this.gotoListChat.bind(this);
     }
 
-    gotoRenuion() {
-        alert('ddd')
+    gotoRenuion(type) {
+       if(type==='GIVING'){
+        this.props.navigation.navigate('Giving');
+       }
     }
 
     gotoListChat(){
