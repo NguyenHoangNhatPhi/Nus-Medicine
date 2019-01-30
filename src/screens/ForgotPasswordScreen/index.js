@@ -1,4 +1,5 @@
 import React from 'react';
+import { timer } from 'rxjs';
 
 import Layout from './layout';
 import { validateEmail } from '../../utils/func';
@@ -10,6 +11,7 @@ class ForgotPasswordScreen extends Layout {
         super(props);
 
         this.emailInputRef = React.createRef();
+        this.toastRef = React.createRef();
 
         this.resetPassword = this.resetPassword.bind(this);
         this.gotoContactScreen = this.gotoContactScreen.bind(this);
@@ -33,11 +35,24 @@ class ForgotPasswordScreen extends Layout {
     gotoContactScreen() {
         this.props.navigation.navigate('ContactUs');
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.isForgotPasswordSuccess && prevProps.isForgotPasswordSuccess !== this.props.isForgotPasswordSuccess) {
+            this.toastRef.current.show('Success , please check your email !');
+            this.props.actions.app.resetStateForgotPassword();
+            const source = timer(1500);
+            source.subscribe(x => {
+                this.props.navigation.navigate('Login');
+            })
+        }
+    }
+
 }
 
 const mapStateToProps = state => ({
     isLoadingForgotPassword: state.app.isLoadingForgotPassword,
-    messageForgotPasswordError: state.app.messageForgotPasswordError
+    messageForgotPasswordError: state.app.messageForgotPasswordError,
+    isForgotPasswordSuccess: state.app.isForgotPasswordSuccess
 })
 
 export default connectRedux(mapStateToProps, ForgotPasswordScreen);

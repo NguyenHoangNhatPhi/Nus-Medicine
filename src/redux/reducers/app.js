@@ -12,7 +12,8 @@ const initialState = {
     messageChangePassword: '',
     // ---- forgot pass ----
     isLoadingForgotPassword: false,
-    messageForgotPasswordError: ''
+    messageForgotPasswordError: '',
+    isForgotPasswordSuccess: false
 
 }
 
@@ -100,6 +101,7 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoadingForgotPassword: false,
+                isForgotPasswordSuccess: true
             }
 
         case 'FORGOT_PASSWORD_FAIL':
@@ -108,8 +110,11 @@ function appReducer(state = initialState, action) {
                 isLoadingForgotPassword: false,
                 messageForgotPasswordError: action.payload.message
             }
-
-
+        case 'RESET_STATE_FORGOT_PASSWORD':
+            return {
+                ...state,
+                isForgotPasswordSuccess: false
+            }
         default:
             return state
     }

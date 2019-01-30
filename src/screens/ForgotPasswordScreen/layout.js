@@ -2,8 +2,9 @@ import React from 'react';
 import {
     View,
 } from 'react-native';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, BackgroundView,Loading } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, BackgroundView, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -48,6 +49,13 @@ export default class Layout extends React.Component {
                     </View>
                 </View>
                 <Loading visible={this.props.isLoadingForgotPassword} />
+                <Toast
+                    ref={this.toastRef}
+                    position='center'
+                    fadeInDuration={2000}
+                    fadeOutDuration={1000}
+                    opacity={1}
+                />
             </BackgroundView>
         );
     }

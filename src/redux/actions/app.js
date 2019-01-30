@@ -82,3 +82,10 @@ export function forgotPassword(body) {
         body
     }
 }
+
+export function resetStateForgotPassword(){
+    return {
+        type: 'RESET_STATE_FORGOT_PASSWORD',
+        payload :{}
+    }
+}
