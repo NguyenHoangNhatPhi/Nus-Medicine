@@ -31,19 +31,27 @@ const SettingStack = createStackNavigator({
 }, {
         initialRouteName: "Setting",
         headerMode: 'none',
+    });
+const MessagingStack = createStackNavigator({
+    Messaging: MessagingScreen,
+    OtherLamuni: OtherLamuniScreen,
+
+}, {
+        initialRouteName: "Messaging",
+        headerMode: 'none',
     })
 
 const MainStack = createDrawerNavigator({
     ContactUs: ContactUsScreen,
     ClassReunion: ClassReunionScreen,
-    OtherLamuni: OtherLamuniScreen,
+
     HomePage: HomePageScreen,
     Chat: ChatScreen,
     Events: EventsScreen,
     Setting: SettingStack,
     News: NewsScreen,
-    Giving:GivingScreen,
-    Messaging:MessagingScreen
+    Giving: GivingScreen,
+    Messaging: MessagingStack
 }, {
         initialRouteName: "HomePage",
         contentComponent: SideMenu,

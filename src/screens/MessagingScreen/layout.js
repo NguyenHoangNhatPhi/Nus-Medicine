@@ -47,7 +47,7 @@ export default class Layout extends React.Component {
                             />
                              <ButtonGroupChat
                                 title='OTHER ALUMINI'
-                                onPress={() => alert('ddd')}
+                                onPress={this.gotoOtherAlumini}
                             />
                         </View>
                     </View>
