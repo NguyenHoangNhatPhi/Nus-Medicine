@@ -4,7 +4,7 @@ import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
 
 
-class OtherLamuniScreen extends Layout {
+class MessagingScreen extends Layout {
     constructor(props) {
         super(props);
 
@@ -22,9 +22,6 @@ class OtherLamuniScreen extends Layout {
 
 
 const mapStateToProps = state => ({
-    loadingLogin: state.app.loadingLogin,
-    messageLoginError: state.app.messageLoginError,
-    isLoginApp: state.app.isLoginApp
 })
 
-export default connectRedux(mapStateToProps, OtherLamuniScreen);
+export default connectRedux(mapStateToProps, MessagingScreen);

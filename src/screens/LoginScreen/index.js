@@ -67,4 +67,4 @@ const mapStateToProps = state => ({
     isLoginApp: state.app.isLoginApp
 })
 
-export default connectRedux(mapStateToProps, LoginScreen);;
+export default connectRedux(mapStateToProps, LoginScreen);

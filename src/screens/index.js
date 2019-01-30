@@ -19,6 +19,7 @@ import SplashScreen from './SplashScreen';
 import EventsScreen from './EventsScreen';
 import NewsScreen from './NewsScreen';
 import GivingScreen from './GivingScreen';
+import MessagingScreen from './MessagingScreen';
 
 module.exports = {
     LoginScreen,
@@ -39,5 +40,6 @@ module.exports = {
     SplashScreen,
     EventsScreen,
     NewsScreen,
-    GivingScreen
+    GivingScreen,
+    MessagingScreen
 }

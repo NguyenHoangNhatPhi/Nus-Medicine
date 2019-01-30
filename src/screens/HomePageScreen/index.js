@@ -16,7 +16,7 @@ class HomePageScreen extends Layout {
     }
 
     gotoListChat(){
-        this.props.navigation.navigate('Chat');
+        this.props.navigation.navigate('Messaging');
     }
 
 

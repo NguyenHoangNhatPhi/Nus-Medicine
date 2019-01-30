@@ -30,14 +30,14 @@ export default class Layout extends React.Component {
                             ALUMNI SEARCH
                         </Text>
                         <TextInputCustom
-                            ref={this.emailInputRef}
+                            ref={this.searchInputRef}
                             placeholder="Name eg. Janson Tan"
-                            onSubmitEditing={this.resetPassword}
+                            onSubmitEditing={this.searchUser}
                         />
                         <View style={{ height: scaleSzie(37) }} />
                         <View>
                             <ButtonSubmit
-                                onPress={this.resetPassword}
+                                onPress={this.searchUser}
                                 title="Search"
                             />
                             <View style={{position:'absolute',left:scaleSzie(15),top:scaleSzie(15)}} >

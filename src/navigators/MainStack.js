@@ -17,7 +17,8 @@ import {
     ChangePasswordScreen,
     EventsScreen,
     NewsScreen,
-    GivingScreen
+    GivingScreen,
+    MessagingScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -41,7 +42,8 @@ const MainStack = createDrawerNavigator({
     Events: EventsScreen,
     Setting: SettingStack,
     News: NewsScreen,
-    Giving:GivingScreen
+    Giving:GivingScreen,
+    Messaging:MessagingScreen
 }, {
         initialRouteName: "HomePage",
         contentComponent: SideMenu,

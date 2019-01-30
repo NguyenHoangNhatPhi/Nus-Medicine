@@ -81,6 +81,20 @@ function* forgotPassword(action) {
     }
 }
 
+function* searchUser(action) {
+    try {
+        const responses = yield requestAPI(action);
+        console.log(responses)
+        // if (responses.status) {
+        //     yield put({ ...action, type: "FORGOT_PASSWORD_SUCCESS", payload: responses })
+        // } else {
+        //     yield put({ ...action, type: "FORGOT_PASSWORD_FAIL", payload: responses })
+        // }
+    } catch (error) {
+        console.log('error :', error)
+    }
+}
+
 
 export default function* saga() {
     yield all([
@@ -90,5 +104,6 @@ export default function* saga() {
         takeLatest('UPDATE_PROFILE', updateProfile),
         takeLatest('LOG_OUT_APP', logOut),
         takeLatest('FORGOT_PASSWORD', forgotPassword),
+        takeLatest('SEARCH_USER', searchUser),
     ])
 }

@@ -83,9 +83,18 @@ export function forgotPassword(body) {
     }
 }
 
-export function resetStateForgotPassword(){
+export function resetStateForgotPassword() {
     return {
         type: 'RESET_STATE_FORGOT_PASSWORD',
-        payload :{}
+        payload: {}
+    }
+}
+
+export function searchUser(fullname) {
+    return {
+        type: 'SEARCH_USER',
+        method: 'GET',
+        api: `${apiConfigs.BASE_API}user/search-users?page=1&fullname=${fullname}`,
+        token: true,
     }
 }
