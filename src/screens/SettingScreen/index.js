@@ -6,20 +6,26 @@ class SettingScreen extends Layout {
         super(props);
         this.changeSettingContact = this.changeSettingContact.bind(this);
         this.changeSettingNoti = this.changeSettingNoti.bind(this);
-        this.gotoProfile= this.gotoProfile.bind(this);
+        this.gotoProfile = this.gotoProfile.bind(this);
     }
 
     changeSettingContact() {
-        const { isSettingContactable } = this.props;
-        this.props.actions.app.changeSettingContact(isSettingContactable);
+        const { isContactable, isEnablePopup } = this.props.profile;
+        this.props.actions.app.updateProfile({
+            isContactable: !isContactable,
+            // isEnablePopup
+        })
     }
 
     changeSettingNoti() {
-        const { isSettingNoti } = this.props;
-        this.props.actions.app.changeSettingNoti(isSettingNoti);
+        const { isEnablePopup, isContactable } = this.props.profile;
+        this.props.actions.app.updateProfile({
+            isEnablePopup: !isEnablePopup,
+            // isContactable
+        })
     }
 
-    gotoProfile(){
+    gotoProfile() {
         this.props.navigation.navigate('Profile');
     }
 

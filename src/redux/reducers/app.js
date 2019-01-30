@@ -9,7 +9,10 @@ const initialState = {
     isSettingContactable: false,
     isSettingNoti: true,
     isLoadingChangePassword: false,
-    messageChangePassword: ''
+    messageChangePassword: '',
+    // ---- forgot pass ----
+    isLoadingForgotPassword: false,
+    messageForgotPasswordError: ''
 
 }
 
@@ -86,6 +89,24 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoginApp: action.payload,
+            }
+        case 'FORGOT_PASSWORD':
+            return {
+                ...state,
+                isLoadingForgotPassword: true,
+                messageForgotPasswordError: ''
+            }
+        case 'FORGOT_PASSWORD_SUCCESS':
+            return {
+                ...state,
+                isLoadingForgotPassword: false,
+            }
+
+        case 'FORGOT_PASSWORD_FAIL':
+            return {
+                ...state,
+                isLoadingForgotPassword: false,
+                messageForgotPasswordError: action.payload.message
             }
 
 

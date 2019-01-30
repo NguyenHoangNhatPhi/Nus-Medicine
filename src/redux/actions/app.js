@@ -74,4 +74,11 @@ export function logOut() {
         token: true,
     }
 }
-
+export function forgotPassword(body) {
+    return {
+        type: 'FORGOT_PASSWORD',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}request-password-link`,
+        body
+    }
+}
