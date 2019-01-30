@@ -23,9 +23,9 @@ export default class Layout extends React.Component {
                 />
                 <View style={{ flex: 1 }} >
                     <WebView
-                        source={{ uri: 'http://nusmedicine.nus.edu.sg/about-the-school/calendar-of-events' }}
-                        style={{flex:1 }}
-                        onLoadEnd={() => this.setState({loadingWebview: false})}
+                        source={{ uri: 'https://nusmedicine.nus.edu.sg/giving/' }}
+                        style={{ flex: 1 }}
+                        onLoadEnd={() => this.setState({ loadingWebview: false })}
                     />
                 </View>
                 <Loading visible={this.state.loadingWebview} />

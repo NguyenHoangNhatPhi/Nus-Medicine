@@ -23,7 +23,7 @@ export default class Layout extends React.Component {
                 />
                 <View style={{ flex: 1 }} >
                     <WebView
-                        source={{ uri: 'http://nusmedicine.nus.edu.sg/about-the-school/calendar-of-events' }}
+                        source={{ uri: 'http://nusmedicine.nus.edu.sg/medias/news-info' }}
                         style={{flex:1 }}
                         onLoadEnd={() => this.setState({loadingWebview: false})}
                     />
