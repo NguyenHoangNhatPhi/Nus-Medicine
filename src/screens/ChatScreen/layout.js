@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
-import EmojiPicker from '../../components/Emoji';
+// import EmojiPicker from '../../components/Emoji';
 
 import { HeaderScreen, BackgroundView } from '../../components';
 import styles from './styles';
@@ -39,10 +39,10 @@ export default class Layout extends React.Component {
                         showEmotion={this.showshowEmotion}
                         hideEmoji={this.hideEmoji}
                     />
-                        <EmojiPicker
+                        {/* <EmojiPicker
                             ref={this.emojiRef}
                             onPick={this.addEmoji}
-                        />
+                        /> */}
                 </View>
             </View>
             </BackgroundView>

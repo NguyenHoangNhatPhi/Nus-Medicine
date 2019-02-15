@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     View,
-    TextInput
+    TextInput, Platform
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -49,51 +49,58 @@ export default class Layout extends React.Component {
     render() {
         return (
             <BackgroundView>
-            <View style={styles.container}>
-                <HeaderScreen
-                    navigation={this.props.navigation}
-                    menu={true}
-                />
-                <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
-                    <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
-                        CONTACT US
+                <View style={styles.container}>
+                    <HeaderScreen
+                        navigation={this.props.navigation}
+                        menu={true}
+                    />
+                    <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
+                        <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
+                            CONTACT US
                     </Text>
-                </View>
-                <View style={styles.containerCard} >
-                    <View style={styles.containerForm} >
-                        <ScrollView
-                        keyboardShouldPersistTaps="always"
-                        showsVerticalScrollIndicator={false}
-                        >
-                            {this.renderItemIconText('phone', '(65) 6601 5518')}
-                            <View style={{ height: scaleSzie(3) }} />
-                            {this.renderItemIconText('email', 'alumni.med@nus.edu.sg')}
-                            <View style={{ height: scaleSzie(3) }} />
-                            <Text style={[styles.textNormalScreen]} >
-                                {`or leave a message below.`}
-                            </Text>
-                            <View style={styles.containerTextinput} >
-                                <TextInput
-                                    style={{ flex: 1 }}
-                                    // value={this.state.value}
-                                    // onChangeText={text => this.setState({ value: text })}
-                                    multiline={true}
-                                    underlineColorAndroid='transparent'
-                                    onSubmitEditing={this.sendMessage}
-                                />
-                            </View>
-                            <View style={{ width: scaleSzie(100), marginBottom: scaleSzie(30) }} >
-                                <ButtonSubmit
-                                    onPress={this.sendMessage}
-                                    title="Submit"
-                                />
-                            </View>
-                            {this.renderIconSocials()}
-                            <View style={{height:scaleSzie(150)}} />
-                        </ScrollView>
+                    </View>
+                    <View style={styles.containerCard} >
+                        <View style={styles.containerForm} >
+                            <ScrollView
+                                keyboardShouldPersistTaps="always"
+                                showsVerticalScrollIndicator={false}
+                            >
+                                {this.renderItemIconText('phone', '(65) 6601 5518')}
+                                <View style={{ height: scaleSzie(3) }} />
+                                {this.renderItemIconText('email', 'alumni.med@nus.edu.sg')}
+                                <View style={{ height: scaleSzie(3) }} />
+                                <Text style={[styles.textNormalScreen]} >
+                                    {`or leave a message below.`}
+                                </Text>
+                                <View style={styles.containerTextinput} >
+                                    <TextInput
+                                        style={{
+                                            flex: 1,
+                                            ...Platform.select({
+                                                android: {
+                                                    textAlignVertical: "top"
+                                                }
+                                            })
+                                        }}
+                                        // value={this.state.value}
+                                        // onChangeText={text => this.setState({ value: text })}
+                                        multiline={true}
+                                        underlineColorAndroid='transparent'
+                                        onSubmitEditing={this.sendMessage}
+                                    />
+                                </View>
+                                <View style={{ width: scaleSzie(100), marginBottom: scaleSzie(30) }} >
+                                    <ButtonSubmit
+                                        onPress={this.sendMessage}
+                                        title="Submit"
+                                    />
+                                </View>
+                                {this.renderIconSocials()}
+                                <View style={{ height: scaleSzie(150) }} />
+                            </ScrollView>
+                        </View>
                     </View>
                 </View>
-            </View>
             </BackgroundView>
         );
     }

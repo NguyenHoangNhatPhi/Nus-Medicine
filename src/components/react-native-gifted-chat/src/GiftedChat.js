@@ -9,7 +9,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Animated, Platform, StyleSheet, View } from 'react-native';
-import EmojiPicker from '../../Emoji';
+// import EmojiPicker from '../../Emoji';
 
 import ActionSheet from '@expo/react-native-action-sheet';
 import moment from 'moment';
@@ -483,8 +483,7 @@ class GiftedChat extends React.Component {
           <View style={styles.container} onLayout={this.onMainViewLayout}>
             {this.renderMessages()}
             {this.renderInputToolbar()}
-            {/* <EmojiPicker
-            /> */}
+          
           </View>
         </ActionSheet>
       );
