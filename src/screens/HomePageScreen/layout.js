@@ -29,25 +29,25 @@ export default class Layout extends React.Component {
                     </Text>
                     </View>
                     <View style={styles.containerContent} >
-                        <Button onPress={() => this.gotoRenuion('CLASS')} >
+                        <Button onPress={() => this.gotoRenuion('ClassReunion')} >
                             <Image source={USER_GRADUATION} style={{ width: scaleSzie(45), height: (45) }} />
                         </Button>
                         <Text style={styles.textHomePage} >
                             CLASS REUNION CONCIERGE
                     </Text>
-                        <Button onPress={() => this.gotoRenuion('GIVING')} >
+                        <Button onPress={() => this.gotoRenuion('Giving')} >
                             <Entypo name="hand" size={40} color="#fff" />
                         </Button>
                         <Text style={styles.textHomePage} >
                             GIVING PORTAL
                     </Text>
-                        <Button onPress={this.gotoListChat} >
+                        <Button onPress={() => this.gotoRenuion('Messaging')} >
                             <Image source={CHAT} style={{ width: scaleSzie(45), height: (45) }} />
                         </Button>
                         <Text style={styles.textHomePage} >
                             MESSAGING
                     </Text>
-                        <Button onPress={() =>this.gotoRenuion('USEFUL')} >
+                        <Button onPress={() =>this.gotoRenuion('UseFul')} >
                             <Entypo name="info-with-circle" size={40} color="#fff" />
                         </Button>
                         <Text style={styles.textHomePage} >

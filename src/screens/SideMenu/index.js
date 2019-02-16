@@ -110,7 +110,7 @@ class SideMenu extends Component {
           {this.renderItemSideImage(CHAT, 'Messaging', { width: scaleSzie(28), height: scaleSzie(28) }, 'Messaging')}
           {this.renderItemSideImage(USER_GRADUATION, 'Class Reunion', { width: scaleSzie(28), height: scaleSzie(28) }, 'ClassReunion')}
           {this.renderItemSideVector('hand', 'Giving Portal','Giving')}
-          {this.renderItemSideVector('info-with-circle', 'Useful Info')}
+          {this.renderItemSideVector('info-with-circle', 'Useful Info','UseFul')}
           {this.renderItemSideImage(CONTACT, 'Contact Us', { width: scaleSzie(28), height: scaleSzie(28) }, 'ContactUs')}
           {this.renderItemSideVectorIonicons('md-settings', 'Setting','Setting')}
         </View>

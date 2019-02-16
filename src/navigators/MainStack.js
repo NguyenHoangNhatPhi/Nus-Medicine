@@ -19,7 +19,8 @@ import {
     NewsScreen,
     GivingScreen,
     MessagingScreen,
-    ListChatScreen
+    ListChatScreen,
+    UseFulInfoScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -51,7 +52,8 @@ const MainStack = createDrawerNavigator({
     Setting: SettingStack,
     News: NewsScreen,
     Giving: GivingScreen,
-    Messaging: MessagingStack
+    Messaging: MessagingStack,
+    UseFul:UseFulInfoScreen
 }, {
         initialRouteName: "HomePage",
         contentComponent: SideMenu,
