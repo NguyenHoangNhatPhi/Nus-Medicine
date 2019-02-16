@@ -25,6 +25,15 @@ export function resetStateLogin() {
     }
 }
 
+export function resetStateRegister() {
+    return {
+        type: 'RESET_STATE_REGISTER',
+        payload: false
+    }
+}
+
+
+
 export function changeSettingContact(status) {
     return {
         type: 'CHANGE_SETTING_CONTACT',

@@ -33,7 +33,9 @@ class ForgotPasswordScreen extends Layout {
     }
 
     gotoContactScreen() {
-        this.props.navigation.navigate('ContactUs');
+        this.props.navigation.navigate('ContactUs', {
+            isBack: true
+        });
     }
 
     componentDidUpdate(prevProps, prevState) {

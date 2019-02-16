@@ -1,5 +1,5 @@
 import React from 'react';
-import {Keyboard} from 'react-native';
+import { Keyboard } from 'react-native';
 
 import connectRedux from '../../redux/ConnectRedux';
 import Layout from './layout';
@@ -69,7 +69,7 @@ class RegisterScreen extends Layout {
             return;
         }
 
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             alert('Password and confirm password not match ! ');
             return;
         }
@@ -114,12 +114,21 @@ class RegisterScreen extends Layout {
         this.scrollRef.current.scrollTo({ x: 0, y: number, animated: true })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.isRegisterApp && prevProps.isRegisterApp !== this.props.isRegisterApp) {
+            this.props.navigation.navigate('Login', {
+                isShowCheckEmail: true
+            });
+            this.props.actions.app.resetStateRegister();
+        }
+    }
 
 }
 
 const mapStateToProps = state => ({
-    loadingRegister : state.app.loadingRegister,
-    messageRegisterError:state.app.messageRegisterError
+    loadingRegister: state.app.loadingRegister,
+    isRegisterApp: state.app.isRegisterApp,
+    messageRegisterError: state.app.messageRegisterError
 })
 
 export default connectRedux(mapStateToProps, RegisterScreen);

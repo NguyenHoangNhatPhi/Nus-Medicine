@@ -19,6 +19,11 @@ function dataLocal(state = initialState, action) {
                 ...state,
                 profile: {}
             }
+        case 'LOG_OUT_APP':
+            return {
+                ...state,
+                profile: {}
+            }
         default:
             return state
     }

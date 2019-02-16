@@ -3,13 +3,15 @@ import {
     View,
 } from 'react-native';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, Loading,BackgroundView } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button, Loading, BackgroundView } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
 
 export default class Layout extends React.Component {
     render() {
+        const { navigation } = this.props;
+        const isShowCheckEmail = navigation.getParam('isShowCheckEmail', false);
         return (
             <BackgroundView>
                 <View style={styles.container}>
@@ -56,9 +58,16 @@ export default class Layout extends React.Component {
                                 <Button onPress={this.gotoRegisterScreen} >
                                     <Text style={styles.textFormLogin} >
                                         Register
-                            </Text>
+                                </Text>
                                 </Button>
                             </View>
+                            {
+                                isShowCheckEmail ? <View style={{ flex: 1, fontWeight: '600', justifyContent: 'center', alignItems: 'center' }} >
+                                    <Text>We'll send an email to joe.doe@gmail.com in 5 minutes.Open it up to activate your account.</Text>
+                                </View> : <View />
+                            }
+
+
                         </View>
                     </View>
                     <Loading visible={this.props.loadingLogin} />

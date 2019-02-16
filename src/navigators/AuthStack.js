@@ -9,7 +9,7 @@ import {
     AuthScreen,
     FAQScreen,
     RegisterScreen,
-
+    ContactUsScreen
 } from '../screens';
 
 const AuthStack = createStackNavigator({
@@ -18,6 +18,7 @@ const AuthStack = createStackNavigator({
     Auth: AuthScreen,
     FAQ: FAQScreen,
     Register: RegisterScreen,
+    ContactUs: ContactUsScreen,
 }, {
         initialRouteName: "Auth",
         transitionConfig: getSlideFromRightTransition,

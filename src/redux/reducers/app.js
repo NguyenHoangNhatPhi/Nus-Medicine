@@ -2,6 +2,7 @@ const initialState = {
     test: false,
     routeName: 'HomePage',
     loadingRegister: false,
+    isRegisterApp:false,
     messageRegisterError: '',
     messageLoginError: '',
     isLoginApp: false,
@@ -46,7 +47,8 @@ function appReducer(state = initialState, action) {
         case 'REGISTER_USER_SUCCESS':
             return {
                 ...state,
-                loadingRegister: false
+                loadingRegister: false,
+                isRegisterApp:true
             }
         case 'REGISTER_USER_FAIL':
             return {
@@ -91,6 +93,12 @@ function appReducer(state = initialState, action) {
                 ...state,
                 isLoginApp: action.payload,
             }
+
+        case 'RESET_STATE_REGISTER':
+        return{
+            ...state,
+            isRegisterApp : action.payload,
+        }
         case 'FORGOT_PASSWORD':
             return {
                 ...state,
