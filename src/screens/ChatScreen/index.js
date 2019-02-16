@@ -79,9 +79,10 @@ class ChatScreen extends Layout {
     }
 
     showshowEmotion() {
-        Keyboard.dismiss();
-        const temptHeightEmoji = this.state.temptHeightEmoji === 0 ? scaleSzie(240) : this.state.temptHeightEmoji
-        this.emojiRef.current.setHeightEmoji(temptHeightEmoji);
+        // alert('ddd')
+        // Keyboard.dismiss();
+        // const temptHeightEmoji = this.state.temptHeightEmoji === 0 ? scaleSzie(240) : this.state.temptHeightEmoji
+        // this.emojiRef.current.setHeightEmoji(temptHeightEmoji);
     }
 
     gotoRenuion() {

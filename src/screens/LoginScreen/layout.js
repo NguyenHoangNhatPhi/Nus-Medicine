@@ -64,8 +64,10 @@ export default class Layout extends React.Component {
                                 </Button>
                             </View>
                             {
-                                isShowCheckEmail ? <View style={{ flex: 1, fontWeight: '600', justifyContent: 'center', alignItems: 'center' }} >
-                                    <Text>We'll send an email to {emailVerify} in 5 minutes.Open it up to activate your account.</Text>
+                                isShowCheckEmail ? <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+                                    <Text style={{fontSize:scaleSzie(12) ,fontWeight: '600',}} >
+                                        We'll send an email to {emailVerify} in 5 minutes.Open it up to activate your account.
+                                        </Text>
                                 </View> : <View />
                             }
 

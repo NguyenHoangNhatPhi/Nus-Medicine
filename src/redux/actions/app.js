@@ -116,3 +116,10 @@ export function contactUs(body) {
         body
     }
 }
+
+export function resetRouter() {
+    return {
+        type: 'RESET_ROUTER',
+        payload: 'HomePage'
+    }
+}

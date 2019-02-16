@@ -17,7 +17,7 @@ const initialState = {
     isForgotPasswordSuccess: false,
     // ==== Contact Us ====,
     isLoadingContactUs: false,
-    statusContactUs:''
+    statusContactUs: ''
 
 }
 
@@ -130,19 +130,24 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoadingContactUs: true,
-                statusContactUs:''
+                statusContactUs: ''
             }
         case 'CONTACT_US_SUCCESS':
             return {
                 ...state,
                 isLoadingContactUs: false,
-                statusContactUs:'Send Successfull !'
+                statusContactUs: 'Send Successfull !'
             }
         case 'CONTACT_US_FAIL':
             return {
                 ...state,
                 isLoadingContactUs: false,
-                statusContactUs:action.payload.message
+                statusContactUs: action.payload.message
+            }
+        case 'RESET_ROUTER':
+            return {
+                ...state,
+                routeName: action.payload
             }
         default:
             return state

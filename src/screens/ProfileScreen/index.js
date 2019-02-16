@@ -81,6 +81,7 @@ class ProfileScreen extends Layout {
     clearDataLoca() {
        this.props.navigation.navigate('Auth');
        this.props.actions.app.logOut();
+       this.props.actions.app.resetRouter();
     }
 
 }
