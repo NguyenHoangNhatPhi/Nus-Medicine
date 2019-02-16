@@ -24,7 +24,10 @@ export default class TextInputCustom extends React.PureComponent {
         if (this.props.onFocus) {
             this.props.onFocus();
         }
+    }
 
+    setStateFromParent(value){
+        this.setState({value})
     }
 
     onChangeText(value) {

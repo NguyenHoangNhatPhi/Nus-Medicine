@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     Dimensions,
-    Image
+    Image,
+    Keyboard
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -21,6 +22,7 @@ export default class HeaderScreen extends React.PureComponent {
 
     back() {
         if (this.props.menu) {
+            Keyboard.dismiss();
             this.props.navigation.openDrawer();
         } else {
             this.props.navigation.goBack();

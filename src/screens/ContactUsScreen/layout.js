@@ -6,7 +6,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import { HeaderScreen, Text, ButtonSubmit, BackgroundView, Button } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, BackgroundView, Button, TextInputCustom, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -74,8 +74,15 @@ export default class Layout extends React.Component {
                                 <Text style={[styles.textNormalScreen]} >
                                     {`or leave a message below.`}
                                 </Text>
+                                <View style={{ height: scaleSzie(20) }} />
+                                <TextInputCustom
+                                    ref={this.emailInputRef}
+                                    placeholder="Email"
+                                    onSubmitEditing={this.focusTextInputContent}
+                                />
                                 <View style={styles.containerTextinput} >
                                     <TextInput
+                                        ref={this.contentInputRef}
                                         style={{
                                             flex: 1,
                                             ...Platform.select({
@@ -84,14 +91,20 @@ export default class Layout extends React.Component {
                                                 }
                                             })
                                         }}
-                                        // value={this.state.value}
-                                        // onChangeText={text => this.setState({ value: text })}
+                                        value={this.state.content}
+                                        onChangeText={content => this.setState({ content })}
                                         multiline={true}
                                         underlineColorAndroid='transparent'
                                         onSubmitEditing={this.sendMessage}
+                                        placeholder="Content"
                                     />
                                 </View>
-                                <View style={{ width: scaleSzie(100), marginBottom: scaleSzie(30) }} >
+                                <View style={{  height: scaleSzie(40), justifyContent: 'center', alignItems: 'center'}} >
+                                    <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
+                                        {this.props.statusContactUs}
+                                    </Text>
+                                </View>
+                                <View style={{ width: scaleSzie(100), marginBottom:scaleSzie(10)}} >
                                     <ButtonSubmit
                                         onPress={this.sendMessage}
                                         title="Submit"
@@ -103,6 +116,7 @@ export default class Layout extends React.Component {
                         </View>
                     </View>
                 </View>
+                <Loading visible={this.props.isLoadingContactUs} />
             </BackgroundView>
         );
     }

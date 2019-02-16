@@ -117,7 +117,8 @@ class RegisterScreen extends Layout {
     componentDidUpdate(prevProps, prevState) {
         if (this.props.isRegisterApp && prevProps.isRegisterApp !== this.props.isRegisterApp) {
             this.props.navigation.navigate('Login', {
-                isShowCheckEmail: true
+                isShowCheckEmail: true,
+                emailVerify: this.emailInputRef.current.state.value
             });
             this.props.actions.app.resetStateRegister();
         }

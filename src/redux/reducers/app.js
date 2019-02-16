@@ -2,7 +2,7 @@ const initialState = {
     test: false,
     routeName: 'HomePage',
     loadingRegister: false,
-    isRegisterApp:false,
+    isRegisterApp: false,
     messageRegisterError: '',
     messageLoginError: '',
     isLoginApp: false,
@@ -14,7 +14,10 @@ const initialState = {
     // ---- forgot pass ----
     isLoadingForgotPassword: false,
     messageForgotPasswordError: '',
-    isForgotPasswordSuccess: false
+    isForgotPasswordSuccess: false,
+    // ==== Contact Us ====,
+    isLoadingContactUs: false,
+    statusContactUs:''
 
 }
 
@@ -48,7 +51,7 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 loadingRegister: false,
-                isRegisterApp:true
+                isRegisterApp: true
             }
         case 'REGISTER_USER_FAIL':
             return {
@@ -95,10 +98,10 @@ function appReducer(state = initialState, action) {
             }
 
         case 'RESET_STATE_REGISTER':
-        return{
-            ...state,
-            isRegisterApp : action.payload,
-        }
+            return {
+                ...state,
+                isRegisterApp: action.payload,
+            }
         case 'FORGOT_PASSWORD':
             return {
                 ...state,
@@ -122,6 +125,24 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isForgotPasswordSuccess: false
+            }
+        case 'CONTACT_US':
+            return {
+                ...state,
+                isLoadingContactUs: true,
+                statusContactUs:''
+            }
+        case 'CONTACT_US_SUCCESS':
+            return {
+                ...state,
+                isLoadingContactUs: false,
+                statusContactUs:'Send Successfull !'
+            }
+        case 'CONTACT_US_FAIL':
+            return {
+                ...state,
+                isLoadingContactUs: false,
+                statusContactUs:action.payload.message
             }
         default:
             return state

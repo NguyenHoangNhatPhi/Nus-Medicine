@@ -107,3 +107,12 @@ export function searchUser(fullname) {
         token: true,
     }
 }
+
+export function contactUs(body) {
+    return {
+        type: 'CONTACT_US',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}contact-us`,
+        body
+    }
+}

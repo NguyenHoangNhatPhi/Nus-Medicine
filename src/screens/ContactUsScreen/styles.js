@@ -16,6 +16,7 @@ export default StyleSheet.create({
     containerCard:{
         width,
         height: scaleSzie(440),
+        height: scaleSzie(500),
         paddingHorizontal: scaleSzie(25)
     },
     containerForm:{
@@ -35,11 +36,10 @@ export default StyleSheet.create({
     },
     containerTextinput:{
         height:scaleSzie(145),
-        borderWidth: scaleSzie(2),
+        borderWidth: scaleSzie(1),
         borderColor: Configs.ORANGE,
         borderRadius:scaleSzie(4),
         marginTop:scaleSzie(22),
-        marginBottom: scaleSzie(40),
         paddingHorizontal:scaleSzie(12),
         paddingVertical: scaleSzie(8)
     }

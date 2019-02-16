@@ -12,6 +12,8 @@ export default class Layout extends React.Component {
     render() {
         const { navigation } = this.props;
         const isShowCheckEmail = navigation.getParam('isShowCheckEmail', false);
+        const emailVerify = navigation.getParam('emailVerify', '');
+
         return (
             <BackgroundView>
                 <View style={styles.container}>
@@ -63,7 +65,7 @@ export default class Layout extends React.Component {
                             </View>
                             {
                                 isShowCheckEmail ? <View style={{ flex: 1, fontWeight: '600', justifyContent: 'center', alignItems: 'center' }} >
-                                    <Text>We'll send an email to joe.doe@gmail.com in 5 minutes.Open it up to activate your account.</Text>
+                                    <Text>We'll send an email to {emailVerify} in 5 minutes.Open it up to activate your account.</Text>
                                 </View> : <View />
                             }
 

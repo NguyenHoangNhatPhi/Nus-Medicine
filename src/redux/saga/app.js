@@ -95,6 +95,19 @@ function* searchUser(action) {
     }
 }
 
+function* contactUs(action) {
+    try {
+        const responses = yield requestAPI(action);
+        if (responses.status) {
+            yield put({ ...action, type: "CONTACT_US_SUCCESS", payload: responses })
+        } else {
+            yield put({ ...action, type: "CONTACT_US_FAIL", payload: responses })
+        }
+    } catch (error) {
+        console.log('error :', error)
+    }
+}
+
 
 export default function* saga() {
     yield all([
@@ -105,5 +118,6 @@ export default function* saga() {
         takeLatest('LOG_OUT_APP', logOut),
         takeLatest('FORGOT_PASSWORD', forgotPassword),
         takeLatest('SEARCH_USER', searchUser),
+        takeLatest('CONTACT_US', contactUs),
     ])
 }
