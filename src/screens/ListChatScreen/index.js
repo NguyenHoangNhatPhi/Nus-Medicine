@@ -8,9 +8,12 @@ class ListChatScreen extends Layout {
         super(props);
     }
 
+
 }
 
 const mapStateToProps = state => ({
+    isLoadingSearchUser: state.app.isLoadingSearchUser,
+    listSearch: state.app.listSearch
 })
 
 export default connectRedux(mapStateToProps, ListChatScreen);

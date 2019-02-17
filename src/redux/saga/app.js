@@ -17,8 +17,8 @@ function* login(action) {
     try {
         const responses = yield requestAPI(action);
         if (responses.status) {
+            yield put({ ...action, type: "SAVE_PROFILE_LOCAL", payload: responses });
             yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses });
-            yield put({ ...action, type: "SAVE_PROFILE_LOCAL", payload: responses })
         } else {
             yield put({ ...action, type: "USER_LOGIN_FAIL", payload: responses })
         }
@@ -85,11 +85,11 @@ function* searchUser(action) {
     try {
         const responses = yield requestAPI(action);
         console.log(responses)
-        // if (responses.status) {
-        //     yield put({ ...action, type: "FORGOT_PASSWORD_SUCCESS", payload: responses })
-        // } else {
-        //     yield put({ ...action, type: "FORGOT_PASSWORD_FAIL", payload: responses })
-        // }
+        if (responses.status) {
+            yield put({ ...action, type: "SEARCH_USER_SUCCESS", payload: responses })
+        } else {
+            yield put({ ...action, type: "SEARCH_USER_FAIL", payload: responses })
+        }
     } catch (error) {
         console.log('error :', error)
     }

@@ -1,6 +1,6 @@
-export function clearDataLocal() {
+export function updateProfile(profile) {
     return {
-        type: 'SAVE_PROFILE_TEMPT',
-        payload: {}
+        type: 'UPDATE_PROFILE',
+        payload: profile
     }
 }

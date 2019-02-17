@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, BackgroundView, Button } from '../../components';
+import { HeaderScreen, Text, Loading, TextInputCustom, BackgroundView, Button } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -14,26 +14,20 @@ const MESSAGE = require('../../resources/message.png');
 
 export default class Layout extends React.Component {
 
-
     render() {
+        const { listSearch } = this.props;
         return (
             <BackgroundView>
                 <View style={styles.container}>
                     <HeaderScreen
                         navigation={this.props.navigation}
                     />
-                    <ItemUserChat
-                        name="Phi"
-                        onPress={() => this.props.navigation.navigate('Chat')}
-                    />
-                    <ItemUserChat
-                        name="Alex"
-                        onPress={() => this.props.navigation.navigate('Chat')}
-                    />
-                    <ItemUserChat
-                        name="Aluni"
-                        onPress={() => this.props.navigation.navigate('Chat')}
-                    />
+                    {
+                        listSearch.map((user, index) => <ItemUserChat
+                            name={user.fullname}
+                            onPress={() => this.props.navigation.navigate('Chat')}
+                        />)
+                    }
                 </View>
             </BackgroundView>
         );

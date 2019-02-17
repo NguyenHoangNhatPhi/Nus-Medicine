@@ -18,13 +18,22 @@ class OtherLamuniScreen extends Layout {
         this.props.actions.app.searchUser(fullname);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const { isLoadingSearchUser } = this.props;
+        if (!isLoadingSearchUser && this.props.listSearch.length > 0) {
+            this.props.navigation.navigate('ListChat');
+        }
+    }
+
 }
 
 
 const mapStateToProps = state => ({
     loadingLogin: state.app.loadingLogin,
     messageLoginError: state.app.messageLoginError,
-    isLoginApp: state.app.isLoginApp
+    isLoginApp: state.app.isLoginApp,
+    isLoadingSearchUser: state.app.isLoadingSearchUser,
+    listSearch: state.app.listSearch
 })
 
 export default connectRedux(mapStateToProps, OtherLamuniScreen);

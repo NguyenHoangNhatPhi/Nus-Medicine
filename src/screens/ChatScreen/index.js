@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
 
+import connectRedux from '../../redux/ConnectRedux';
 import Layout from './layout';
 import { scaleSzie } from '../../utils/func';
 
@@ -16,6 +17,7 @@ class ChatScreen extends Layout {
             zIndex: -1,
             messages: [
                 {
+                    key: 0,
                     _id: 1,
                     text: 'Hello Phi',
                     createdAt: new Date(),
@@ -26,6 +28,7 @@ class ChatScreen extends Layout {
                     },
                 },
                 {
+                    key: 1,
                     _id: 2,
                     text: 'Hi',
                     createdAt: new Date(),
@@ -46,6 +49,7 @@ class ChatScreen extends Layout {
         this.addEmoji = this.addEmoji.bind(this);
         this.onChangeMessage = this.onChangeMessage.bind(this);
         this.hideEmoji = this.hideEmoji.bind(this);
+
     }
 
     componentDidMount() {
@@ -94,8 +98,10 @@ class ChatScreen extends Layout {
         }))
     }
 
-
 }
 
+const mapStateToProps = state => ({
+    profile: state.dataLocal.profile,
+})
 
-export default ChatScreen;
+export default connectRedux(mapStateToProps, ChatScreen);

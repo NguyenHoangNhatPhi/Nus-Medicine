@@ -17,7 +17,11 @@ const initialState = {
     isForgotPasswordSuccess: false,
     // ==== Contact Us ====,
     isLoadingContactUs: false,
-    statusContactUs: ''
+    statusContactUs: '',
+
+    // ===== SEARCH_USER ====
+    isLoadingSearchUser: false,
+    listSearch: []
 
 }
 
@@ -148,6 +152,24 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 routeName: action.payload
+            }
+        // ===== SEARCH_USER ====
+        case 'SEARCH_USER':
+            return {
+                ...state,
+                isLoadingSearchUser: true,
+            }
+        case 'SEARCH_USER_SUCCESS':
+            return {
+                ...state,
+                isLoadingSearchUser: false,
+                listSearch: action.payload.listUsers
+            }
+        case 'SEARCH_USER_FAIL':
+            return {
+                ...state,
+                isLoadingSearchUser: false,
+                listSearch: []
             }
         default:
             return state

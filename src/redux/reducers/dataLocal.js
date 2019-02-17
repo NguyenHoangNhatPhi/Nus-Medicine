@@ -24,6 +24,11 @@ function dataLocal(state = initialState, action) {
                 ...state,
                 profile: {}
             }
+        case 'UPDATE_PROFILE':
+            return {
+                ...state,
+                profile: action.payload
+            }
         default:
             return state
     }

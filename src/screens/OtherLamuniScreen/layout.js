@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, BackgroundView } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, BackgroundView, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -13,41 +13,42 @@ export default class Layout extends React.Component {
     render() {
         return (
             <BackgroundView>
-            <View style={styles.container}>
-                <HeaderScreen
-                    navigation={this.props.navigation}
-                />
-                <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
-                    <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
-                        OTHER ALUMNI
+                <View style={styles.container}>
+                    <HeaderScreen
+                        navigation={this.props.navigation}
+                    />
+                    <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
+                        <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
+                            OTHER ALUMNI
                     </Text>
-                </View>
-                <View style={styles.containerCard} >
-                    <View style={styles.containerForm} >
-                        <Text style={{
-                            fontSize: scaleSzie(18), marginBottom: scaleSzie(20)
-                        }} >
-                            ALUMNI SEARCH
+                    </View>
+                    <View style={styles.containerCard} >
+                        <View style={styles.containerForm} >
+                            <Text style={{
+                                fontSize: scaleSzie(18), marginBottom: scaleSzie(20)
+                            }} >
+                                ALUMNI SEARCH
                         </Text>
-                        <TextInputCustom
-                            ref={this.searchInputRef}
-                            placeholder="Name eg. Janson Tan"
-                            onSubmitEditing={this.searchUser}
-                        />
-                        <View style={{ height: scaleSzie(37) }} />
-                        <View>
-                            <ButtonSubmit
-                                onPress={this.searchUser}
-                                title="Search"
+                            <TextInputCustom
+                                ref={this.searchInputRef}
+                                placeholder="Name eg. Janson Tan"
+                                onSubmitEditing={this.searchUser}
                             />
-                            <View style={{position:'absolute',left:scaleSzie(15),top:scaleSzie(15)}} >
-                                <EvilIcons name="search" size={25} color='#fff' />
+                            <View style={{ height: scaleSzie(37) }} />
+                            <View>
+                                <ButtonSubmit
+                                    onPress={this.searchUser}
+                                    title="Search"
+                                />
+                                <View style={{ position: 'absolute', left: scaleSzie(15), top: scaleSzie(15) }} >
+                                    <EvilIcons name="search" size={25} color='#fff' />
+                                </View>
                             </View>
-                        </View>
 
+                        </View>
                     </View>
                 </View>
-            </View>
+                <Loading visible={this.props.isLoadingSearchUser} />
             </BackgroundView>
         );
     }
