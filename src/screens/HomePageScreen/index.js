@@ -17,7 +17,8 @@ class HomePageScreen extends Layout {
          this.socket.emit('USER_CONNECTED', profile);
          this.socket.on('USER_CONNECTED',(updateProfile) => {
              this.props.actions.dataLocal.updateProfile(updateProfile)
-         })
+         });
+         this.props.actions.app.setUpSocket(this.socket);
     }
 
     gotoRenuion(type) {

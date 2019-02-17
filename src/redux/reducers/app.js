@@ -21,7 +21,8 @@ const initialState = {
 
     // ===== SEARCH_USER ====
     isLoadingSearchUser: false,
-    listSearch: []
+    listSearch: [],
+    io: {}
 
 }
 
@@ -170,6 +171,11 @@ function appReducer(state = initialState, action) {
                 ...state,
                 isLoadingSearchUser: false,
                 listSearch: []
+            }
+        case 'SET_UP_SOCKET':
+            return {
+                ...state,
+                io: action.payload
             }
         default:
             return state

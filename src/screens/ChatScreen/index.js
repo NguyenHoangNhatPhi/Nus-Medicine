@@ -11,29 +11,50 @@ import { scaleSzie } from '../../utils/func';
 class ChatScreen extends Layout {
     constructor(props) {
         super(props);
+        const { navigation, profile } = this.props;
+        const userChat = navigation.getParam('userChat', {});
+
+        this.props.io.emit('PRIVATE_MESSAGE', ({ sender: profile.socketId, receiver: userChat.socketId, message: '' }));
+        this.props.io.on('REPLY_PRIVATE_MESSAGE', message => {
+            if (message && message.message) {
+                console.log(message)
+                const temptMessage = [{
+                    _id:  message.time,
+                    text: message.message,
+                    createdAt: message.time,
+                    user: {
+                        _id: message.isSender ? 1 : 2,
+                        avatar: 'https://placeimg.com/140/140/any',
+                    }
+                }]
+                this.setState(previousState => ({
+                    messages: GiftedChat.append(previousState.messages, temptMessage),
+                }))
+            }
+
+        });
+
         this.state = {
             value: '',
             temptHeightEmoji: 0,
             zIndex: -1,
             messages: [
                 {
-                    key: 0,
                     _id: 1,
                     text: 'Hello Phi',
                     createdAt: new Date(),
                     user: {
-                        _id: 2,
+                        _id: 1,
                         name: 'React Native',
                         avatar: 'https://placeimg.com/140/140/any',
                     },
                 },
                 {
-                    key: 1,
                     _id: 2,
                     text: 'Hi',
                     createdAt: new Date(),
                     user: {
-                        _id: 1,
+                        _id: 2,
                         name: 'React Native',
                         avatar: 'https://placeimg.com/140/140/any',
                     },
@@ -93,15 +114,21 @@ class ChatScreen extends Layout {
     }
 
     onSend(messages = []) {
-        this.setState(previousState => ({
-            messages: GiftedChat.append(previousState.messages, messages),
-        }))
+        console.log('-----messages: ' + JSON.stringify(messages))
+        const { navigation, profile } = this.props;
+        const userChat = navigation.getParam('userChat', {});
+
+        this.props.io.emit('PRIVATE_MESSAGE', ({ sender: profile.socketId, receiver: userChat.socketId, message: messages[0].text }))
+        // this.setState(previousState => ({
+        //     messages: GiftedChat.append(previousState.messages, messages),
+        // }))
     }
 
 }
 
 const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
+    io: state.app.io
 })
 
 export default connectRedux(mapStateToProps, ChatScreen);

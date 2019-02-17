@@ -47,6 +47,7 @@ export const requestAPI = async (action, headers = {}) => {
         request['body'] = JSON.stringify(action.body);
     }
     let response = await fetch(action.api, request);
+    console.log('response : ', response)
     return await response.json();
 }
 

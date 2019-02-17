@@ -123,3 +123,11 @@ export function resetRouter() {
         payload: 'HomePage'
     }
 }
+
+export function setUpSocket(socket) {
+    return {
+        type: 'SET_UP_SOCKET',
+        payload: socket
+    }
+}
+
