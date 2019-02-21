@@ -1,6 +1,6 @@
 import React from 'react';
 import SocketIOClient from 'socket.io-client';
-
+import RNLocalNotifications from 'react-native-local-notifications';
 
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
@@ -37,6 +37,7 @@ class HomePageScreen extends Layout {
                 }
             }];
             this.props.actions.chat.addMessage(temptMessage);
+            RNLocalNotifications.createNotification(1, 'Some text', new Date(), 'default');
         }
         
     }

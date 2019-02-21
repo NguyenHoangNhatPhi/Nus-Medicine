@@ -8,6 +8,8 @@ import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
+import android.content.Context;
+import android.app.NotificationManager;
 
 
 public class MainActivity extends ReactActivity {
@@ -20,6 +22,12 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       Fabric.with(this, new Crashlytics());
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
     }
 
     @Override

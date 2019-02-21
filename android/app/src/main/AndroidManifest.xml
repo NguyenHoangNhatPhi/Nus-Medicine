@@ -25,6 +25,7 @@
           android:value="0f0084a0d929105cf47a24b38dd81f81901f8898"
       />
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <receiver android:process=":remote" android:name="com.github.wumke.RNLocalNotifications.AlarmReceiver" android:exported="true"></receiver>
     </application>
 
 </manifest>
