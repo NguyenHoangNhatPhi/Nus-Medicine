@@ -9,16 +9,19 @@ import connectRedux from '../../redux/ConnectRedux';
 class HomePageScreen extends Layout {
     constructor(props) {
         super(props);
-         // ===== socket =====
-         const {profile} = this.props;
-         this.socket = SocketIOClient('http://0c8385fe.ngrok.io', {
-             query: { token: profile.accesstoken }
-         });
-         this.socket.emit('USER_CONNECTED', profile);
-         this.socket.on('USER_CONNECTED',(updateProfile) => {
-             this.props.actions.dataLocal.updateProfile(updateProfile)
-         });
-         this.props.actions.app.setUpSocket(this.socket);
+        // ===== socket =====
+        const { profile } = this.props;
+        this.socket = SocketIOClient('http://3.0.93.22:3000', {
+            query: { token: profile.accesstoken }
+        });
+        this.socket.emit('USER_CONNECTED', profile);
+        this.socket.on('USER_CONNECTED', (updateProfile) => {
+            this.props.actions.dataLocal.updateProfile(updateProfile)
+        });
+        this.socket.on('REPLY_PRIVATE_MESSAGE', function (message) {
+            console.log('--- message : '+ this.props )
+        })
+        this.props.actions.app.setUpSocket(this.socket);
     }
 
     gotoRenuion(type) {

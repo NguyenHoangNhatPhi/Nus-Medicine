@@ -23,28 +23,28 @@ export default class Layout extends React.Component {
         const { value, visibleEmoji } = this.state;
         return (
             <BackgroundView>
-            <View style={styles.container}>
-                <HeaderScreen
-                    navigation={this.props.navigation}
-                />
-                <View style={styles.containerContent} >
-                    <GiftedChat
-                        messages={this.state.messages}
-                        onSend={this.onSend}
-                        user={{
-                            _id: 1,
-                        }}
-                        onInputTextChanged={this.onChangeMessage}
-                        text={value}
-                        showEmotion={this.showshowEmotion}
-                        hideEmoji={this.hideEmoji}
+                <View style={styles.container}>
+                    <HeaderScreen
+                        navigation={this.props.navigation}
                     />
+                    <View style={styles.containerContent} >
+                        <GiftedChat
+                            messages={this.props.messages}
+                            onSend={this.onSend}
+                            user={{
+                                _id: 1,
+                            }}
+                            onInputTextChanged={this.onChangeMessage}
+                            text={value}
+                            showEmotion={this.showshowEmotion}
+                            hideEmoji={this.hideEmoji}
+                        />
                         {/* <EmojiPicker
                             ref={this.emojiRef}
                             onPick={this.addEmoji}
                         /> */}
+                    </View>
                 </View>
-            </View>
             </BackgroundView>
         );
     }
