@@ -9,6 +9,9 @@ import connectRedux from '../../redux/ConnectRedux';
 class HomePageScreen extends Layout {
     constructor(props) {
         super(props);
+
+        this.addMessage = this.addMessage.bind(this);
+
         // ===== socket =====
         const { profile } = this.props;
         this.socket = SocketIOClient('http://3.0.93.22:3000', {
@@ -18,10 +21,24 @@ class HomePageScreen extends Layout {
         this.socket.on('USER_CONNECTED', (updateProfile) => {
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
-        this.socket.on('REPLY_PRIVATE_MESSAGE', function (message) {
-            console.log('--- message : '+ this.props )
-        })
+        this.socket.on('REPLY_PRIVATE_MESSAGE', this.addMessage);
         this.props.actions.app.setUpSocket(this.socket);
+    }
+
+    addMessage(message) {
+        if (message && message.message) {
+            const temptMessage = [{
+                _id: message.time,
+                text: message.message,
+                createdAt: message.time,
+                user: {
+                    _id: message.isSender ? 1 : 2,
+                    avatar: 'https://placeimg.com/140/140/any',
+                }
+            }];
+            this.props.actions.chat.addMessage(temptMessage);
+        }
+        
     }
 
     gotoRenuion(type) {
