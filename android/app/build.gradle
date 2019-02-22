@@ -165,6 +165,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-push-notification')
     compile project(':react-native-local-notifications')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')

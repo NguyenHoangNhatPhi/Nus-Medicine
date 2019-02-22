@@ -1,6 +1,7 @@
 import React from 'react';
 import SocketIOClient from 'socket.io-client';
 import RNLocalNotifications from 'react-native-local-notifications';
+import PushNotification from 'react-native-push-notification';
 
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
@@ -27,6 +28,7 @@ class HomePageScreen extends Layout {
 
     addMessage(message) {
         if (message && message.message) {
+
             const temptMessage = [{
                 _id: message.time,
                 text: message.message,
@@ -37,7 +39,18 @@ class HomePageScreen extends Layout {
                 }
             }];
             this.props.actions.chat.addMessage(temptMessage);
-            RNLocalNotifications.createNotification(1, 'Some text', '20169-02-22 12:01', 'default');
+            // RNLocalNotifications.createNotification(1, 'Some text', '20169-02-22 12:01', 'default');
+            console.log('---PushNotification ')
+            PushNotification.localNotification({
+                id: '0',
+                ticker: "My Notification Ticker",
+                bigText: "My big text that will be shown when notification is expanded",
+                subText: "This is a subText",
+                color: "red",
+                title: "My Notification Title",
+                message: "My Notification Message",
+                // actions: '["Yes", "No"]',
+            })
         }
         
     }
