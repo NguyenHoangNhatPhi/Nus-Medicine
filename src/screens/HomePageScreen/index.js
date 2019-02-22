@@ -37,7 +37,7 @@ class HomePageScreen extends Layout {
                 }
             }];
             this.props.actions.chat.addMessage(temptMessage);
-            RNLocalNotifications.createNotification(1, 'Some text', new Date(), 'default');
+            RNLocalNotifications.createNotification(1, 'Some text', '20169-02-22 12:01', 'default');
         }
         
     }

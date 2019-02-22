@@ -169,6 +169,7 @@ dependencies {
     implementation project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.facebook.react:react-native:+'
     // From node_modules
     implementation project(':react-native-vector-icons')
