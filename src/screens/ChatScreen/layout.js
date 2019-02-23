@@ -38,6 +38,10 @@ export default class Layout extends React.Component {
                             text={value}
                             showEmotion={this.showshowEmotion}
                             hideEmoji={this.hideEmoji}
+                            onLoadEarlier={() => this.loadmoreMessage()}
+                            loadEarlier={true}
+                            // renderLoadEarlier
+                            showAvatarForEveryMessage={true}
                         />
                         {/* <EmojiPicker
                             ref={this.emojiRef}

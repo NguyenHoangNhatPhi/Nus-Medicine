@@ -92,6 +92,10 @@ class ChatScreen extends Layout {
         }));
     }
 
+    loadmoreMessage(){
+        this.props.actions.chat.loadmore();
+    }
+
     componentWillUnmount() {
         this.props.actions.chat.setFlagChatScreen(false);
     }

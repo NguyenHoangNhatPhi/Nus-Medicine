@@ -29,3 +29,10 @@ export function updateCurrentUserChat(currentUserChat) {
         payload: currentUserChat
     }
 }
+
+export function loadmore() {
+    return {
+        type: 'LOAD_MORE_MESSAGE',
+        payload: {}
+    }
+}
