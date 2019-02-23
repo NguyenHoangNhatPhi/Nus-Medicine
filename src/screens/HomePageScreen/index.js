@@ -1,4 +1,5 @@
 import React from 'react';
+import { AppState } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import RNLocalNotifications from 'react-native-local-notifications';
 import PushNotification from 'react-native-push-notification';
@@ -11,9 +12,20 @@ class HomePageScreen extends Layout {
     constructor(props) {
         super(props);
 
-        this.addMessage = this.addMessage.bind(this);
+        this.state = {
+            appState: AppState.currentState,
+        }
 
-        // ===== socket =====
+        this.addMessage = this.addMessage.bind(this);
+        this.handleAppStateChange = this.handleAppStateChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.connectSocket();
+        AppState.addEventListener('change', this.handleAppStateChange);
+    }
+
+    connectSocket() {
         const { profile } = this.props;
         this.socket = SocketIOClient('http://3.0.93.22:3000', {
             query: { token: profile.accesstoken }
@@ -26,9 +38,27 @@ class HomePageScreen extends Layout {
         this.props.actions.app.setUpSocket(this.socket);
     }
 
+    handleAppStateChange = (nextAppState) => {
+        if (
+            this.state.appState.match(/inactive|background/) &&
+            nextAppState === 'active'
+        ) {
+            this.connectSocket();
+            // if (this.props.isAtChatScreen) {
+            //     this.props.actions.chat.setFlagChatScreen(true);
+            // }
+        } else {
+            this.props.actions.chat.setFlagChatScreen(false);
+        }
+        this.setState({ appState: nextAppState });
+    };
+
+
     addMessage(message) {
         if (message && message.message) {
-
+            console.log('----message 0---')
+            const { profile } = this.props;
+            const sender = message.sender;
             const temptMessage = [{
                 _id: message.time,
                 text: message.message,
@@ -39,20 +69,18 @@ class HomePageScreen extends Layout {
                 }
             }];
             this.props.actions.chat.addMessage(temptMessage);
-            // RNLocalNotifications.createNotification(1, 'Some text', '20169-02-22 12:01', 'default');
-            console.log('---PushNotification ')
-            PushNotification.localNotification({
-                id: '0',
-                ticker: "My Notification Ticker",
-                bigText: "My big text that will be shown when notification is expanded",
-                subText: "This is a subText",
-                color: "red",
-                title: "My Notification Title",
-                message: "My Notification Message",
-                // actions: '["Yes", "No"]',
-            })
+            if (profile.email !== sender.email && !this.props.isAtChatScreen) {
+                PushNotification.localNotification({
+                    id: '0',
+                    ticker: "My Notification Ticker",
+                    bigText: "My big text that will be shown when notification is expanded",
+                    subText: "",
+                    title: `${sender.fullname} sent you a message`,
+                    message: message.message,
+                    visibility: "public"
+                })
+            }
         }
-        
     }
 
     gotoRenuion(type) {
@@ -61,10 +89,16 @@ class HomePageScreen extends Layout {
 
     }
 
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this.handleAppStateChange);
+    }
+
+
 }
 
 const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
+    isAtChatScreen: state.chat.isAtChatScreen
 })
 
 export default connectRedux(mapStateToProps, HomePageScreen);

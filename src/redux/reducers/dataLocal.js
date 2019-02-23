@@ -24,7 +24,7 @@ function dataLocal(state = initialState, action) {
                 ...state,
                 profile: {}
             }
-        case 'UPDATE_PROFILE':
+        case 'UPDATE_PROFILE_SOCKET':
             return {
                 ...state,
                 profile: action.payload

@@ -22,24 +22,6 @@ class ChatScreen extends Layout {
             sender: { socketId: profile.socketId, email: profile.email },
             receiver: { socketId: userChat.socketId, email: userChat.email }, message: ''
         }));
-        // this.props.io.on('REPLY_PRIVATE_MESSAGE', function(message) {
-        //     if (message && message.message) {
-        //         console.log(JSON.stringify(this.props));
-        //         const temptMessage = [{
-        //             _id: message.time,
-        //             text: message.message,
-        //             createdAt: message.time,
-        //             user: {
-        //                 _id: message.isSender ? 1 : 2,
-        //                 avatar: 'https://placeimg.com/140/140/any',
-        //             }
-        //         }]
-        //         this.props.actions.chat.addMessage(temptMessage);
-        //         this.setState(previousState => ({
-        //             messages: GiftedChat.append(previousState.messages, temptMessage),
-        //         }))
-        //     }
-        // });
 
         this.state = {
             value: '',
@@ -59,11 +41,8 @@ class ChatScreen extends Layout {
 
     }
 
-    addMessage(){
-        alert('ddd')
-    }
-
     componentDidMount() {
+        this.props.actions.chat.setFlagChatScreen(true);
     }
 
     addEmoji(emoji) {
@@ -81,16 +60,16 @@ class ChatScreen extends Layout {
 
 
     async  hideEmoji(heightKeyboard) {
-        if (this.emojiRef.current.state.containerHeight !== 0) {
-            this.emojiRef.current.setHeightEmoji(0);
-            await this.setState(prevState => ({
-                value: `${prevState.value} `,
-            }), () => {
-                if (this.state.temptHeightEmoji === 0) {
-                    this.setState({ temptHeightEmoji: heightKeyboard })
-                }
-            });
-        }
+        // if (this.emojiRef.current.state.containerHeight !== 0) {
+        //     this.emojiRef.current.setHeightEmoji(0);
+        //     await this.setState(prevState => ({
+        //         value: `${prevState.value} `,
+        //     }), () => {
+        //         if (this.state.temptHeightEmoji === 0) {
+        //             this.setState({ temptHeightEmoji: heightKeyboard })
+        //         }
+        //     });
+        // }
     }
 
     showshowEmotion() {
@@ -108,10 +87,13 @@ class ChatScreen extends Layout {
         const userChat = navigation.getParam('userChat', {});
 
         this.props.io.emit('PRIVATE_MESSAGE', ({
-            sender: { socketId: profile.socketId, email: profile.email },
-            receiver: { socketId: userChat.socketId, email: userChat.email }, message: messages[0].text
+            sender: { socketId: profile.socketId, email: profile.email ,fullname :profile.fullname  },
+            receiver: { socketId: userChat.socketId, email: userChat.email ,fullname:userChat.fullname}, message: messages[0].text
         }));
-       
+    }
+
+    componentWillUnmount(){
+        this.props.actions.chat.setFlagChatScreen(false);
     }
 
 }

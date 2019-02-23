@@ -29,7 +29,7 @@ export default class Layout extends React.Component {
                     />
                     <View style={styles.containerContent} >
                         <GiftedChat
-                            messages={this.props.messages.reverse()}
+                            messages={this.props.messages}
                             onSend={this.onSend}
                             user={{
                                 _id: 1,

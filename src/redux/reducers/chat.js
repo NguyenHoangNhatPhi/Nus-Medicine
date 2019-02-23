@@ -1,13 +1,24 @@
+import { GiftedChat } from '../../components/react-native-gifted-chat';
+
 const initialState = {
-    messages: []
+    messages: [],
+    isAtChatScreen: false
 }
 
 function dataLocal(state = initialState, action) {
     switch (action.type) {
         case 'ADD_MESSAGE':
+            const temptMessage = [...state.messages]
             return {
                 ...state,
-                messages: state.messages.concat(action.payload)
+                messages: GiftedChat.append(temptMessage, action.payload)
+
+            }
+        case 'SET_FLAG_CHAT_SCREEN':
+            return {
+                ...state,
+                isAtChatScreen: action.payload
+
             }
         default:
             return state
