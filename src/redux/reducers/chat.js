@@ -2,7 +2,8 @@ import { GiftedChat } from '../../components/react-native-gifted-chat';
 
 const initialState = {
     messages: [],
-    isAtChatScreen: false
+    isAtChatScreen: false,
+    currentUserChat : {}
 }
 
 function dataLocal(state = initialState, action) {
@@ -18,7 +19,11 @@ function dataLocal(state = initialState, action) {
             return {
                 ...state,
                 isAtChatScreen: action.payload
-
+            }
+            case 'UPDATE_CURRENT_USER_CHAT':
+            return {
+                ...state,
+                currentUserChat: action.payload
             }
         default:
             return state

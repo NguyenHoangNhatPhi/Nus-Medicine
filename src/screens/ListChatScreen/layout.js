@@ -25,9 +25,7 @@ export default class Layout extends React.Component {
                     {
                         listSearch.map((user, index) => <ItemUserChat
                             name={user.fullname}
-                            onPress={() => this.props.navigation.navigate('Chat',{
-                                userChat:user
-                            })}
+                            onPress={() => this.setUpRoomChat(user)}
                         />)
                     }
                 </View>

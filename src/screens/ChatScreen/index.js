@@ -27,7 +27,7 @@ class ChatScreen extends Layout {
             value: '',
             temptHeightEmoji: 0,
             zIndex: -1,
-            
+
         }
         this.emojiRef = React.createRef();
         this.containerHeight = 0;
@@ -43,6 +43,7 @@ class ChatScreen extends Layout {
 
     componentDidMount() {
         this.props.actions.chat.setFlagChatScreen(true);
+        this.props.actions.chat.getHistoryChat('phi.nguyen@dinovative.com');
     }
 
     addEmoji(emoji) {
@@ -83,16 +84,15 @@ class ChatScreen extends Layout {
     }
 
     onSend(messages = []) {
-        const { navigation, profile } = this.props;
-        const userChat = navigation.getParam('userChat', {});
+        const { navigation, profile ,currentUserChat} = this.props;
 
         this.props.io.emit('PRIVATE_MESSAGE', ({
-            sender: { socketId: profile.socketId, email: profile.email ,fullname :profile.fullname  },
-            receiver: { socketId: userChat.socketId, email: userChat.email ,fullname:userChat.fullname}, message: messages[0].text
+            sender: { socketId: profile.socketId, email: profile.email, fullname: profile.fullname },
+            receiver: { socketId: currentUserChat.socketId, email: currentUserChat.email, fullname: currentUserChat.fullname }, message: messages[0].text
         }));
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.actions.chat.setFlagChatScreen(false);
     }
 
@@ -101,7 +101,8 @@ class ChatScreen extends Layout {
 const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
     io: state.app.io,
-    messages: state.chat.messages
+    messages: state.chat.messages,
+    currentUserChat: state.chat.currentUserChat
 })
 
 export default connectRedux(mapStateToProps, ChatScreen);

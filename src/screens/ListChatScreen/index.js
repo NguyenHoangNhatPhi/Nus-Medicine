@@ -8,6 +8,12 @@ class ListChatScreen extends Layout {
         super(props);
     }
 
+    setUpRoomChat(user){
+        this.props.actions.chat.updateCurrentUserChat(user);
+        this.props.navigation.navigate('Chat',{
+            userChat:user
+        })
+    }
 
 }
 

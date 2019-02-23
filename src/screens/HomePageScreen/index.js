@@ -34,6 +34,13 @@ class HomePageScreen extends Layout {
         this.socket.on('USER_CONNECTED', (updateProfile) => {
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
+        this.socket.on('UPDATE_USER_CONNECTED', (currentUserChat) => {
+            if(profile.email !== currentUserChat.email){
+                this.props.actions.chat.updateCurrentUserChat(currentUserChat)
+            }
+            
+        });
+        
         this.socket.on('REPLY_PRIVATE_MESSAGE', this.addMessage);
         this.props.actions.app.setUpSocket(this.socket);
     }
@@ -56,7 +63,6 @@ class HomePageScreen extends Layout {
 
     addMessage(message) {
         if (message && message.message) {
-            console.log('----message 0---')
             const { profile } = this.props;
             const sender = message.sender;
             const temptMessage = [{
@@ -102,3 +108,4 @@ const mapStateToProps = state => ({
 })
 
 export default connectRedux(mapStateToProps, HomePageScreen);
+
