@@ -34,7 +34,11 @@ export default class Layout extends React.Component {
                                 placeholder="Name eg. Janson Tan"
                                 onSubmitEditing={this.searchUser}
                             />
-                            <View style={{ height: scaleSzie(37) }} />
+                            <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
+                                    {this.props.messageSearchUserChat}
+                                </Text>
+                            </View>
                             <View>
                                 <ButtonSubmit
                                     onPress={this.searchUser}

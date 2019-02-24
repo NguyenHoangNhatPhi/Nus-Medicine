@@ -22,7 +22,8 @@ const initialState = {
     // ===== SEARCH_USER ====
     isLoadingSearchUser: false,
     listSearch: [],
-    io: {}
+    io: {},
+    messageSearchUserChat: ''
 
 }
 
@@ -159,12 +160,14 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoadingSearchUser: true,
+                messageSearchUserChat: ""
             }
         case 'SEARCH_USER_SUCCESS':
             return {
                 ...state,
                 isLoadingSearchUser: false,
-                listSearch: action.payload.listUsers
+                listSearch: action.payload.listUsers,
+                messageSearchUserChat: action.payload.listUsers.length === 0 ? "No result fond !" : ""
             }
         case 'SEARCH_USER_FAIL':
             return {

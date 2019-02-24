@@ -36,14 +36,14 @@ export default class Layout extends React.Component {
                     {/* ====== Form ====== */}
                     <View style={{ height: scaleSzie(80), justifyContent: 'center', alignItems: 'center' }} >
                         <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
-                            Register
+                            MESSAGING
                         </Text>
                     </View>
                     <View style={styles.containerCard} >
                         <View style={styles.containerForm} >
                             <ButtonGroupChat
-                                title='CLASS OFF 2009'
-                                onPress={()=> this.props.navigation.navigate('ListChat')}
+                                title={`CLASS OFF ${this.props.profile.graduationYear}`}
+                                onPress={()=> this.searchUserByYear()}
                             />
                              <ButtonGroupChat
                                 title='OTHER ALUMINI'

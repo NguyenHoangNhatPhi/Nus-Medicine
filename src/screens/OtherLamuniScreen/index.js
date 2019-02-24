@@ -33,7 +33,8 @@ const mapStateToProps = state => ({
     messageLoginError: state.app.messageLoginError,
     isLoginApp: state.app.isLoginApp,
     isLoadingSearchUser: state.app.isLoadingSearchUser,
-    listSearch: state.app.listSearch
+    listSearch: state.app.listSearch,
+    messageSearchUserChat: state.app.messageSearchUserChat
 })
 
 export default connectRedux(mapStateToProps, OtherLamuniScreen);

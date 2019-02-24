@@ -30,9 +30,11 @@ export function updateCurrentUserChat(currentUserChat) {
     }
 }
 
-export function loadmore() {
+export function loadmoreChat(email,page =1) {
     return {
         type: 'LOAD_MORE_MESSAGE',
-        payload: {}
+        method: 'GET',
+        api: `${apiConfigs.BASE_API}user/history-chat?page=${page}&email=${email}`,
+        token: true,
     }
 }

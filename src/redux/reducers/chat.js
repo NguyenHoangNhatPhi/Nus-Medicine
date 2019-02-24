@@ -6,7 +6,8 @@ const initialState = {
   messages: [],
   page: 0,
   totalPage: 0,
-  loadingGetHistory: false
+  loadingGetHistory: false,
+  isLoadingEarlier: false
 }
 
 function dataLocal(state = initialState, action) {
@@ -54,7 +55,20 @@ function dataLocal(state = initialState, action) {
     case 'LOAD_MORE_MESSAGE':
       return {
         ...state,
-        messages: GiftedChat.prepend(state.messages, [])
+        isLoadingEarlier: true
+      }
+    case 'LOAD_MORE_MESSAGE_SUCCESS':
+      return {
+        ...state,
+        messages: GiftedChat.prepend(state.messages, action.payload.historyChat),
+        page: action.payload.page,
+        totalPage: action.payload.pages,
+        isLoadingEarlier: false
+      }
+    case 'LOAD_MORE_MESSAGE_FAIL':
+      return {
+        ...state,
+        isLoadingEarlier: false
       }
     default:
       return state

@@ -108,6 +108,8 @@ function* contactUs(action) {
 }
 
 
+
+
 export default function* saga() {
     yield all([
         takeLatest('REGISTER_USER', registerUser),
@@ -118,5 +120,6 @@ export default function* saga() {
         takeLatest('FORGOT_PASSWORD', forgotPassword),
         takeLatest('SEARCH_USER', searchUser),
         takeLatest('CONTACT_US', contactUs),
+        // takeLatest('SEARCH_GRADUATION_YEAR', searchGraduationYear),
     ])
 }

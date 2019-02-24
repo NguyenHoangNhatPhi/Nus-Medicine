@@ -42,8 +42,9 @@ class ChatScreen extends Layout {
     }
 
     componentDidMount() {
+        const { currentUserChat } = this.props;
         this.props.actions.chat.setFlagChatScreen(true);
-        this.props.actions.chat.getHistoryChat('phinhn2201@gmail.com');
+        this.props.actions.chat.getHistoryChat(currentUserChat.email);
     }
 
     addEmoji(emoji) {
@@ -92,9 +93,21 @@ class ChatScreen extends Layout {
         }));
     }
 
-    loadmoreMessage() {
-        this.props.actions.chat.loadmore();
+    loadmoreMessage = () => {
+        const { page, totalPage, currentUserChat, isLoadingEarlier } = this.props;
+        if (!isLoadingEarlier) {
+            if ((page + 1) <= totalPage) {
+                this.props.actions.chat.loadmoreChat(currentUserChat.email, (page + 1));
+            }
+        }
+
+
     }
+
+    // renderLoadMoreMessage = () => {
+    //     // load messages, show ActivityIndicator
+    //    return
+    // }
 
     componentWillUnmount() {
         this.props.actions.chat.setFlagChatScreen(false);
@@ -109,7 +122,8 @@ const mapStateToProps = state => ({
     currentUserChat: state.chat.currentUserChat,
     loadingGetHistory: state.chat.loadingGetHistory,
     page: state.chat.page,
-    totalPage: state.chat.totalPage
+    totalPage: state.chat.totalPage,
+    isLoadingEarlier: state.chat.isLoadingEarlier
 })
 
 export default connectRedux(mapStateToProps, ChatScreen);

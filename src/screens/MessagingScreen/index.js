@@ -19,14 +19,20 @@ class MessagingScreen extends Layout {
         this.props.actions.app.searchUser(fullname);
     }
 
-    gotoOtherAlumini(){
+    gotoOtherAlumini() {
         this.props.navigation.navigate('OtherLamuni');
+    }
+
+    searchUserByYear() {
+        this.props.actions.app.searchGraduationYear(1990);
+        this.props.navigation.navigate('ListChat')
     }
 
 }
 
 
 const mapStateToProps = state => ({
+    profile: state.dataLocal.profile
 })
 
 export default connectRedux(mapStateToProps, MessagingScreen);

@@ -99,7 +99,7 @@ export function resetStateForgotPassword() {
     }
 }
 
-export function searchUser(fullname,page=1) {
+export function searchUser(fullname, page = 1) {
     return {
         type: 'SEARCH_USER',
         method: 'GET',
@@ -131,3 +131,11 @@ export function setUpSocket(socket) {
     }
 }
 
+export function searchGraduationYear(year) {
+    return {
+        type: 'SEARCH_USER',
+        method: 'GET',
+        api: `${apiConfigs.BASE_API}user/search-users?graduationYear=${year}`,
+        token: true,
+    }
+}

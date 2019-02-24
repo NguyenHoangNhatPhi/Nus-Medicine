@@ -55,7 +55,7 @@ const ItemUserChat = props => {
                     justifyContent: 'center', alignItems: 'center'
                 }} >
                     <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
-                        1
+                       
                 </Text>
                 </ImageBackground>
             </View>
