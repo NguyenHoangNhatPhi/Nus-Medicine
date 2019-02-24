@@ -79,15 +79,19 @@ class ProfileScreen extends Layout {
     }
 
     clearDataLoca() {
-       this.props.navigation.navigate('Auth');
-       this.props.actions.app.logOut();
-       this.props.actions.app.resetRouter();
+        const { profile } = this.props;
+        const { email, fullname, socketId } = profile;
+        this.props.navigation.navigate('Auth');
+        this.props.actions.app.logOut();
+        this.props.actions.app.resetRouter();
+        this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
     }
 
 }
 
 const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
+    io: state.app.io,
 })
 
 export default connectRedux(mapStateToProps, ProfileScreen);

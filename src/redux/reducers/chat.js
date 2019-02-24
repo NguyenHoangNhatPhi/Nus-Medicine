@@ -70,6 +70,12 @@ function dataLocal(state = initialState, action) {
         ...state,
         isLoadingEarlier: false
       }
+    case 'CLEAR_SOCKET_ID_CURRENT_CHAT':
+      return {
+        ...state,
+        currentUserChat: { ...state.currentUserChat, socketId: null }
+      }
+
     default:
       return state
   }

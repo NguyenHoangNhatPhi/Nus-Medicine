@@ -38,3 +38,11 @@ export function loadmoreChat(email,page =1) {
         token: true,
     }
 }
+
+export function clearSocketIdCurrenChat() {
+    return {
+        type: 'CLEAR_SOCKET_ID_CURRENT_CHAT',
+        payload: {}
+    }
+}
+
