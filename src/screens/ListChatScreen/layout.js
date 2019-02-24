@@ -24,6 +24,7 @@ export default class Layout extends React.Component {
                     />
                     {
                         listSearch.map((user, index) => <ItemUserChat
+                            key={index}
                             name={user.fullname}
                             onPress={() => this.setUpRoomChat(user)}
                         />)

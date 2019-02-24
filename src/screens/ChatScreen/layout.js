@@ -8,7 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
 // import EmojiPicker from '../../components/Emoji';
 
-import { HeaderScreen, BackgroundView } from '../../components';
+import { HeaderScreen, BackgroundView,Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -42,6 +42,7 @@ export default class Layout extends React.Component {
                             loadEarlier={true}
                             // renderLoadEarlier
                             showAvatarForEveryMessage={true}
+                            keyExtractor={(item) => `${item._id}` }
                         />
                         {/* <EmojiPicker
                             ref={this.emojiRef}
@@ -49,6 +50,7 @@ export default class Layout extends React.Component {
                         /> */}
                     </View>
                 </View>
+                <Loading visible={this.props.loadingGetHistory} />
             </BackgroundView>
         );
     }

@@ -27,7 +27,7 @@ function dataLocal(state = initialState, action) {
         case 'UPDATE_PROFILE_SOCKET':
             return {
                 ...state,
-                profile: action.payload
+                profile: { ...state.profile, socketId: action.payload.socketId }
             }
         default:
             return state

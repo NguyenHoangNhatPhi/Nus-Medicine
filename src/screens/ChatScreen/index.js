@@ -43,7 +43,7 @@ class ChatScreen extends Layout {
 
     componentDidMount() {
         this.props.actions.chat.setFlagChatScreen(true);
-        this.props.actions.chat.getHistoryChat('phi.nguyen@dinovative.com');
+        this.props.actions.chat.getHistoryChat('phinhn2201@gmail.com');
     }
 
     addEmoji(emoji) {
@@ -106,7 +106,8 @@ const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
     io: state.app.io,
     messages: state.chat.messages,
-    currentUserChat: state.chat.currentUserChat
+    currentUserChat: state.chat.currentUserChat,
+    loadingGetHistory: state.chat.loadingGetHistory
 })
 
 export default connectRedux(mapStateToProps, ChatScreen);

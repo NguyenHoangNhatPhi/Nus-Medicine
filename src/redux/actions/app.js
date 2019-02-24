@@ -99,11 +99,11 @@ export function resetStateForgotPassword() {
     }
 }
 
-export function searchUser(fullname) {
+export function searchUser(fullname,page=1) {
     return {
         type: 'SEARCH_USER',
         method: 'GET',
-        api: `${apiConfigs.BASE_API}user/search-users?page=1&fullname=${fullname}`,
+        api: `${apiConfigs.BASE_API}user/search-users?page=${page}&fullname=${fullname}`,
         token: true,
     }
 }

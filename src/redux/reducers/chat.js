@@ -3,19 +3,8 @@ import { GiftedChat } from '../../components/react-native-gifted-chat';
 const initialState = {
   isAtChatScreen: false,
   currentUserChat: {},
-  messages: [
-    {
-      _id: 1,
-      text: 'Hello developer',
-      createdAt: new Date(),
-      user: {
-        _id: 2,
-        name: 'React Native',
-        avatar: 'https://placeimg.com/140/140/any',
-      },
-    },
-
-  ],
+  messages: [],
+  loadingGetHistory: false
 }
 
 function dataLocal(state = initialState, action) {
@@ -35,6 +24,24 @@ function dataLocal(state = initialState, action) {
       return {
         ...state,
         currentUserChat: action.payload
+      }
+    case 'GET_HISTORY_CHAT':
+      return {
+        ...state,
+        messages: GiftedChat.append([], []),
+        loadingGetHistory: true
+      }
+    case 'GET_HISTORY_CHAT_SUCCESS':
+      return {
+        ...state,
+        messages: GiftedChat.append([], action.payload),
+        loadingGetHistory: false
+      }
+    case 'GET_HISTORY_CHAT_FAIL':
+      return {
+        ...state,
+        messages: GiftedChat.append([], []),
+        loadingGetHistory: false
       }
     case 'LOAD_MORE_MESSAGE':
       return {

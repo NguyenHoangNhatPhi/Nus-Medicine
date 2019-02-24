@@ -32,15 +32,17 @@ class HomePageScreen extends Layout {
         });
         this.socket.emit('USER_CONNECTED', profile);
         this.socket.on('USER_CONNECTED', (updateProfile) => {
+            console.log('USER_CONNECTED : ' + JSON.stringify(updateProfile))
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
         this.socket.on('UPDATE_USER_CONNECTED', (currentUserChat) => {
-            if(profile.email !== currentUserChat.email){
+            console.log('UPDATE_USER_CONNECTED : ' + JSON.stringify(currentUserChat))
+            if (profile.email !== currentUserChat.email) {
                 this.props.actions.chat.updateCurrentUserChat(currentUserChat)
             }
-            
+
         });
-        
+
         this.socket.on('REPLY_PRIVATE_MESSAGE', this.addMessage);
         this.props.actions.app.setUpSocket(this.socket);
     }
