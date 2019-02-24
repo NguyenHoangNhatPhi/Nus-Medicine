@@ -17,7 +17,6 @@
     "react-native-gesture-handler": "^1.0.9",
     "react-native-gifted-chat": "^0.6.0",
     "react-native-htmlview": "^0.13.0",
-    "react-native-local-notifications": "^2.0.0",
     "react-native-push-notification": "^3.1.2",
     "react-native-render-html": "^3.10.0",
     "react-native-shimmer": "^0.5.0",

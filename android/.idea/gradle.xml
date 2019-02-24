@@ -10,7 +10,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android" />
-            <option value="$PROJECT_DIR$/../node_modules/react-native-local-notifications/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-push-notification/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-shimmer/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-vector-icons/android" />
