@@ -1,8 +1,9 @@
 import React from 'react';
 import {
     View,
-   Dimensions,
-   ActivityIndicator
+    Dimensions,
+    ActivityIndicator,
+    Image
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
@@ -14,24 +15,24 @@ import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
 
 const USER_GRADUATION = require('../../resources/graduation.png');
-const CHAT = require('../../resources/chat.png');
+const AVATAR = require('../../resources/avatarChat.png');
 
-const {width,height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default class Layout extends React.Component {
 
     renderLoadMoreMessage = () => {
-        if(this.props.isLoadingEarlier){
-            return(
-                <View style={{width,alignItems:'center'}} >
-                    <ActivityIndicator 
+        if (this.props.isLoadingEarlier) {
+            return (
+                <View style={{ width, alignItems: 'center' }} >
+                    <ActivityIndicator
                         size={"large"}
                         color="#fff"
                     />
                 </View>
             );
         }
-       return <View />
+        return <View />
     }
 
     render() {
@@ -53,16 +54,14 @@ export default class Layout extends React.Component {
                             text={value}
                             showEmotion={this.showshowEmotion}
                             hideEmoji={this.hideEmoji}
-                            // onLoadEarlier={() => this.loadmoreMessage()}
-                            // loadEarlier={true}
-                            // isLoadingEarlier={this.props.isLoadingEarlier}
                             listViewProps={
                                 {
                                     onEndReached: this.loadmoreMessage,
                                     onEndReachedThreshold: 100,
-                                    ListFooterComponent:this.renderLoadMoreMessage
+                                    ListFooterComponent: this.renderLoadMoreMessage
                                 }
                             }
+                            renderAvatar={() => <Image source={AVATAR} style={{ width: scaleSzie(36), height: scaleSzie(36) }} />}
                         />
                         {/* <EmojiPicker
                             ref={this.emojiRef}

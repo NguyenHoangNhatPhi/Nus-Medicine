@@ -33,6 +33,7 @@ const SettingStack = createStackNavigator({
 }, {
         initialRouteName: "Setting",
         headerMode: 'none',
+        transitionConfig: getSlideFromRightTransition,
     });
 const MessagingStack = createStackNavigator({
     Messaging: MessagingScreen,
@@ -42,6 +43,7 @@ const MessagingStack = createStackNavigator({
 }, {
         initialRouteName: "Messaging",
         headerMode: 'none',
+        transitionConfig: getSlideFromRightTransition,
     })
 
 const MainStack = createDrawerNavigator({

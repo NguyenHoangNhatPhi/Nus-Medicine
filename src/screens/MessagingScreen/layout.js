@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, BackgroundView } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, Loading, BackgroundView } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -43,16 +43,22 @@ export default class Layout extends React.Component {
                         <View style={styles.containerForm} >
                             <ButtonGroupChat
                                 title={`CLASS OFF ${this.props.profile.graduationYear}`}
-                                onPress={()=> this.searchUserByYear()}
+                                onPress={() => this.searchUserByYear()}
                             />
-                             <ButtonGroupChat
+                            <ButtonGroupChat
                                 title='OTHER ALUMINI'
                                 onPress={this.gotoOtherAlumini}
                             />
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
+                                    {this.props.messageSearchUserChat}
+                                </Text>
+                            </View>
                         </View>
                     </View>
-
                 </View>
+                <Loading visible={this.props.isLoadingSearchUser} />
             </BackgroundView>
         );
     }
@@ -60,7 +66,7 @@ export default class Layout extends React.Component {
 
 const ButtonGroupChat = props => {
     return (
-        <View style={{marginBottom:scaleSzie(15)}} >
+        <View style={{ marginBottom: scaleSzie(15) }} >
             <ButtonSubmit
                 onPress={() => props.onPress()}
                 title={props.title}

@@ -91,14 +91,14 @@ export default class InputToolbar extends React.Component {
         <View style={[styles.primary, this.props.primaryStyle]}>
           {this.renderActions()}
           {this.renderComposer()}
-          <TouchableOpacity
+          {/* <TouchableOpacity
           onPress={()=>this.props.showEmotion()}
           style={{
             width: scaleSzie(40), height: scaleSzie(44),
             paddingTop: scaleSzie(5), alignItems: 'flex-end'
           }} >
             <FontAwesome name="smile-o" size={scaleSzie(30)} color={Configs.ORANGE} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           {this.renderSend()}
         </View>
         {this.renderAccessory()}

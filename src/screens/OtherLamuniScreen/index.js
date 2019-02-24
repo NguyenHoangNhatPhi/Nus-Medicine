@@ -29,9 +29,6 @@ class OtherLamuniScreen extends Layout {
 
 
 const mapStateToProps = state => ({
-    loadingLogin: state.app.loadingLogin,
-    messageLoginError: state.app.messageLoginError,
-    isLoginApp: state.app.isLoginApp,
     isLoadingSearchUser: state.app.isLoadingSearchUser,
     listSearch: state.app.listSearch,
     messageSearchUserChat: state.app.messageSearchUserChat

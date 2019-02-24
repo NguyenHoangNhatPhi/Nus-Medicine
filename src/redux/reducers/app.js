@@ -180,6 +180,13 @@ function appReducer(state = initialState, action) {
                 ...state,
                 io: action.payload
             }
+        case 'RESET_STATE_SEARCH':
+            return {
+                ...state,
+                messageSearchUserChat: ''
+            }
+
+
         default:
             return state
     }

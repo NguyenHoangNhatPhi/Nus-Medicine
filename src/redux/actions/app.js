@@ -139,3 +139,11 @@ export function searchGraduationYear(year) {
         token: true,
     }
 }
+
+export function resetStateSearch() {
+    return {
+        type: 'RESET_STATE_SEARCH',
+        payload: {}
+    }
+}
+

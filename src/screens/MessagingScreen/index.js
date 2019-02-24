@@ -20,19 +20,30 @@ class MessagingScreen extends Layout {
     }
 
     gotoOtherAlumini() {
+        this.props.actions.app.resetStateSearch();
         this.props.navigation.navigate('OtherLamuni');
     }
 
     searchUserByYear() {
-        this.props.actions.app.searchGraduationYear(1990);
-        this.props.navigation.navigate('ListChat')
+        const {profile} = this.props;
+        this.props.actions.app.searchGraduationYear(profile.graduationYear);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { isLoadingSearchUser } = this.props;
+        if (!isLoadingSearchUser && this.props.listSearch.length > 0) {
+            this.props.navigation.navigate('ListChat');
+        }
     }
 
 }
 
 
 const mapStateToProps = state => ({
-    profile: state.dataLocal.profile
+    profile: state.dataLocal.profile,
+    isLoadingSearchUser: state.app.isLoadingSearchUser,
+    listSearch: state.app.listSearch,
+    messageSearchUserChat: state.app.messageSearchUserChat
 })
 
 export default connectRedux(mapStateToProps, MessagingScreen);
