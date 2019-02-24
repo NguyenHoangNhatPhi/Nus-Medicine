@@ -84,7 +84,7 @@ class ChatScreen extends Layout {
     }
 
     onSend(messages = []) {
-        const { navigation, profile ,currentUserChat} = this.props;
+        const { navigation, profile, currentUserChat } = this.props;
 
         this.props.io.emit('PRIVATE_MESSAGE', ({
             sender: { socketId: profile.socketId, email: profile.email, fullname: profile.fullname },
@@ -92,7 +92,7 @@ class ChatScreen extends Layout {
         }));
     }
 
-    loadmoreMessage(){
+    loadmoreMessage() {
         this.props.actions.chat.loadmore();
     }
 
@@ -107,7 +107,9 @@ const mapStateToProps = state => ({
     io: state.app.io,
     messages: state.chat.messages,
     currentUserChat: state.chat.currentUserChat,
-    loadingGetHistory: state.chat.loadingGetHistory
+    loadingGetHistory: state.chat.loadingGetHistory,
+    page: state.chat.page,
+    totalPage: state.chat.totalPage
 })
 
 export default connectRedux(mapStateToProps, ChatScreen);
