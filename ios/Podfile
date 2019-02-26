@@ -29,6 +29,8 @@ target 'nusmedicine' do
 
 # ----- npm ------
 pod 'react-native-shimmer', :path => '../node_modules/react-native-shimmer'
+pod 'Fabric'
+pod 'Crashlytics'
   
 end
 

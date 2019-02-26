@@ -11,6 +11,8 @@
 #import <React/RCTRootView.h>
 #import <React/RCTPushNotificationManager.h>
 #import <UserNotifications/UserNotifications.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -36,6 +38,8 @@
   // define UNUserNotificationCenter
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
+  
+      [Fabric with:@[[Crashlytics class]]];
   
   return YES;
 }
