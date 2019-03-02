@@ -84,12 +84,16 @@ class ChatScreen extends Layout {
     gotoRenuion() {
     }
 
-    onSend(messages = []) {
-        const { navigation, profile, currentUserChat } = this.props;
-
+    onSend(messagesSend = []) {
+        const { profile, currentUserChat, messages } = this.props;
+        if (messages.length === 0) {
+            this.props.actions.chat.addFriend({
+                email: currentUserChat.email
+            });
+        }
         this.props.io.emit('PRIVATE_MESSAGE', ({
             sender: { socketId: profile.socketId, email: profile.email, fullname: profile.fullname },
-            receiver: { socketId: currentUserChat.socketId, email: currentUserChat.email, fullname: currentUserChat.fullname }, message: messages[0].text
+            receiver: { socketId: currentUserChat.socketId, email: currentUserChat.email, fullname: currentUserChat.fullname }, message: messagesSend[0].text
         }));
     }
 
@@ -104,13 +108,10 @@ class ChatScreen extends Layout {
 
     }
 
-    // renderLoadMoreMessage = () => {
-    //     // load messages, show ActivityIndicator
-    //    return
-    // }
 
     componentWillUnmount() {
         this.props.actions.chat.setFlagChatScreen(false);
+        this.props.actions.chat.resetMessage();
     }
 
 }

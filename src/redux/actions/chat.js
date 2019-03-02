@@ -14,7 +14,7 @@ export function setFlagChatScreen(isAtChatScreen) {
     }
 }
 
-export function getHistoryChat(email,page =1) {
+export function getHistoryChat(email, page = 1) {
     return {
         type: 'GET_HISTORY_CHAT',
         method: 'GET',
@@ -30,7 +30,7 @@ export function updateCurrentUserChat(currentUserChat) {
     }
 }
 
-export function loadmoreChat(email,page =1) {
+export function loadmoreChat(email, page = 1) {
     return {
         type: 'LOAD_MORE_MESSAGE',
         method: 'GET',
@@ -46,7 +46,7 @@ export function clearSocketIdCurrenChat() {
     }
 }
 
-export function getListFriends(page =1) {
+export function getListFriends(page = 1) {
     return {
         type: 'GET_LIST_FRIENDS',
         method: 'GET',
@@ -54,4 +54,22 @@ export function getListFriends(page =1) {
         token: true,
     }
 }
+
+export function addFriend(body) {
+    return {
+        type: 'ADD_FRIEND',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/add-friend`,
+        body,
+        token: true,
+    }
+}
+
+export function resetMessage() {
+    return {
+        type: 'RESET_MESSAGE',
+        payload: {}
+    }
+}
+
 

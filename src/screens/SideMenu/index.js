@@ -98,7 +98,7 @@ class SideMenu extends Component {
             flex: 1, paddingTop: scaleSzie(30),
             paddingLeft: scaleSzie(20)
           }} >
-            <Text style={{ color: '#fff', fontSize: scaleSzie(30), fontWeight: 'bold' }} >
+            <Text style={{ color: '#fff', fontSize: scaleSzie(26), fontWeight: 'bold' }} >
               NUS Medicine Alumin
               </Text>
           </ImageBackground>
@@ -112,7 +112,7 @@ class SideMenu extends Component {
           {this.renderItemSideVector('hand', 'Giving Portal','Giving')}
           {this.renderItemSideVector('info-with-circle', 'Useful Info','UseFul')}
           {this.renderItemSideImage(CONTACT, 'Contact Us', { width: scaleSzie(28), height: scaleSzie(28) }, 'ContactUs')}
-          {this.renderItemSideVectorIonicons('md-settings', 'Setting','Setting')}
+          {this.renderItemSideVectorIonicons('md-settings', 'Settings','Settings')}
         </View>
       </View>
     );

@@ -209,9 +209,12 @@ function appReducer(state = initialState, action) {
                 isLoadingSearchUser: false,
                 messageSearchUserChat: action.payload.message
             }
-
-
-
+        case 'RESET_LIST_CHAT':
+            return {
+                ...state,
+                listSearch: [],
+                messageSearchUserChat: ''
+            }
         default:
             return state
     }

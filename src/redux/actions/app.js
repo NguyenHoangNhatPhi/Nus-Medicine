@@ -147,3 +147,12 @@ export function resetStateSearch() {
     }
 }
 
+export function resetListchat() {
+    return {
+        type: 'RESET_LIST_CHAT',
+        payload: {}
+    }
+}
+
+
+

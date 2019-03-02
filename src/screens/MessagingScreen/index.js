@@ -31,6 +31,7 @@ class MessagingScreen extends Layout {
 
     getListFriends = () => {
         this.props.actions.chat.getListFriends();
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -38,6 +39,10 @@ class MessagingScreen extends Layout {
         if (!isLoadingSearchUser && this.props.listSearch.length > 0) {
             this.props.navigation.navigate('ListChat');
         }
+    }
+
+    componentWillUnmount(){
+        this.props.actions.app.resetStateSearch();
     }
 
 }

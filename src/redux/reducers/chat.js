@@ -75,6 +75,12 @@ function dataLocal(state = initialState, action) {
         ...state,
         currentUserChat: { ...state.currentUserChat, socketId: null }
       }
+    case 'RESET_MESSAGE':
+      return {
+        ...state,
+        messages: []
+      }
+
 
     default:
       return state

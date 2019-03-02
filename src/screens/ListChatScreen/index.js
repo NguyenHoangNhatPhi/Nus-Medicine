@@ -15,6 +15,10 @@ class ListChatScreen extends Layout {
         })
     }
 
+    componentWillUnmount(){
+        this.props.actions.app.resetListchat();
+    }
+
 }
 
 const mapStateToProps = state => ({

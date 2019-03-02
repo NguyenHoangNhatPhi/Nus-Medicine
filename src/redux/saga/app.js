@@ -110,12 +110,26 @@ function* contactUs(action) {
 function* getListFriends(action) {
     try {
         const responses = yield requestAPI(action);
-        console.log('--- responses : '+ JSON.stringify(responses));
+        console.log('--- responses : ' + JSON.stringify(responses));
         if (responses.status) {
             yield put({ ...action, type: "GET_LIST_FRIENDS_SUCCESS", payload: responses })
         } else {
             yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
         }
+    } catch (error) {
+        console.log('error8 :', error)
+    }
+}
+
+function* addFriend(action) {
+    try {
+        const responses = yield requestAPI(action);
+        console.log('--- addFriend : ' + JSON.stringify(responses));
+        // if (responses.status) {
+        //     yield put({ ...action, type: "GET_LIST_FRIENDS_SUCCESS", payload: responses })
+        // } else {
+        //     yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
+        // }
     } catch (error) {
         console.log('error8 :', error)
     }
@@ -133,5 +147,7 @@ export default function* saga() {
         takeLatest('SEARCH_USER', searchUser),
         takeLatest('CONTACT_US', contactUs),
         takeLatest('GET_LIST_FRIENDS', getListFriends),
+        takeLatest('ADD_FRIEND', addFriend),
+
     ])
 }

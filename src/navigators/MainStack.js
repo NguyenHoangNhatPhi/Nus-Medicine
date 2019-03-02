@@ -51,7 +51,7 @@ const MainStack = createDrawerNavigator({
     ClassReunion: ClassReunionScreen,
     HomePage: HomePageScreen,
     Events: EventsScreen,
-    Setting: SettingStack,
+    Settings: SettingStack,
     News: NewsScreen,
     Giving: GivingScreen,
     Messaging: MessagingStack,
