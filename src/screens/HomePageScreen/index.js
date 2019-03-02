@@ -1,7 +1,8 @@
 import React from 'react';
-import { AppState } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import PushNotification from 'react-native-push-notification';
+import { timer } from 'rxjs';
 
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
@@ -17,6 +18,7 @@ class HomePageScreen extends Layout {
 
         this.addMessage = this.addMessage.bind(this);
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
+        this.handleDeepLink = this.handleDeepLink.bind(this);
     }
 
     componentDidMount() {
@@ -29,8 +31,11 @@ class HomePageScreen extends Layout {
 
     handleDeepLink = notification => {
         if (!this.props.isAtChatScreen) {
-            this.props.actions.chat.updateCurrentUserChat(notification.tag);
-            this.props.navigation.navigate('Chat');
+            const temptUser = Platform.OS === 'ios' ? notification.data : notification.tag
+            this.props.actions.chat.updateCurrentUserChat(temptUser);
+            this.props.navigation.navigate('Chat', {
+                temptCurrentUserChat: temptUser
+            });
             this.props.actions.app.changeRouterDrawer('Messaging');
         }
 
@@ -106,7 +111,10 @@ class HomePageScreen extends Layout {
                     title: `${sender.fullname} sent you a message`,
                     message: message.message,
                     visibility: "public",
-                    tag: sender
+                    tag: sender,
+                    tag: 'some_tag',
+                    group: "group",
+                    userInfo: sender
                 })
             }
         }

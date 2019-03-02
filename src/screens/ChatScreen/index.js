@@ -42,9 +42,11 @@ class ChatScreen extends Layout {
     }
 
     componentDidMount() {
-        const { currentUserChat } = this.props;
+        const { currentUserChat, navigation } = this.props;
+        const temptCurrentUserChat = navigation.getParam('temptCurrentUserChat', { email: '' });
+        const checkCurrentUserChat = currentUserChat.email ? currentUserChat : temptCurrentUserChat
         this.props.actions.chat.setFlagChatScreen(true);
-        this.props.actions.chat.getHistoryChat(currentUserChat.email);
+        this.props.actions.chat.getHistoryChat(checkCurrentUserChat.email);
     }
 
     addEmoji(emoji) {
