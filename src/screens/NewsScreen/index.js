@@ -1,7 +1,6 @@
 import React from 'react';
 import { timer } from 'rxjs';
 
-
 import Layout from './layout';
 
 class NewsScreen extends Layout {
@@ -9,10 +8,15 @@ class NewsScreen extends Layout {
         super(props);
         this.state = {
             loadingWebview: true
-        }
+        };
+        this.webviewRef = React.createRef();
     }
 
     componentDidMount() {
+        this.initLoading();
+    }
+
+    initLoading() {
         const source = timer(5000);
         source.subscribe(x => {
             this.setState({
@@ -21,6 +25,18 @@ class NewsScreen extends Layout {
         })
     }
 
+    backWebview = () => {
+        this.webviewRef.current.goBack();
+    }
+
+    previousWebview = () => {
+        this.webviewRef.current.goForward();
+    }
+
+    refreshWebview = () => {
+        this.webviewRef.current.reload();
+
+    }
 
 }
 

@@ -98,7 +98,7 @@ class SideMenu extends Component {
             flex: 1, paddingTop: scaleSzie(30),
             paddingLeft: scaleSzie(20)
           }} >
-            <Text style={{ color: '#fff', fontSize: scaleSzie(26), fontWeight: 'bold' }} >
+            <Text style={{ color: '#fff', fontSize: scaleSzie(24), fontWeight: 'bold' }} >
               NUS Medicine Alumin
               </Text>
           </ImageBackground>
