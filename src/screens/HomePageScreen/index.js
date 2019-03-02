@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppState } from 'react-native';
 import SocketIOClient from 'socket.io-client';
-import RNLocalNotifications from 'react-native-local-notifications';
 import PushNotification from 'react-native-push-notification';
 
 import Layout from './layout';
@@ -23,6 +22,18 @@ class HomePageScreen extends Layout {
     componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
+        PushNotification.configure({
+            onNotification: this.handleDeepLink
+        })
+    }
+
+    handleDeepLink = notification => {
+        if (!this.props.isAtChatScreen) {
+            this.props.actions.chat.updateCurrentUserChat(notification.tag);
+            this.props.navigation.navigate('Chat');
+            this.props.actions.app.changeRouterDrawer('Messaging');
+        }
+
     }
 
     connectSocket() {
@@ -51,7 +62,7 @@ class HomePageScreen extends Layout {
                 console.log('USER_DISCONNECTED : ' + JSON.stringify(userDisconnected))
                 this.props.actions.chat.clearSocketIdCurrenChat()
             }
-          
+
 
         })
 
@@ -65,9 +76,6 @@ class HomePageScreen extends Layout {
             nextAppState === 'active'
         ) {
             this.connectSocket();
-            // if (this.props.isAtChatScreen) {
-            //     this.props.actions.chat.setFlagChatScreen(true);
-            // }
         } else {
             this.props.actions.chat.setFlagChatScreen(false);
         }
@@ -97,7 +105,8 @@ class HomePageScreen extends Layout {
                     subText: "",
                     title: `${sender.fullname} sent you a message`,
                     message: message.message,
-                    visibility: "public"
+                    visibility: "public",
+                    tag: sender
                 })
             }
         }
