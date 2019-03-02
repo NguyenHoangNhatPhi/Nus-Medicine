@@ -25,8 +25,12 @@ class MessagingScreen extends Layout {
     }
 
     searchUserByYear() {
-        const {profile} = this.props;
+        const { profile } = this.props;
         this.props.actions.app.searchGraduationYear(profile.graduationYear);
+    }
+
+    getListFriends = () => {
+        this.props.actions.chat.getListFriends();
     }
 
     componentDidUpdate(prevProps, prevState) {

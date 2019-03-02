@@ -1,4 +1,4 @@
-import { put, takeLatest, all } from "redux-saga/effects";
+import { put, takeLatest, all, join } from "redux-saga/effects";
 
 import { requestAPI } from '../../utils/func';
 
@@ -107,7 +107,19 @@ function* contactUs(action) {
     }
 }
 
-
+function* getListFriends(action) {
+    try {
+        const responses = yield requestAPI(action);
+        console.log('--- responses : '+ JSON.stringify(responses));
+        if (responses.status) {
+            yield put({ ...action, type: "GET_LIST_FRIENDS_SUCCESS", payload: responses })
+        } else {
+            yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
+        }
+    } catch (error) {
+        console.log('error8 :', error)
+    }
+}
 
 
 export default function* saga() {
@@ -120,6 +132,6 @@ export default function* saga() {
         takeLatest('FORGOT_PASSWORD', forgotPassword),
         takeLatest('SEARCH_USER', searchUser),
         takeLatest('CONTACT_US', contactUs),
-        // takeLatest('SEARCH_GRADUATION_YEAR', searchGraduationYear),
+        takeLatest('GET_LIST_FRIENDS', getListFriends),
     ])
 }

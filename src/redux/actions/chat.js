@@ -46,3 +46,12 @@ export function clearSocketIdCurrenChat() {
     }
 }
 
+export function getListFriends(page =1) {
+    return {
+        type: 'GET_LIST_FRIENDS',
+        method: 'GET',
+        api: `${apiConfigs.BASE_API}user/list-friend?page=${page}`,
+        token: true,
+    }
+}
+

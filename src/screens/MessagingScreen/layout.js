@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     View,
+    Image
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -8,6 +9,9 @@ import { HeaderScreen, Text, ButtonSubmit, Loading, BackgroundView } from '../..
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
+
+const ICON_CHAT = require('../../resources/chat.png');
+const USER_GRADUATION = require('../../resources/graduation.png');
 
 export default class Layout extends React.Component {
 
@@ -41,14 +45,34 @@ export default class Layout extends React.Component {
                     </View>
                     <View style={styles.containerCard} >
                         <View style={styles.containerForm} >
-                            <ButtonGroupChat
-                                title={`CLASS OFF ${this.props.profile.graduationYear}`}
-                                onPress={() => this.searchUserByYear()}
-                            />
+                            <View style={{ marginBottom: scaleSzie(15) }} >
+                                <ButtonSubmit
+                                    onPress={() => this.searchUserByYear()}
+                                    title={`CLASS OFF ${this.props.profile.graduationYear}`}
+                                />
+                                <View style={{ position: 'absolute', left: scaleSzie(15), top: scaleSzie(15) }} >
+                                    <Image
+                                        source={USER_GRADUATION}
+                                        style={{ width: scaleSzie(20), height: scaleSzie(20) }}
+                                    />
+                                </View>
+                            </View>
                             <ButtonGroupChat
                                 title='OTHER ALUMINI'
                                 onPress={this.gotoOtherAlumini}
                             />
+                            <View style={{ marginBottom: scaleSzie(15) }} >
+                                <ButtonSubmit
+                                    onPress={this.getListFriends}
+                                    title={'HISTORY CHATS'}
+                                />
+                                <View style={{ position: 'absolute', left: scaleSzie(15), top: scaleSzie(15) }} >
+                                    <Image
+                                        source={ICON_CHAT}
+                                        style={{ width: scaleSzie(20), height: scaleSzie(20) }}
+                                    />
+                                </View>
+                            </View>
 
                             <View style={{ justifyContent: 'center', alignItems: 'center' }} >
                                 <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >

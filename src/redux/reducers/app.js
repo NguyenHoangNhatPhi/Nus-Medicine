@@ -185,6 +185,31 @@ function appReducer(state = initialState, action) {
                 ...state,
                 messageSearchUserChat: ''
             }
+        case 'GET_LIST_FRIENDS':
+            return {
+                ...state,
+                isLoadingSearchUser: true
+            }
+        case 'GET_LIST_FRIENDS':
+            return {
+                ...state,
+                isLoadingSearchUser: true,
+                messageSearchUserChat: ''
+            }
+        case 'GET_LIST_FRIENDS_SUCCESS':
+            return {
+                ...state,
+                isLoadingSearchUser: false,
+                listSearch: action.payload.listFriend,
+                messageSearchUserChat: action.payload.listFriend.length === 0 ? 'History chat is empty !' : ''
+            }
+        case 'GET_LIST_FRIENDS_FAIL':
+            return {
+                ...state,
+                isLoadingSearchUser: false,
+                messageSearchUserChat: action.payload.message
+            }
+
 
 
         default:
