@@ -36,7 +36,7 @@ function* updateAt(action) {
         // console.log('history chat : ' + JSON.stringify(responses))
         if (responses.status) {
             yield put({
-                type: 'GET_LIST_FRIENDS',
+                type: 'UPDATE_LIST_FRIENDS',
                 method: 'GET',
                 api: `${apiConfigs.BASE_API}user/list-friend?page=1`,
                 token: true,
@@ -49,6 +49,19 @@ function* updateAt(action) {
     }
 }
 
+function* updateListFriends(action) {
+    try {
+        const responses = yield requestAPI(action);
+        // console.log('--- responses : ' + JSON.stringify(responses));
+        if (responses.status) {
+            yield put({ ...action, type: "UPDATE_LIST_FRIENDS_SUCCESS", payload: responses })
+        } else {
+            // yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
+        }
+    } catch (error) {
+        console.log('error8 :', error)
+    }
+}
 
 
 export default function* saga() {
@@ -56,5 +69,6 @@ export default function* saga() {
         takeLatest('GET_HISTORY_CHAT', getHistoryChat),
         takeLatest('LOAD_MORE_MESSAGE', loadmoreChat),
         takeLatest('UPDATE_AT', updateAt),
+        takeLatest('UPDATE_LIST_FRIENDS', updateListFriends),
     ])
 }

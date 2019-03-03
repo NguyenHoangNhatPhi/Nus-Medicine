@@ -42,7 +42,11 @@ class HomePageScreen extends Layout {
             const temptUser = Platform.OS === 'ios' ? notification.data : notification.userInfo
             this.props.actions.chat.updateCurrentUserChat(temptUser);
             this.props.navigation.navigate('Chat', {
-                temptCurrentUserChat: temptUser
+                temptCurrentUserChat: temptUser,
+                titleList: 'HISTORY CHATS'
+            });
+            this.props.actions.chat.updateAt({
+                email: temptUser.email
             });
             this.props.actions.app.changeRouterDrawer('Messaging');
             notification.finish(PushNotificationIOS.FetchResult.NoData);

@@ -37,9 +37,9 @@ class MessagingScreen extends Layout {
         this.props.actions.app.searchGraduationYear(profile.graduationYear);
     }
 
-     getListFriends =  async() => {
+    getListFriends = async () => {
         await this.setState({
-            titleList: `HISTORY CHAT`
+            titleList: `HISTORY CHATS`
         })
         this.props.actions.chat.getListFriends();
 

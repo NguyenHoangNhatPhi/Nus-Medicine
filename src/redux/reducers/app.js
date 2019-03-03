@@ -203,6 +203,12 @@ function appReducer(state = initialState, action) {
                 listSearch: action.payload.listFriend,
                 messageSearchUserChat: action.payload.listFriend.length === 0 ? 'History chat is empty !' : ''
             }
+        case 'UPDATE_LIST_FRIENDS_SUCCESS':
+            return {
+                ...state,
+                listSearch: action.payload.listFriend,
+            }
+
         case 'GET_LIST_FRIENDS_FAIL':
             return {
                 ...state,

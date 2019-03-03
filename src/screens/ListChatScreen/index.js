@@ -8,14 +8,17 @@ class ListChatScreen extends Layout {
         super(props);
     }
 
-    setUpRoomChat(user){
+    setUpRoomChat(user) {
+        const { navigation } = this.props;
+        const titleList = navigation.getParam('titleList', 'ALUMNI SEARCH');
         this.props.actions.chat.updateCurrentUserChat(user);
-        this.props.navigation.navigate('Chat',{
-            userChat:user
+        this.props.navigation.navigate('Chat', {
+            userChat: user,
+            titleList
         })
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.actions.app.resetListchat();
     }
 
