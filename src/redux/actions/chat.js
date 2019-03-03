@@ -72,4 +72,13 @@ export function resetMessage() {
     }
 }
 
+export function updateAt(body) {
+    return {
+        type: 'UPDATE_AT',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/update-updatedAt`,
+        token: true,
+        body
+    }
+}
 

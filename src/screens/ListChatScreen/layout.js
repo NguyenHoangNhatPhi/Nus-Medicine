@@ -1,9 +1,9 @@
 import React from 'react';
 import {
     View,
-    ImageBackground
+    ImageBackground,
+    ScrollView
 } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { HeaderScreen, Text, Loading, TextInputCustom, BackgroundView, Button } from '../../components';
 import styles from './styles';
@@ -15,20 +15,36 @@ const MESSAGE = require('../../resources/message.png');
 export default class Layout extends React.Component {
 
     render() {
-        const { listSearch } = this.props;
+        const { listSearch, navigation } = this.props;
+        const titleList = navigation.getParam('titleList', 'ALUMNI SEARCH');
         return (
             <BackgroundView>
                 <View style={styles.container}>
                     <HeaderScreen
                         navigation={this.props.navigation}
                     />
-                    {
-                        listSearch.map((user, index) => <ItemUserChat
-                            key={index}
-                            name={user.fullname}
-                            onPress={() => this.setUpRoomChat(user)}
-                        />)
-                    }
+                    {/* ====== Title ====== */}
+                    <View style={{
+                        height: scaleSzie(40), justifyContent: 'center', alignItems: 'center',
+                        backgroundColor: Configs.ORANGE
+                    }} >
+                        <Text style={{ color: '#ffffff', fontSize: scaleSzie(18), fontWeight: '400', }} >
+                            {titleList}
+                        </Text>
+                    </View>
+                    <View style={{ flex: 1, }} >
+                        <ScrollView>
+                            {
+                                listSearch.map((user, index) => <ItemUserChat
+                                    key={index}
+                                    name={user.fullname}
+                                    onPress={() => this.setUpRoomChat(user)}
+                                />)
+                            }
+                            <View style={{ height: 500 }} >
+                            </View>
+                        </ScrollView>
+                    </View>
                 </View>
             </BackgroundView>
         );
@@ -55,8 +71,8 @@ const ItemUserChat = props => {
                     justifyContent: 'center', alignItems: 'center'
                 }} >
                     <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
-                       
-                </Text>
+
+                    </Text>
                 </ImageBackground>
             </View>
         </Button>

@@ -8,6 +8,10 @@ class MessagingScreen extends Layout {
     constructor(props) {
         super(props);
 
+        this.state = {
+            titleList: ''
+        }
+
         this.searchInputRef = React.createRef();
 
         this.searchUser = this.searchUser.bind(this);
@@ -20,28 +24,37 @@ class MessagingScreen extends Layout {
     }
 
     gotoOtherAlumini() {
+
         this.props.actions.app.resetStateSearch();
         this.props.navigation.navigate('OtherLamuni');
     }
 
-    searchUserByYear() {
+    async searchUserByYear() {
+        await this.setState({
+            titleList: `CLASS OFF ${this.props.profile.graduationYear}`
+        })
         const { profile } = this.props;
         this.props.actions.app.searchGraduationYear(profile.graduationYear);
     }
 
-    getListFriends = () => {
+     getListFriends =  async() => {
+        await this.setState({
+            titleList: `HISTORY CHAT`
+        })
         this.props.actions.chat.getListFriends();
 
     }
 
     componentDidUpdate(prevProps, prevState) {
         const { isLoadingSearchUser } = this.props;
-        if (!isLoadingSearchUser && this.props.listSearch.length > 0) {
-            this.props.navigation.navigate('ListChat');
+        if (!isLoadingSearchUser && isLoadingSearchUser !== prevProps.isLoadingSearchUser && this.props.listSearch.length > 0) {
+            this.props.navigation.navigate('ListChat', {
+                titleList: this.state.titleList
+            });
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.actions.app.resetStateSearch();
     }
 

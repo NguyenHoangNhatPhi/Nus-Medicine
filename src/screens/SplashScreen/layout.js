@@ -18,7 +18,7 @@ export default class Layout extends React.Component {
     render() {
         return (
             <BackgroundView>
-                <View style={{ flex: 1, backgroundColor: Configs.COLOR_MAIN_APP ,  justifyContent: 'center',alignContent: 'center',}} >
+                <View style={{ flex: 1, backgroundColor: Configs.COLOR_MAIN_APP, justifyContent: 'center', alignContent: 'center', }} >
                     <View style={{ alignItems: 'center', marginBottom: scaleSzie(50) }} >
                         <Shimmer>
                             <Text

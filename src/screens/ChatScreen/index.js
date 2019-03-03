@@ -88,6 +88,9 @@ class ChatScreen extends Layout {
 
     onSend(messagesSend = []) {
         const { profile, currentUserChat, messages } = this.props;
+        this.props.actions.chat.updateAt({
+            email: "khoa.dinh@dinovative.com"
+        })
         if (messages.length === 0) {
             this.props.actions.chat.addFriend({
                 email: currentUserChat.email

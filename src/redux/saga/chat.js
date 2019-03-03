@@ -1,6 +1,7 @@
 import { put, takeLatest, all } from "redux-saga/effects";
 
 import { requestAPI } from '../../utils/func';
+import apiConfigs from '../../configs/api';
 
 function* getHistoryChat(action) {
     try {
@@ -29,10 +30,31 @@ function* loadmoreChat(action) {
     }
 }
 
+function* updateAt(action) {
+    try {
+        const responses = yield requestAPI(action);
+        // console.log('history chat : ' + JSON.stringify(responses))
+        if (responses.status) {
+            yield put({
+                type: 'GET_LIST_FRIENDS',
+                method: 'GET',
+                api: `${apiConfigs.BASE_API}user/list-friend?page=1`,
+                token: true,
+            })
+        } else {
+            // yield put({ ...action, type: "LOAD_MORE_MESSAGE_FAIL", payload: responses })
+        }
+    } catch (error) {
+        console.log('error8 :', error)
+    }
+}
+
+
 
 export default function* saga() {
     yield all([
         takeLatest('GET_HISTORY_CHAT', getHistoryChat),
         takeLatest('LOAD_MORE_MESSAGE', loadmoreChat),
+        takeLatest('UPDATE_AT', updateAt),
     ])
 }

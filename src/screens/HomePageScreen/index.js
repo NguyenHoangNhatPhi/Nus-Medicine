@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, Platform } from 'react-native';
+import { AppState, Platform, PushNotificationIOS } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import PushNotification from 'react-native-push-notification';
 import { timer } from 'rxjs';
@@ -25,18 +25,27 @@ class HomePageScreen extends Layout {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
         PushNotification.configure({
-            onNotification: this.handleDeepLink
+            onNotification: this.handleDeepLink,
+            permissions: {
+                alert: true,
+                badge: true,
+                sound: true
+            },
+
+            popInitialNotification: true,
+            requestPermissions: true,
         })
-    }
+    } bfx
 
     handleDeepLink = notification => {
-        if (!this.props.isAtChatScreen) {
-            const temptUser = Platform.OS === 'ios' ? notification.data : notification.tag
+        if (!this.props.isAtChatScreen && notification.userInteraction) {
+            const temptUser = Platform.OS === 'ios' ? notification.data : notification.userInfo
             this.props.actions.chat.updateCurrentUserChat(temptUser);
             this.props.navigation.navigate('Chat', {
                 temptCurrentUserChat: temptUser
             });
             this.props.actions.app.changeRouterDrawer('Messaging');
+            notification.finish(PushNotificationIOS.FetchResult.NoData);
         }
 
     }
@@ -105,15 +114,12 @@ class HomePageScreen extends Layout {
             if (profile.email !== sender.email && !this.props.isAtChatScreen) {
                 PushNotification.localNotification({
                     id: '0',
-                    ticker: "My Notification Ticker",
-                    bigText: "My big text that will be shown when notification is expanded",
+                    ticker: "",
+                    bigText: "",
                     subText: "",
                     title: `${sender.fullname} sent you a message`,
                     message: message.message,
                     visibility: "public",
-                    tag: sender,
-                    tag: 'some_tag',
-                    group: "group",
                     userInfo: sender
                 })
             }

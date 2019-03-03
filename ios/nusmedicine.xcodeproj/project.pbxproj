@@ -868,8 +868,8 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = MB4L84W9SH;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = UFVBWWUDTF;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1520,11 +1520,11 @@
 			baseConfigurationReference = E1A549B53E87F2F57F865B42 /* Pods-nusmedicine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = MB4L84W9SH;
+				DEVELOPMENT_TEAM = UFVBWWUDTF;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1536,10 +1536,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nusmedicine.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nusmedicine.app99;
 				PRODUCT_NAME = nusmedicine;
-				PROVISIONING_PROFILE = "15e204bf-a308-450a-88df-f4d2cc10b602";
-				PROVISIONING_PROFILE_SPECIFIER = NusMedicine;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1549,10 +1549,10 @@
 			baseConfigurationReference = D45622E9679978CCBF164B4E /* Pods-nusmedicine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MB4L84W9SH;
+				DEVELOPMENT_TEAM = UFVBWWUDTF;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1564,10 +1564,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nusmedicine.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nusmedicine.app99;
 				PRODUCT_NAME = nusmedicine;
-				PROVISIONING_PROFILE = "15e204bf-a308-450a-88df-f4d2cc10b602";
-				PROVISIONING_PROFILE_SPECIFIER = NusMedicine;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

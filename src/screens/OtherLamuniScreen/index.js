@@ -20,8 +20,10 @@ class OtherLamuniScreen extends Layout {
 
     componentDidUpdate(prevProps, prevState) {
         const { isLoadingSearchUser } = this.props;
-        if (!isLoadingSearchUser && this.props.listSearch.length > 0) {
-            this.props.navigation.navigate('ListChat');
+        if (!isLoadingSearchUser && isLoadingSearchUser !== prevProps.isLoadingSearchUser && this.props.listSearch.length > 0) {
+            this.props.navigation.navigate('ListChat', {
+                titleList: 'ALUMNI SEARCH'
+            });
         }
     }
 
