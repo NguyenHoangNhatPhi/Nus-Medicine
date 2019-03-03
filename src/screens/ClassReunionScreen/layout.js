@@ -19,13 +19,13 @@ export default class Layout extends React.Component {
         return (
             <View style={styles.containerFooter} >
                 <View style={styles.footer} >
-                    <View style={styles.boxdateSelect} >
+                    <Button onPress={this.showPick} style={styles.boxdateSelect} >
                         <Text style={{ fontSize: scaleSzie(18), color: 'rgb(199,199,199)' }} >
                             {`Date: ${chosenDate}`}
                         </Text>
-                    </View>
+                    </Button>
                     <View style={{ width: scaleSzie(10) }} />
-                    <Button onPress={this.showPick} style={styles.containerPick} >
+                    <Button onPress={this.pickAppoitment} style={styles.containerPick} >
                         <View style={{ justifyContent: 'center' }} >
                             <Ionicons name="md-calendar" size={25} color="#fff" />
                         </View>
@@ -59,7 +59,7 @@ export default class Layout extends React.Component {
                         <View style={{ flex: 1, justifyContent: 'center' }} >
                             <DatePickerIOS
                                 mode='date'
-                                date={this.state.chosenDate}
+                                date={this.state.chosenDateIOS}
                                 onDateChange={this.setDate}
                                 maximumDate={new Date('03/25/2025')}
                             />

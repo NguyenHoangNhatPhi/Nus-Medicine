@@ -12,6 +12,7 @@ class ClassReunionScreen extends Layout {
         super(props);
         this.state = {
             chosenDate: this.formatDate(new Date()),
+            chosenDateIOS: new Date(),
             visiblePickerDateIOS: false
         };
 
@@ -20,10 +21,16 @@ class ClassReunionScreen extends Layout {
     }
 
     setDate(newDate) {
-        this.setState({ chosenDate: newDate })
+        this.setState({ chosenDateIOS: newDate });
+        this.setState({
+            chosenDate: this.formatDate(newDate)
+        })
     }
 
-  async  showPick() {
+    pickAppoitment = () => {
+    }
+
+    async  showPick() {
         if (Platform.OS === 'android') {
             try {
                 const { action, year, month, day } = await DatePickerAndroid.open({
@@ -34,7 +41,7 @@ class ClassReunionScreen extends Layout {
                 if (action !== DatePickerAndroid.dismissedAction) {
                     // Selected year, month (0-11), day
                     this.setState({
-                        chosenDate:`${day}/${month+1}/${year}`
+                        chosenDate: `${day}/${month + 1}/${year}`
                     })
                 }
             } catch ({ code, message }) {
@@ -48,11 +55,11 @@ class ClassReunionScreen extends Layout {
 
     }
 
-    componentDidMount(){
+    componentDidMount() {
     }
 
-    formatDate(temptDate){
-        return `${temptDate.getDate()}/${temptDate.getMonth()+1}/${temptDate.getFullYear()}`
+    formatDate(temptDate) {
+        return `${temptDate.getDate()}/${temptDate.getMonth() + 1}/${temptDate.getFullYear()}`
     }
 
 }

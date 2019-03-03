@@ -1,6 +1,7 @@
 import {
     Platform,
-    Dimensions
+    Dimensions,
+    Linking
 } from 'react-native';
 
 import Configs from './../configs';
@@ -60,4 +61,14 @@ export const isIphoneX = () => {
 export const validateEmail = (email) => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+export const openBrowser = (urlSocial) => {
+    Linking.canOpenURL(urlSocial).then(supported => {
+        if (!supported) {
+            console.log('Can\'t handle url: ' + url);
+        } else {
+            return Linking.openURL(urlSocial);
+        }
+    }).catch(err => console.error('An error occurred', err));
 }

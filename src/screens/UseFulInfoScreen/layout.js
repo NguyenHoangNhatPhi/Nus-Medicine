@@ -22,9 +22,19 @@ const SECTIONS = [
     {
         title: 'Programmes',
         chidlren: [
-            'Undergraduate',
-            'Graduate Programme',
-            'Graduate Research Programmer'
+            {
+                title: 'Undergraduate',
+                url: 'http://nusmedicine.nus.edu.sg/education/medicine/undergraduate?fbclid=IwAR0DtJWD0Z5Cg4abYKoc65m5IqOiwj_gZ_2dLZntELGRWwQ9ZYCNSQ0kI1U'
+            },
+            {
+                title: 'Graduate Programme',
+                url: 'http://nusmedicine.nus.edu.sg/education/medicine/graduate?fbclid=IwAR0myawRUgdxo7f4TolXfU64E-pmYlAmGYNxXfaXjj9q3LfVvIO33NpsO4o'
+            },
+            {
+                title: 'Graduate Research Programmer',
+                url: 'http://nusmedicine.nus.edu.sg/research/search/research-programmes?fbclid=IwAR1ZwlBKggYu8hTZHShqMzCxI5Uak9IjiJsvorfbYC7OytxwUGr0OhTkc64'
+            }
+
         ]
     },
     {
@@ -63,21 +73,21 @@ export default class Layout extends React.Component {
         return (
             <View style={[styles.contentItemCollap,]} >
                 {
-                    section.chidlren.map((item,index) => this.renderItemUseful(item,index) )
+                    section.chidlren.map((item, index) => this.renderItemUseful(item, index))
                 }
             </View>
         );
     };
 
-    renderItemUseful(item,index){
-        return(
-            <View key={index} style={[{height:scaleSzie(40),backgroundColor:'#fff',marginBottom:1,justifyContent:'center'},
+    renderItemUseful(item, index) {
+        return (
+            <Button onPress={() => this.openWebview(item.url)} key={index} style={[{ height: scaleSzie(40), backgroundColor: '#fff', marginBottom: 1, justifyContent: 'center' },
             styles.boderItem
             ]} >
-                <Text style={{color:'rgb(0,51,91)',marginLeft:scaleSzie(28)}} >
-                    {item}
+                <Text style={{ color: 'rgb(0,51,91)', marginLeft: scaleSzie(28) }} >
+                    {item.title}
                 </Text>
-            </View>
+            </Button>
         );
     }
 

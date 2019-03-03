@@ -3,7 +3,7 @@ import { Linking } from 'react-native';
 import _ from 'ramda';
 
 import Layout from './layout';
-import { validateEmail } from '../../utils/func';
+import { validateEmail,openBrowser } from '../../utils/func';
 import connectRedux from '../../redux/ConnectRedux';
 
 
@@ -49,13 +49,7 @@ class ContactUsScreen extends Layout {
     }
 
     gotoSocial(urlSocial) {
-        Linking.canOpenURL(urlSocial).then(supported => {
-            if (!supported) {
-                console.log('Can\'t handle url: ' + url);
-            } else {
-                return Linking.openURL(urlSocial);
-            }
-        }).catch(err => console.error('An error occurred', err));
+        openBrowser(urlSocial);
     }
 
 }
