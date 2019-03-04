@@ -135,6 +135,20 @@ function* addFriend(action) {
     }
 }
 
+function* requestReunion(action) {
+    try {
+        const responses = yield requestAPI(action);
+        console.log('--- requestReunion : ' + JSON.stringify(responses));
+        if (responses.status) {
+            yield put({ ...action, type: "REQUEST_REUNION_SUCCESS", payload: responses })
+        } else {
+            yield put({ ...action, type: "REQUEST_REUNION_FAIL", payload: responses })
+        }
+    } catch (error) {
+        console.log('error8 :', error)
+    }
+}
+
 
 export default function* saga() {
     yield all([
@@ -148,6 +162,8 @@ export default function* saga() {
         takeLatest('CONTACT_US', contactUs),
         takeLatest('GET_LIST_FRIENDS', getListFriends),
         takeLatest('ADD_FRIEND', addFriend),
+        takeLatest('REQUEST_REUNION', requestReunion),
 
+        
     ])
 }

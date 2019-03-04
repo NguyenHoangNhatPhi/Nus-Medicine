@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 
 import Layout from './layout';
+import connectRedux from '../../redux/ConnectRedux';
+
 
 class ClassReunionScreen extends Layout {
     constructor(props) {
@@ -28,6 +30,7 @@ class ClassReunionScreen extends Layout {
     }
 
     pickAppoitment = () => {
+        this.props.actions.app.requestReunion(this.state.chosenDate);
     }
 
     async  showPick() {
@@ -55,14 +58,24 @@ class ClassReunionScreen extends Layout {
 
     }
 
-    componentDidMount() {
+    formatDate(temptDate) {
+        const temptDD = temptDate.getDate() < 10 ? `0${temptDate.getDate()}` : temptDate.getDate();
+        const temptMM = (temptDate.getMonth() + 1) < 10 ? `0${temptDate.getMonth() + 1}` : (temptDate.getMonth() + 1);
+        return `${temptDD}/${temptMM}/${temptDate.getFullYear()}`
     }
 
-    formatDate(temptDate) {
-        return `${temptDate.getDate()}/${temptDate.getMonth() + 1}/${temptDate.getFullYear()}`
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.requestSucces && prevProps.isLoadingRequestReunion !== this.props.isLoadingRequestReunion) {
+            this.props.navigation.navigate('RenionSuccess');
+        }
     }
 
 }
 
+const mapStateToProps = state => ({
+    isLoadingRequestReunion: state.app.isLoadingRequestReunion,
+    messageRequestReunion: state.app.messageRequestReunion,
+    requestSucces: state.app.requestSucces
+})
 
-export default ClassReunionScreen;
+export default connectRedux(mapStateToProps, ClassReunionScreen);

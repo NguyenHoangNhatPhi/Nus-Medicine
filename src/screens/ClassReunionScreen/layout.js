@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { HeaderScreen, Text, ModalCustom, Button, BackgroundView } from '../../components';
+import { HeaderScreen, Text, ModalCustom, Button, BackgroundView,Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -36,6 +36,13 @@ export default class Layout extends React.Component {
                         </View>
                     </Button>
                 </View>
+                <View style={{
+                            height: scaleSzie(40), justifyContent: 'center', alignItems: 'center',
+                        }} >
+                            <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
+                                {this.props.messageRequestReunion}
+                            </Text>
+                        </View>
             </View>
         );
     }
@@ -64,7 +71,6 @@ export default class Layout extends React.Component {
                                 maximumDate={new Date('03/25/2025')}
                             />
                         </View>
-
                     </View>
 
                 </ModalCustom>
@@ -104,6 +110,7 @@ export default class Layout extends React.Component {
                     </View>
                     {this.renderPickerDateIOS()}
                 </View>
+                <Loading visible={this.props.isLoadingRequestReunion} />
             </BackgroundView>
         );
     }

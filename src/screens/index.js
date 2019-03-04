@@ -22,6 +22,7 @@ import GivingScreen from './GivingScreen';
 import MessagingScreen from './MessagingScreen';
 import ListChatScreen from './ListChatScreen';
 import UseFulInfoScreen from './UseFulInfoScreen';
+import RenionSuccessScreen from './RenionSuccessScreen';
 
 module.exports = {
     LoginScreen,
@@ -45,5 +46,6 @@ module.exports = {
     GivingScreen,
     MessagingScreen,
     ListChatScreen,
-    UseFulInfoScreen
+    UseFulInfoScreen,
+    RenionSuccessScreen
 }
