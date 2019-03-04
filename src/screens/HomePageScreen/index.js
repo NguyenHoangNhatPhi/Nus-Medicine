@@ -79,13 +79,15 @@ class HomePageScreen extends Layout {
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
         this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
-
-            if (profile.email !== updateCurrentChat.email && this.props.isAtChatScreen &&
-                this.props.currentUserChat.email === updateCurrentChat.email
-            ) {
-                this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
+            console.log('updateCurrentChat : ' ,updateCurrentChat)
+            if(updateCurrentChat !== null){
+                if (updateCurrentChat.email && profile.email !== updateCurrentChat.email && this.props.isAtChatScreen &&
+                    this.props.currentUserChat.email === updateCurrentChat.email
+                ) {
+                    this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
+                }
             }
-
+           
         });
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {

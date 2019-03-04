@@ -20,7 +20,8 @@ import {
     GivingScreen,
     MessagingScreen,
     ListChatScreen,
-    UseFulInfoScreen
+    UseFulInfoScreen,
+    RenionSuccessScreen
 } from '../screens';
 
 import Configs from '../configs';
@@ -44,18 +45,27 @@ const MessagingStack = createStackNavigator({
         initialRouteName: "Messaging",
         headerMode: 'none',
         transitionConfig: getSlideFromRightTransition,
-    })
+    });
+
+const ReunionStack = createStackNavigator({
+    ClassReunion: ClassReunionScreen,
+    RenionSuccess: RenionSuccessScreen
+}, {
+        initialRouteName: "ClassReunion",
+        headerMode: 'none',
+        transitionConfig: getSlideFromRightTransition,
+    });
 
 const MainStack = createDrawerNavigator({
     ContactUs: ContactUsScreen,
-    ClassReunion: ClassReunionScreen,
     HomePage: HomePageScreen,
     Events: EventsScreen,
     Settings: SettingStack,
     News: NewsScreen,
     Giving: GivingScreen,
     Messaging: MessagingStack,
-    UseFul:UseFulInfoScreen
+    UseFul: UseFulInfoScreen,
+    ClassReunion: ReunionStack
 }, {
         initialRouteName: "HomePage",
         contentComponent: SideMenu,

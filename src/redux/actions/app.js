@@ -154,8 +154,15 @@ export function resetListchat() {
     }
 }
 
+export function requestReunion(date) {
+    return {
+        type: 'REQUEST_REUNION',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/reunion-request`,
+        body: {
+            reunionDate: date
+        },
+        token:true
+    }
 
-
-
-
-
+}

@@ -23,7 +23,11 @@ const initialState = {
     isLoadingSearchUser: false,
     listSearch: [],
     io: {},
-    messageSearchUserChat: ''
+    messageSearchUserChat: '',
+    // ===== REQUEST REUNION ====,
+    isLoadingRequestReunion: false,
+    messageRequestReunion: '',
+    requestSucces: false
 
 }
 
@@ -220,6 +224,28 @@ function appReducer(state = initialState, action) {
                 ...state,
                 listSearch: [],
                 messageSearchUserChat: ''
+            }
+        // ====== Request Reunion =====
+        case 'REQUEST_REUNION':
+            return {
+                ...state,
+                isLoadingRequestReunion: true,
+                messageRequestReunion: '',
+                requestSucces: false
+            }
+        case 'REQUEST_REUNION_SUCCESS':
+            return {
+                ...state,
+                isLoadingRequestReunion: false,
+                messageRequestReunion: '',
+                requestSucces: true
+            }
+        case 'REQUEST_REUNION_FAIL':
+            return {
+                ...state,
+                isLoadingRequestReunion: false,
+                messageRequestReunion: action.payload.message,
+                requestSucces: false
             }
         default:
             return state
