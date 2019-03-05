@@ -27,6 +27,10 @@ class OtherLamuniScreen extends Layout {
         }
     }
 
+    // componentWillUnmount(){
+    //     this.props.actions.app.resetStateSearch();
+    // }
+
 }
 
 

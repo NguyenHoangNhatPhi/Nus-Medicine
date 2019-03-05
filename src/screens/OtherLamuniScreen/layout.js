@@ -3,16 +3,19 @@ import {
     View,
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import { NavigationEvents } from 'react-navigation';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, BackgroundView, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
-import Configs from '../../configs';
 
 export default class Layout extends React.Component {
     render() {
         return (
             <BackgroundView>
+                <NavigationEvents
+                    onWillBlur={payload => this.props.actions.app.resetStateSearch()}
+                />
                 <View style={styles.container}>
                     <HeaderScreen
                         navigation={this.props.navigation}

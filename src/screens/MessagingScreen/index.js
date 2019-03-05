@@ -24,7 +24,6 @@ class MessagingScreen extends Layout {
     }
 
     gotoOtherAlumini() {
-
         this.props.actions.app.resetStateSearch();
         this.props.navigation.navigate('OtherLamuni');
     }

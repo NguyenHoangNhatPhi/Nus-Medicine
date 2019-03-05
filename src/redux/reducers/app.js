@@ -171,7 +171,7 @@ function appReducer(state = initialState, action) {
                 ...state,
                 isLoadingSearchUser: false,
                 listSearch: action.payload.listUsers,
-                messageSearchUserChat: action.payload.listUsers.length === 0 ? "Name not found" : ""
+                messageSearchUserChat: outputErrorSearchListUser(action.payload.listUsers, action.graduationYear)
             }
         case 'SEARCH_USER_FAIL':
             return {
@@ -250,6 +250,17 @@ function appReducer(state = initialState, action) {
         default:
             return state
     }
+}
+
+function outputErrorSearchListUser(list, graduationYear) {
+    if (list.length === 0) {
+        if (graduationYear) {
+            return 'Class not found !'
+        } else {
+            return "Name not found !"
+        }
+    }
+    return ""
 }
 
 module.exports = appReducer;

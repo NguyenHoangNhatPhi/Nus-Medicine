@@ -137,6 +137,7 @@ export function searchGraduationYear(year) {
         method: 'GET',
         api: `${apiConfigs.BASE_API}user/search-users?graduationYear=${year}`,
         token: true,
+        graduationYear: true
     }
 }
 
@@ -162,7 +163,7 @@ export function requestReunion(date) {
         body: {
             reunionDate: date
         },
-        token:true
+        token: true
     }
 
 }

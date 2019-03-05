@@ -41,7 +41,7 @@ export default class Layout extends React.Component {
                                     onPress={() => this.setUpRoomChat(user)}
                                 />)
                             }
-                            <View style={{ height: 500 }} >
+                            <View style={{ height: scaleSzie(100) }} >
                             </View>
                         </ScrollView>
                     </View>

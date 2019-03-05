@@ -41,6 +41,10 @@ class HomePageScreen extends Layout {
     handleLocalNotificationIOS = notification => {
         if (Platform.OS === 'ios' && !this.props.isAtChatScreen && notification._data.openedInForeground) {
             const temptUser = notification._data;
+            this.props.actions.chat.handleNumberMessageNotSeen({
+                isClear: true,
+                email: temptUser.email
+            })
             this.props.actions.chat.updateCurrentUserChat(temptUser);
             this.props.navigation.navigate('Chat', {
                 temptCurrentUserChat: temptUser,
@@ -56,6 +60,10 @@ class HomePageScreen extends Layout {
     handleDeepLink = notification => {
         if (Platform.OS === 'android' && !this.props.isAtChatScreen) {
             const temptUser = notification.userInfo;
+            this.props.actions.chat.handleNumberMessageNotSeen({
+                isClear: true,
+                email: temptUser.email
+            })
             this.props.actions.chat.updateCurrentUserChat(temptUser);
             this.props.navigation.navigate('Chat', {
                 temptCurrentUserChat: temptUser,
@@ -79,14 +87,14 @@ class HomePageScreen extends Layout {
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
         this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
-            if(updateCurrentChat !== null){
+            if (updateCurrentChat !== null) {
                 if (updateCurrentChat.email && profile.email !== updateCurrentChat.email && this.props.isAtChatScreen &&
                     this.props.currentUserChat.email === updateCurrentChat.email
                 ) {
                     this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
                 }
             }
-           
+
         });
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
@@ -131,6 +139,10 @@ class HomePageScreen extends Layout {
             }];
             this.props.actions.chat.addMessage(temptMessage);
             if (profile.email !== sender.email && !this.props.isAtChatScreen) {
+                this.props.actions.chat.handleNumberMessageNotSeen({
+                    isAdd: true,
+                    email: sender.email
+                });
                 PushNotification.localNotification({
                     id: '0',
                     ticker: "",
