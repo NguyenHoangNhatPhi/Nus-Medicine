@@ -48,7 +48,6 @@ export const requestAPI = async (action, headers = {}) => {
         request['body'] = JSON.stringify(action.body);
     }
     let response = await fetch(action.api, request);
-    console.log('response : ', response)
     return await response.json();
 }
 
@@ -66,7 +65,6 @@ export const validateEmail = (email) => {
 export const openBrowser = (urlSocial) => {
     Linking.canOpenURL(urlSocial).then(supported => {
         if (!supported) {
-            console.log('Can\'t handle url: ' + url);
         } else {
             return Linking.openURL(urlSocial);
         }

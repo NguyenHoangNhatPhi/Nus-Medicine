@@ -37,7 +37,7 @@ node_modules/
 jspm_packages/
 android/app/build/
 android/build/
-
+android/.gradle
 
 # TypeScript v1 declaration files
 typings/

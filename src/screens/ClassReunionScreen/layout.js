@@ -31,7 +31,7 @@ export default class Layout extends React.Component {
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
                             <Text style={{ color: '#fff', fontSize: scaleSzie(18), fontWeight: '600' }} >
-                                Pick
+                                Submit
                         </Text>
                         </View>
                     </Button>

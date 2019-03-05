@@ -82,3 +82,13 @@ export function updateAt(body) {
     }
 }
 
+export function handleNumberMessageNotSeen(body) {
+    return {
+        type: 'HANDLE_MESSAGE_NOT_SEEN',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/handle-number-of-message`,
+        token: true,
+        body
+    } 
+}
+

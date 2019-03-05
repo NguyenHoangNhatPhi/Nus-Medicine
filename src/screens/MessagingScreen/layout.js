@@ -58,13 +58,13 @@ export default class Layout extends React.Component {
                                 </View>
                             </View>
                             <ButtonGroupChat
-                                title='OTHER ALUMINI'
+                                title='ALUMINI'
                                 onPress={this.gotoOtherAlumini}
                             />
                             <View style={{ marginBottom: scaleSzie(15) }} >
                                 <ButtonSubmit
                                     onPress={this.getListFriends}
-                                    title={'HISTORY CHATS'}
+                                    title={'CHAT HISTORY'}
                                 />
                                 <View style={{ position: 'absolute', left: scaleSzie(15), top: scaleSzie(15) }} >
                                     <Image

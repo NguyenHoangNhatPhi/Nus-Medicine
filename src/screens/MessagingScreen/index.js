@@ -39,7 +39,7 @@ class MessagingScreen extends Layout {
 
     getListFriends = async () => {
         await this.setState({
-            titleList: `HISTORY CHATS`
+            titleList: `CHAT HISTORY`
         })
         this.props.actions.chat.getListFriends();
 

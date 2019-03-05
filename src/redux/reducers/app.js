@@ -171,7 +171,7 @@ function appReducer(state = initialState, action) {
                 ...state,
                 isLoadingSearchUser: false,
                 listSearch: action.payload.listUsers,
-                messageSearchUserChat: action.payload.listUsers.length === 0 ? "No result fond !" : ""
+                messageSearchUserChat: action.payload.listUsers.length === 0 ? "Name not found" : ""
             }
         case 'SEARCH_USER_FAIL':
             return {
@@ -205,7 +205,7 @@ function appReducer(state = initialState, action) {
                 ...state,
                 isLoadingSearchUser: false,
                 listSearch: action.payload.listFriend,
-                messageSearchUserChat: action.payload.listFriend.length === 0 ? 'History chat is empty !' : ''
+                messageSearchUserChat: action.payload.listFriend.length === 0 ? 'Chat history is empty !' : ''
             }
         case 'UPDATE_LIST_FRIENDS_SUCCESS':
             return {

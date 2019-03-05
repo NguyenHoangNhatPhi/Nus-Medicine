@@ -31,7 +31,7 @@ const SECTIONS = [
                 url: 'http://nusmedicine.nus.edu.sg/education/medicine/graduate?fbclid=IwAR0myawRUgdxo7f4TolXfU64E-pmYlAmGYNxXfaXjj9q3LfVvIO33NpsO4o'
             },
             {
-                title: 'Graduate Research Programmer',
+                title: 'Graduate Research Programme',
                 url: 'http://nusmedicine.nus.edu.sg/research/search/research-programmes?fbclid=IwAR1ZwlBKggYu8hTZHShqMzCxI5Uak9IjiJsvorfbYC7OytxwUGr0OhTkc64'
             }
 

@@ -43,8 +43,10 @@ class ClassReunionScreen extends Layout {
                 });
                 if (action !== DatePickerAndroid.dismissedAction) {
                     // Selected year, month (0-11), day
+                    const temptDD = day < 10 ? `0${day}` : day;
+                    const temptMM = (month + 1) < 10 ? `0${month + 1}` : (month + 1);
                     this.setState({
-                        chosenDate: `${day}/${month + 1}/${year}`
+                        chosenDate: `${temptDD}/${temptMM}/${year}`
                     })
                 }
             } catch ({ code, message }) {

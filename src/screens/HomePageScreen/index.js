@@ -44,7 +44,7 @@ class HomePageScreen extends Layout {
             this.props.actions.chat.updateCurrentUserChat(temptUser);
             this.props.navigation.navigate('Chat', {
                 temptCurrentUserChat: temptUser,
-                titleList: 'HISTORY CHATS'
+                titleList: 'CHAT HISTORY'
             });
             this.props.actions.chat.updateAt({
                 email: temptUser.email
@@ -59,7 +59,7 @@ class HomePageScreen extends Layout {
             this.props.actions.chat.updateCurrentUserChat(temptUser);
             this.props.navigation.navigate('Chat', {
                 temptCurrentUserChat: temptUser,
-                titleList: 'HISTORY CHATS'
+                titleList: 'CHAT HISTORY'
             });
             this.props.actions.chat.updateAt({
                 email: temptUser.email
@@ -93,7 +93,6 @@ class HomePageScreen extends Layout {
             if (profile.email !== userDisconnected.email && this.props.isAtChatScreen &&
                 this.props.currentUserChat.email === userDisconnected.email
             ) {
-                console.log('USER_DISCONNECTED : ' + JSON.stringify(userDisconnected))
                 this.props.actions.chat.clearSocketIdCurrenChat()
             }
 

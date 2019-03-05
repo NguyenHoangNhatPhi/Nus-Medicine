@@ -19,8 +19,6 @@ class ChatScreen extends Layout {
         const userChat = navigation.getParam('userChat', {});
         const titleList = navigation.getParam('titleList', 'ALUMNI SEARCH');
 
-        console.log('--- titleList : '+ titleList);
-
         this.props.io.emit('PRIVATE_MESSAGE', ({
             sender: { socketId: profile.socketId, email: profile.email },
             receiver: { socketId: userChat.socketId, email: userChat.email }, message: ''
@@ -31,7 +29,7 @@ class ChatScreen extends Layout {
             temptHeightEmoji: 0,
             zIndex: -1,
             isUpdateListfriends: true,
-            isCheckUpdateListFriends: titleList === 'HISTORY CHATS' ? true : false
+            isCheckUpdateListFriends: titleList === 'CHAT HISTORY' ? true : false
 
         }
         this.emojiRef = React.createRef();
@@ -93,7 +91,6 @@ class ChatScreen extends Layout {
 
     onSend(messagesSend = []) {
         const { profile, currentUserChat, messages } = this.props;
-        console.log('---- isCheckUpdateListFriends : ' + this.state.isCheckUpdateListFriends)
         if (this.state.isUpdateListfriends && this.state.isCheckUpdateListFriends) {
             this.props.actions.chat.updateAt({
                 email: currentUserChat.email

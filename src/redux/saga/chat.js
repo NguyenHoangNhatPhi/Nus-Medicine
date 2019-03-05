@@ -6,14 +6,12 @@ import apiConfigs from '../../configs/api';
 function* getHistoryChat(action) {
     try {
         const responses = yield requestAPI(action);
-        // console.log('history chat : ' + JSON.stringify(responses))
         if (responses.status) {
             yield put({ ...action, type: "GET_HISTORY_CHAT_SUCCESS", payload: responses })
         } else {
             yield put({ ...action, type: "GET_HISTORY_CHAT_FAIL", payload: responses })
         }
     } catch (error) {
-        console.log('error8 :', error)
     }
 }
 
@@ -26,14 +24,12 @@ function* loadmoreChat(action) {
             yield put({ ...action, type: "LOAD_MORE_MESSAGE_FAIL", payload: responses })
         }
     } catch (error) {
-        console.log('error8 :', error)
     }
 }
 
 function* updateAt(action) {
     try {
         const responses = yield requestAPI(action);
-        // console.log('history chat : ' + JSON.stringify(responses))
         if (responses.status) {
             yield put({
                 type: 'UPDATE_LIST_FRIENDS',
@@ -45,21 +41,18 @@ function* updateAt(action) {
             // yield put({ ...action, type: "LOAD_MORE_MESSAGE_FAIL", payload: responses })
         }
     } catch (error) {
-        console.log('error8 :', error)
     }
 }
 
 function* updateListFriends(action) {
     try {
         const responses = yield requestAPI(action);
-        // console.log('--- responses : ' + JSON.stringify(responses));
         if (responses.status) {
             yield put({ ...action, type: "UPDATE_LIST_FRIENDS_SUCCESS", payload: responses })
         } else {
             // yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
         }
     } catch (error) {
-        console.log('error8 :', error)
     }
 }
 
