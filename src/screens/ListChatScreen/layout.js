@@ -37,7 +37,7 @@ export default class Layout extends React.Component {
                             {
                                 listSearch.map((user, index) => <ItemUserChat
                                     key={index}
-                                    name={user.fullname}
+                                    user={user}
                                     onPress={() => this.setUpRoomChat(user)}
                                 />)
                             }
@@ -51,30 +51,81 @@ export default class Layout extends React.Component {
     }
 }
 
+class ItemUserChat extends React.Component {
 
-const ItemUserChat = props => {
-    return (
-        <Button onPress={() => props.onPress()} style={{
-            width: Configs.FULL_WIDTH, height: scaleSzie(60),
-            flexDirection: 'row', borderBottomColor: '#fff', borderBottomWidth: 0.5
-        }} >
-            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(12) }} >
-                <Text style={{ color: '#fff', fontSize: scaleSzie(18), fontWeight: 'bold' }} >
-                    {props.name}
-                </Text>
-            </View>
-            <View style={{
-                justifyContent: 'center', paddingHorizontal: scaleSzie(10)
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: this.props.user
+        }
+        this.onPress = this.onPress.bind(this);
+    }
+
+    onPress() {
+        const { user } = this.state;
+        const temptUser = { ...user, messageUnread: '' };
+        this.setState({
+            user: temptUser
+        })
+        this.props.onPress()
+    }
+
+    render() {
+        const { user } = this.state;
+        const messageUnread = user.messageUnread ? user.messageUnread : '';
+        return (
+            <Button onPress={this.onPress} style={{
+                width: Configs.FULL_WIDTH, height: scaleSzie(60),
+                flexDirection: 'row', borderBottomColor: '#fff', borderBottomWidth: 0.5
             }} >
-                <ImageBackground source={MESSAGE} style={{
-                    width: scaleSzie(30), height: scaleSzie(30),
-                    justifyContent: 'center', alignItems: 'center'
-                }} >
-                    <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
-
+                <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(12) }} >
+                    <Text style={{ color: '#fff', fontSize: scaleSzie(18), fontWeight: 'bold' }} >
+                        {user.fullname}
                     </Text>
-                </ImageBackground>
-            </View>
-        </Button>
-    );
+                </View>
+                <View style={{
+                    justifyContent: 'center', paddingHorizontal: scaleSzie(10)
+                }} >
+                    <ImageBackground source={MESSAGE} style={{
+                        width: scaleSzie(30), height: scaleSzie(30),
+                        justifyContent: 'center', alignItems: 'center', paddingBottom: scaleSzie(4)
+                    }} >
+                        <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
+                            {`${messageUnread}`}
+                        </Text>
+                    </ImageBackground>
+                </View>
+            </Button>
+        );
+    }
 }
+
+
+// const ItemUserChat = props => {
+//     const { user } = props;
+//     const messageUnread = user.messageUnread ? user.messageUnread : '';
+//     return (
+//         <Button onPress={() => props.onPress()} style={{
+//             width: Configs.FULL_WIDTH, height: scaleSzie(60),
+//             flexDirection: 'row', borderBottomColor: '#fff', borderBottomWidth: 0.5
+//         }} >
+//             <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(12) }} >
+//                 <Text style={{ color: '#fff', fontSize: scaleSzie(18), fontWeight: 'bold' }} >
+//                     {user.fullname}
+//                 </Text>
+//             </View>
+//             <View style={{
+//                 justifyContent: 'center', paddingHorizontal: scaleSzie(10)
+//             }} >
+//                 <ImageBackground source={MESSAGE} style={{
+//                     width: scaleSzie(30), height: scaleSzie(30),
+//                     justifyContent: 'center', alignItems: 'center', paddingBottom: scaleSzie(4)
+//                 }} >
+//                     <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
+//                         {`${messageUnread}`}
+//                     </Text>
+//                 </ImageBackground>
+//             </View>
+//         </Button>
+//     );
+// }

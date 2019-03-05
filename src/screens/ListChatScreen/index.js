@@ -11,6 +11,12 @@ class ListChatScreen extends Layout {
     setUpRoomChat(user) {
         const { navigation } = this.props;
         const titleList = navigation.getParam('titleList', 'ALUMNI SEARCH');
+        if (titleList === 'CHAT HISTORY') {
+            this.props.actions.chat.handleNumberMessageNotSeen({
+                isClear: true,
+                email: user.email
+            })
+        }
         this.props.actions.chat.updateCurrentUserChat(user);
         this.props.navigation.navigate('Chat', {
             userChat: user,
