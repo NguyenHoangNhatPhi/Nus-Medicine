@@ -13,6 +13,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+@import Firebase;
 
 @implementation AppDelegate
 
@@ -40,6 +41,7 @@
   center.delegate = self;
   
       [Fabric with:@[[Crashlytics class]]];
+  [FIRApp configure];
   
   return YES;
 }

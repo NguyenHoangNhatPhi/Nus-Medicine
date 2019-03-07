@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import connectRedux from '../../redux/ConnectRedux';
 import styles from './styles';
-import { scaleSzie } from '../../utils/func';
+import { scaleSzie,isIphoneX } from '../../utils/func';
 import { Text, Button } from '../../components';
 import Configs from '../../configs';
 
@@ -93,12 +93,12 @@ class SideMenu extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.containeLogo} >
-          <ImageBackground source={SCHOOL} style={{
+          <ImageBackground source={SCHOOL} style={[{
             flex: 1, paddingTop: scaleSzie(30),
             paddingLeft: scaleSzie(20)
-          }} >
+          },isIphoneX() ?{paddingTop: scaleSzie(50)} : {}]} >
             <Text style={{ color: '#fff', fontSize: scaleSzie(24), fontWeight: 'bold' }} >
-              NUS Medicine Alumin
+            NUS Medicine Alumni
               </Text>
           </ImageBackground>
         </View>

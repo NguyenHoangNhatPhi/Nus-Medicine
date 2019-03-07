@@ -11,3 +11,5 @@ const configs = {
 }
 
 export default configs; 
+
+// keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
