@@ -1608,7 +1608,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nusmedicine.app;
 				PRODUCT_NAME = nusmedicine;
-				PROVISIONING_PROFILE = "4746e344-1319-45b8-8336-ca8a5b307ddc";
+				PROVISIONING_PROFILE = "f6b9a830-a4cd-4565-a5d1-69de689cb835";
 				PROVISIONING_PROFILE_SPECIFIER = NusMedicineAdhoc;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
