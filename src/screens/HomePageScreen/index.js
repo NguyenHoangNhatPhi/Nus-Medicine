@@ -152,6 +152,7 @@ class HomePageScreen extends Layout {
                     message: message.message,
                     visibility: "public",
                     userInfo: sender
+                    
                 })
             }
         }
