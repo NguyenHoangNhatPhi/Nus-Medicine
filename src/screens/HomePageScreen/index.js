@@ -3,6 +3,7 @@ import { AppState, Platform, PushNotificationIOS } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 // import PushNotification from 'react-native-push-notification';
 import { timer } from 'rxjs';
+import Configs from '../../configs/api';
 
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
@@ -80,9 +81,18 @@ class HomePageScreen extends Layout {
 
     }
 
+    clearDataLocal() {
+        const { profile } = this.props;
+        const { email, fullname, socketId } = profile;
+        this.props.navigation.navigate('Auth');
+        this.props.actions.app.logOut();
+        this.props.actions.app.resetRouter();
+        this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
+    }
+
     connectSocket() {
         const { profile } = this.props;
-        this.socket = SocketIOClient('http://3.0.93.22:3000', {
+        this.socket = SocketIOClient(Configs.BASE_SOCKET, {
             query: { token: profile.accesstoken }
         });
         this.socket.emit('USER_CONNECTED', profile);
@@ -90,10 +100,15 @@ class HomePageScreen extends Layout {
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
         this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
-            if (updateCurrentChat !== null) {
-                if (updateCurrentChat.email && profile.email !== updateCurrentChat.email && this.props.isAtChatScreen &&
-                    this.props.currentUserChat.email === updateCurrentChat.email
+            // da user vs logout 
+            if (profile.email == updateCurrentChat.email) {
+                this.clearDataLocal();
+                // alert('clearDataLocal')
+            } else {
+
+                if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
                 ) {
+                    console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat) )
                     this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
                 }
             }
@@ -106,8 +121,6 @@ class HomePageScreen extends Layout {
             ) {
                 this.props.actions.chat.clearSocketIdCurrenChat()
             }
-
-
         })
 
         this.socket.on('REPLY_PRIVATE_MESSAGE', this.addMessage);
@@ -178,6 +191,7 @@ const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
     isAtChatScreen: state.chat.isAtChatScreen,
     currentUserChat: state.chat.currentUserChat,
+    io: state.app.io,
 })
 
 export default connectRedux(mapStateToProps, HomePageScreen);
