@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppState, Platform, PushNotificationIOS } from 'react-native';
 import SocketIOClient from 'socket.io-client';
-import PushNotification from 'react-native-push-notification';
+// import PushNotification from 'react-native-push-notification';
 import { timer } from 'rxjs';
 
 import Layout from './layout';
@@ -18,24 +18,27 @@ class HomePageScreen extends Layout {
 
         this.addMessage = this.addMessage.bind(this);
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
-        this.handleDeepLink = this.handleDeepLink.bind(this);
+        // this.handleDeepLink = this.handleDeepLink.bind(this);
     }
 
     componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
-        PushNotification.configure({
-            onNotification: this.handleDeepLink,
-            permissions: {
-                alert: true,
-                badge: true,
-                sound: true
-            },
+        // PushNotification.configure({
+        //     onRegister: function(token) {
+        //         console.log( '---- TOKEN:', token );
+        //     },
+        //     onNotification: this.handleDeepLink,
+        //     permissions: {
+        //         alert: true,
+        //         badge: true,
+        //         sound: true
+        //     },
 
-            popInitialNotification: true,
-            requestPermissions: true,
-        });
-        PushNotificationIOS.addEventListener('notification', this.handleLocalNotificationIOS);
+        //     popInitialNotification: true,
+        //     requestPermissions: true,
+        // });
+        // PushNotificationIOS.addEventListener('notification', this.handleLocalNotificationIOS);
     }
 
     handleLocalNotificationIOS = notification => {
@@ -143,17 +146,17 @@ class HomePageScreen extends Layout {
                     isAdd: true,
                     email: sender.email
                 });
-                PushNotification.localNotification({
-                    id: '0',
-                    ticker: "",
-                    bigText: "",
-                    subText: "",
-                    title: `${sender.fullname} sent you a message`,
-                    message: message.message,
-                    visibility: "public",
-                    userInfo: sender
-                    
-                })
+                // PushNotification.localNotification({
+                //     id: '0',
+                //     ticker: "",
+                //     bigText: "",
+                //     subText: "",
+                //     title: `${sender.fullname} sent you a message`,
+                //     message: message.message,
+                //     visibility: "public",
+                //     userInfo: sender
+
+                // })
             }
         }
     }
