@@ -29,9 +29,11 @@ target 'nusmedicine' do
 
 # ----- npm ------
 pod 'react-native-shimmer', :path => '../node_modules/react-native-shimmer'
+pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'Firebase/Core'
+pod 'Firebase/Messaging'
 
 
 post_install do |installer|

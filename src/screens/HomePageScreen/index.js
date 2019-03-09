@@ -2,7 +2,7 @@ import React from 'react';
 import { AppState, Platform, PushNotificationIOS } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import PushNotification from 'react-native-push-notification';
-import { timer } from 'rxjs';
+import DeviceInfo from 'react-native-device-info';
 
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
@@ -36,6 +36,8 @@ class HomePageScreen extends Layout {
             requestPermissions: true,
         });
         PushNotificationIOS.addEventListener('notification', this.handleLocalNotificationIOS);
+        const deviceId = DeviceInfo.getDeviceId();
+        console.log('--- deviceId : ' + JSON.stringify(deviceId))
     }
 
     handleLocalNotificationIOS = notification => {

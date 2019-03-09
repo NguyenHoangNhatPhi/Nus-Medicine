@@ -13,6 +13,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.oblador.shimmer.RNShimmerPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNGestureHandlerPackage(),
              new RNShimmerPackage(),
              new RNFirebaseMessagingPackage(),
+             new RNDeviceInfo(),
             new VectorIconsPackage()
       );
     }
