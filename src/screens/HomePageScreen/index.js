@@ -1,10 +1,10 @@
 import React from 'react';
-import { AppState, Platform, PushNotificationIOS } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import SocketIOClient from 'socket.io-client';
-// import PushNotification from 'react-native-push-notification';
 import { timer } from 'rxjs';
-import Configs from '../../configs/api';
+import firebase from 'react-native-firebase';
 
+import Configs from '../../configs/api';
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
 
@@ -19,67 +19,78 @@ class HomePageScreen extends Layout {
 
         this.addMessage = this.addMessage.bind(this);
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
-        // this.handleDeepLink = this.handleDeepLink.bind(this);
     }
 
     componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
-        // PushNotification.configure({
-        //     onRegister: function(token) {
-        //         console.log( '---- TOKEN:', token );
-        //     },
-        //     onNotification: this.handleDeepLink,
-        //     permissions: {
-        //         alert: true,
-        //         badge: true,
-        //         sound: true
-        //     },
-
-        //     popInitialNotification: true,
-        //     requestPermissions: true,
+        this.setupFirebase();
+        // this.notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification) => {
         // });
-        // PushNotificationIOS.addEventListener('notification', this.handleLocalNotificationIOS);
+        // this.notificationListener = firebase.notifications().onNotification((notification) => {
+        // });
+        const channel = new firebase.notifications.Android.Channel(
+            'channelId',
+            'Channel Name',
+            firebase.notifications.Android.Importance.Max
+        ).setDescription('A natural description of the channel');
+
+        firebase.notifications().android.createChannel(channel);
+
+        // the listener returns a function you can use to unsubscribe
+        this.unsubscribeFromNotificationListener = firebase.notifications().onNotification((notification) => {
+            if (Platform.OS === 'android') {
+                const localNotification = new firebase.notifications.Notification({
+                    sound: 'default',
+                    show_in_foreground: true,
+                })
+                    .setNotificationId(notification.notificationId)
+                    .setTitle(notification.title)
+                    .setSubtitle(notification.subtitle)
+                    .setBody(notification.body)
+                    .setData(notification.data)
+                    .setSound("default")
+                    .android.setChannelId('channelId') // e.g. the id you chose above
+                    .android.setSmallIcon('ic_stat_notification') // create this icon in Android Studio
+                    .android.setColor('#000000') // you can set a color here
+                    .android.setPriority(firebase.notifications.Android.Priority.High);
+
+                    console.log('--- firebase : ')
+                firebase.notifications()
+                    .displayNotification(localNotification)
+                    .catch(err => console.log('--- error : ', err));
+
+            } else if (Platform.OS === 'ios') {
+
+                const localNotification = new firebase.notifications.Notification()
+                    .setNotificationId(notification.notificationId)
+                    .setTitle(notification.title)
+                    .setSubtitle(notification.subtitle)
+                    .setBody(notification.body)
+                    .setData(notification.data)
+                    .ios.setBadge(notification.ios.badge);
+
+                firebase.notifications()
+                    .displayNotification(localNotification)
+                    .catch(err => console.error(err));
+
+            }
+        });
     }
 
-    handleLocalNotificationIOS = notification => {
-        if (Platform.OS === 'ios' && !this.props.isAtChatScreen && notification._data.openedInForeground) {
-            const temptUser = notification._data;
-            this.props.actions.chat.handleNumberMessageNotSeen({
-                isClear: true,
-                email: temptUser.email
-            })
-            this.props.actions.chat.updateCurrentUserChat(temptUser);
-            this.props.navigation.navigate('Chat', {
-                temptCurrentUserChat: temptUser,
-                titleList: 'CHAT HISTORY'
-            });
-            this.props.actions.chat.updateAt({
-                email: temptUser.email
-            });
-            this.props.actions.app.changeRouterDrawer('Messaging');
+    async setupFirebase() {
+        try {
+            await firebase.messaging().requestPermission();
+            const enabled = await firebase.messaging().hasPermission();
+            if (enabled) {
+
+            }
+        } catch (error) {
+            console.log(' ---error  : ', error)
         }
-    }
-
-    handleDeepLink = notification => {
-        if (Platform.OS === 'android' && !this.props.isAtChatScreen) {
-            const temptUser = notification.userInfo;
-            this.props.actions.chat.handleNumberMessageNotSeen({
-                isClear: true,
-                email: temptUser.email
-            })
-            this.props.actions.chat.updateCurrentUserChat(temptUser);
-            this.props.navigation.navigate('Chat', {
-                temptCurrentUserChat: temptUser,
-                titleList: 'CHAT HISTORY'
-            });
-            this.props.actions.chat.updateAt({
-                email: temptUser.email
-            });
-            this.props.actions.app.changeRouterDrawer('Messaging');
-        }
 
     }
+
 
     clearDataLocal() {
         const { profile } = this.props;
@@ -102,13 +113,12 @@ class HomePageScreen extends Layout {
         this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
             // da user vs logout 
             if (profile.email == updateCurrentChat.email) {
-                this.clearDataLocal();
-                // alert('clearDataLocal')
+                // this.clearDataLocal();
             } else {
 
                 if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
                 ) {
-                    console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat) )
+                    console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat))
                     this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
                 }
             }
@@ -159,17 +169,6 @@ class HomePageScreen extends Layout {
                     isAdd: true,
                     email: sender.email
                 });
-                // PushNotification.localNotification({
-                //     id: '0',
-                //     ticker: "",
-                //     bigText: "",
-                //     subText: "",
-                //     title: `${sender.fullname} sent you a message`,
-                //     message: message.message,
-                //     visibility: "public",
-                //     userInfo: sender
-
-                // })
             }
         }
     }
@@ -182,6 +181,9 @@ class HomePageScreen extends Layout {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
+        // this.notificationDisplayedListener();
+        // this.notificationListener();
+        this.unsubscribeFromNotificationListener();
     }
 
 
