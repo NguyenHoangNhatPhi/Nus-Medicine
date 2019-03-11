@@ -165,6 +165,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-firebase')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
@@ -176,6 +177,11 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true;
     }
+    implementation project(':react-native-firebase')
+      implementation "com.google.android.gms:play-services-base:16.0.1"
+  implementation "com.google.firebase:firebase-core:16.0.6"
+   implementation "com.google.firebase:firebase-messaging:17.3.4"
+   implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 }
 
 // Run this once to be able to run the application with BUCK
@@ -184,3 +190,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

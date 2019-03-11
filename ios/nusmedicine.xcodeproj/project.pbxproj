@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -42,6 +41,7 @@
 		D4767C7C21A4178F00D7EF4C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4767C4721A4178F00D7EF4C /* SimpleLineIcons.ttf */; };
 		D4767C7D21A4178F00D7EF4C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4767C4821A4178F00D7EF4C /* MaterialIcons.ttf */; };
 		D4767CC721A419CE00D7EF4C /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4767CC421A419BF00D7EF4C /* libRNVectorIcons.a */; };
+		098BF9948D3343FD912CDA5A /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB9E8F9998B4196AE1C757F /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +381,8 @@
 		D4767C9821A419BF00D7EF4C /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		E1A549B53E87F2F57F865B42 /* Pods-nusmedicine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nusmedicine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nusmedicine/Pods-nusmedicine.debug.xcconfig"; sourceTree = "<group>"; };
 		EFE98CA6527C4D229D340311 /* libRNLocalNotifications.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNLocalNotifications.a; sourceTree = "<group>"; };
+		130DA7742C884B198981FE2B /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FFB9E8F9998B4196AE1C757F /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,6 +406,7 @@
 				6BE15BA86E0E4B8381270897 /* libRNGestureHandler.a in Frameworks */,
 				8AB9080523A6A07E58BAD692 /* libPods-nusmedicine.a in Frameworks */,
 				6141BC909D294E12B563ADC9 /* libRNLocalNotifications.a in Frameworks */,
+				098BF9948D3343FD912CDA5A /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +583,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				64523B904A9840C98E561662 /* RNGestureHandler.xcodeproj */,
 				A31F787139B449318D7A959D /* RNLocalNotifications.xcodeproj */,
+				130DA7742C884B198981FE2B /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1209,6 +1213,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = nusmedicine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1222,6 +1227,10 @@
 				PROVISIONING_PROFILE = "4746e344-1319-45b8-8336-ca8a5b307ddc";
 				PROVISIONING_PROFILE_SPECIFIER = NusMedicineAdhoc;
 				VERSIONING_SYSTEM = "apple-generic";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/nusmedicine\"",
+				);
 			};
 			name = Debug;
 		};
@@ -1237,6 +1246,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = nusmedicine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1250,6 +1260,10 @@
 				PROVISIONING_PROFILE = "4746e344-1319-45b8-8336-ca8a5b307ddc";
 				PROVISIONING_PROFILE_SPECIFIER = NusMedicineAdhoc;
 				VERSIONING_SYSTEM = "apple-generic";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/nusmedicine\"",
+				);
 			};
 			name = Release;
 		};

@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "293207408908",
+    "firebase_url": "https://nusmedicine-e0edc.firebaseio.com",
+    "project_id": "nusmedicine-e0edc",
+    "storage_bucket": "nusmedicine-e0edc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293207408908:android:ee0abbb74ea96ac0",
+        "android_client_info": {
+          "package_name": "com.nus.medicine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293207408908-la7b36plmu1q1f5u1mumcliab7qb33br.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nus.medicine",
+            "certificate_hash": "9ac0ed28b2f10d2afbc0a0c3ea6ab87a883968f9"
+          }
+        },
+        {
+          "client_id": "293207408908-e268lg0uqg0mfior9c5027e6jime8rqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpzxQnqNqWT31czC8cKeJGOXD0GspIMnc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293207408908-e268lg0uqg0mfior9c5027e6jime8rqb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "293207408908-2rfugbc2a5817ormgqqubmbo2ak1mfu6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nusmedicine.app"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
