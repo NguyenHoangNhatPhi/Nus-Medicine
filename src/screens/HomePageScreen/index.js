@@ -29,13 +29,13 @@ class HomePageScreen extends Layout {
             'NusMedicine',
             firebase.notifications.Android.Importance.Max
         ).setDescription('A natural description of the channel');
-
         firebase.notifications().android.createChannel(channel);
         this.setupFirebase();
     }
 
     async setupFirebase() {
         try {
+            const fcmToken = await firebase.messaging().getToken();
             await firebase.messaging().requestPermission();
             const enabled = await firebase.messaging().hasPermission();
             if (enabled) {
@@ -138,14 +138,13 @@ class HomePageScreen extends Layout {
     }
 
     sendLocalPush() {
-        alert('ddd')
-        const channel = new firebase.notifications.Android.Channel(
-            'channelId',
-            'Channel Name',
-            firebase.notifications.Android.Importance.Max
-        ).setDescription('A natural description of the channel');
+        // const channel = new firebase.notifications.Android.Channel(
+        //     'channelId',
+        //     'Channel Name',
+        //     firebase.notifications.Android.Importance.Max
+        // ).setDescription('A natural description of the channel');
 
-        firebase.notifications().android.createChannel(channel);
+        // firebase.notifications().android.createChannel(channel);
 
         const localNotification = new firebase.notifications.Notification({
             sound: 'default',
@@ -157,7 +156,7 @@ class HomePageScreen extends Layout {
             // .setBody(notification.body)
             // .setData(notification.data)
             .setSound("default")
-            .android.setChannelId('channelId') // e.g. the id you chose above
+            .android.setChannelId('NusPush') // e.g. the id you chose above
             .android.setSmallIcon('ic_stat_notification') // create this icon in Android Studio
             .android.setColor('#000000') // you can set a color here
             .android.setPriority(firebase.notifications.Android.Priority.High);
