@@ -24,6 +24,13 @@ class HomePageScreen extends Layout {
     componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
+        const channel = new firebase.notifications.Android.Channel(
+            'NusPush',
+            'NusMedicine',
+            firebase.notifications.Android.Importance.Max
+        ).setDescription('A natural description of the channel');
+
+        firebase.notifications().android.createChannel(channel);
         this.setupFirebase();
     }
 
@@ -33,30 +40,10 @@ class HomePageScreen extends Layout {
             const enabled = await firebase.messaging().hasPermission();
             if (enabled) {
                 this.notificationListener = firebase.notifications().onNotification((notification) => {
-                    if (Platform.OS === 'android') {
-                        const channel = new firebase.notifications.Android.Channel('test-channel', 'Test Channel', firebase.notifications.Android.Importance.Max)
-                            .setDescription('My apps test channel');
-                        firebase.notifications().android.createChannel(channel);
-                        notification
-                            .android.setChannelId('channelId')
-                            .android.setSmallIcon('ic_launcher');
-
-                        firebase.notifications().displayNotification(notification)
-                    } else if (Platform.OS === 'ios') {
-
-                        const localNotification = new firebase.notifications.Notification()
-                            .setNotificationId(notification.notificationId)
-                            .setTitle(notification.title)
-                            .setSubtitle(notification.subtitle)
-                            .setBody(notification.body)
-                            .setData(notification.data)
-                            .ios.setBadge(notification.ios.badge);
-
-                        firebase.notifications()
-                            .displayNotification(localNotification)
-                            .catch(err => console.error(err));
-
-                    }
+                    notification
+                        .android.setChannelId('NusPush')
+                        .android.setSmallIcon('ic_launcher');
+                    firebase.notifications().displayNotification(notification);
                 });
             }
         } catch (error) {
@@ -143,8 +130,42 @@ class HomePageScreen extends Layout {
                     isAdd: true,
                     email: sender.email
                 });
+                // ---- local push -----
+                this.sendLocalPush();
+
             }
         }
+    }
+
+    sendLocalPush() {
+        alert('ddd')
+        const channel = new firebase.notifications.Android.Channel(
+            'channelId',
+            'Channel Name',
+            firebase.notifications.Android.Importance.Max
+        ).setDescription('A natural description of the channel');
+
+        firebase.notifications().android.createChannel(channel);
+
+        const localNotification = new firebase.notifications.Notification({
+            sound: 'default',
+            show_in_foreground: true,
+        })
+            .setNotificationId('123')
+            .setTitle('hello')
+            // .setSubtitle(notification.subtitle)
+            // .setBody(notification.body)
+            // .setData(notification.data)
+            .setSound("default")
+            .android.setChannelId('channelId') // e.g. the id you chose above
+            .android.setSmallIcon('ic_stat_notification') // create this icon in Android Studio
+            .android.setColor('#000000') // you can set a color here
+            .android.setPriority(firebase.notifications.Android.Priority.High);
+
+        firebase.notifications()
+            .displayNotification(localNotification)
+            .catch(err => console.log('--- error : ', err));
+
     }
 
     gotoRenuion(type) {
@@ -155,7 +176,6 @@ class HomePageScreen extends Layout {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
-
         this.notificationListener();
     }
 
