@@ -25,57 +25,6 @@ class HomePageScreen extends Layout {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
         this.setupFirebase();
-        // this.notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification) => {
-        // });
-        // this.notificationListener = firebase.notifications().onNotification((notification) => {
-        // });
-        const channel = new firebase.notifications.Android.Channel(
-            'channelId',
-            'Channel Name',
-            firebase.notifications.Android.Importance.Max
-        ).setDescription('A natural description of the channel');
-
-        firebase.notifications().android.createChannel(channel);
-
-        // the listener returns a function you can use to unsubscribe
-        this.unsubscribeFromNotificationListener = firebase.notifications().onNotification((notification) => {
-            if (Platform.OS === 'android') {
-                const localNotification = new firebase.notifications.Notification({
-                    sound: 'default',
-                    show_in_foreground: true,
-                })
-                    .setNotificationId(notification.notificationId)
-                    .setTitle(notification.title)
-                    .setSubtitle(notification.subtitle)
-                    .setBody(notification.body)
-                    .setData(notification.data)
-                    .setSound("default")
-                    .android.setChannelId('channelId') // e.g. the id you chose above
-                    .android.setSmallIcon('ic_stat_notification') // create this icon in Android Studio
-                    .android.setColor('#000000') // you can set a color here
-                    .android.setPriority(firebase.notifications.Android.Priority.High);
-
-                    console.log('--- firebase : ')
-                firebase.notifications()
-                    .displayNotification(localNotification)
-                    .catch(err => console.log('--- error : ', err));
-
-            } else if (Platform.OS === 'ios') {
-
-                const localNotification = new firebase.notifications.Notification()
-                    .setNotificationId(notification.notificationId)
-                    .setTitle(notification.title)
-                    .setSubtitle(notification.subtitle)
-                    .setBody(notification.body)
-                    .setData(notification.data)
-                    .ios.setBadge(notification.ios.badge);
-
-                firebase.notifications()
-                    .displayNotification(localNotification)
-                    .catch(err => console.error(err));
-
-            }
-        });
     }
 
     async setupFirebase() {
@@ -83,7 +32,32 @@ class HomePageScreen extends Layout {
             await firebase.messaging().requestPermission();
             const enabled = await firebase.messaging().hasPermission();
             if (enabled) {
+                this.notificationListener = firebase.notifications().onNotification((notification) => {
+                    if (Platform.OS === 'android') {
+                        const channel = new firebase.notifications.Android.Channel('test-channel', 'Test Channel', firebase.notifications.Android.Importance.Max)
+                            .setDescription('My apps test channel');
+                        firebase.notifications().android.createChannel(channel);
+                        notification
+                            .android.setChannelId('channelId')
+                            .android.setSmallIcon('ic_launcher');
 
+                        firebase.notifications().displayNotification(notification)
+                    } else if (Platform.OS === 'ios') {
+
+                        const localNotification = new firebase.notifications.Notification()
+                            .setNotificationId(notification.notificationId)
+                            .setTitle(notification.title)
+                            .setSubtitle(notification.subtitle)
+                            .setBody(notification.body)
+                            .setData(notification.data)
+                            .ios.setBadge(notification.ios.badge);
+
+                        firebase.notifications()
+                            .displayNotification(localNotification)
+                            .catch(err => console.error(err));
+
+                    }
+                });
             }
         } catch (error) {
             console.log(' ---error  : ', error)
@@ -181,9 +155,8 @@ class HomePageScreen extends Layout {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
-        // this.notificationDisplayedListener();
-        // this.notificationListener();
-        this.unsubscribeFromNotificationListener();
+
+        this.notificationListener();
     }
 
 
