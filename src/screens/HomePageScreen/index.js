@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppState, Platform } from 'react-native';
 import SocketIOClient from 'socket.io-client';
-import { timer } from 'rxjs';
 import firebase from 'react-native-firebase';
 
 import Configs from '../../configs/api';
@@ -24,6 +23,14 @@ class HomePageScreen extends Layout {
     async  componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
+        // ---- Open Noti when app closed  -----
+        const notificationOpen = await firebase.notifications().getInitialNotification();
+        if (notificationOpen) {
+            const action = notificationOpen.action;
+            const notification = notificationOpen.notification;
+
+            console.log(notification);
+        }
         // ---- Setup Firebase -----
         const channel = new firebase.notifications.Android.Channel(
             'NusPush',
@@ -43,7 +50,7 @@ class HomePageScreen extends Layout {
             } else {
                 await firebase.messaging().requestPermission();
             }
-
+            // -------- Listen for Notifications ---------
             this.notificationListener = firebase.notifications().onNotification((notification) => {
                 if (Platform.OS === 'android') {
                     notification
@@ -54,10 +61,17 @@ class HomePageScreen extends Layout {
                         .catch(err => console.error(err));
 
                 } else {
+                    notification.setSound("default");
                     firebase.notifications()
                         .displayNotification(notification)
                         .catch(err => console.error(err));
                 }
+            });
+            // -------- Listen for a Notification being opened ---------
+            this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
+                const action = notificationOpen.action;
+                const notification = notificationOpen.notification;
+                console.log('----- notification : ', notification);
             });
         } catch (error) {
             console.log(' ---error  : ', error)
@@ -144,39 +158,56 @@ class HomePageScreen extends Layout {
                     email: sender.email
                 });
                 // ---- local push -----
-                this.sendLocalPush();
+                this.sendLocalPush(sender.fullname, message.message);
 
             }
         }
     }
 
-    sendLocalPush() {
-        // const channel = new firebase.notifications.Android.Channel(
-        //     'channelId',
-        //     'Channel Name',
-        //     firebase.notifications.Android.Importance.Max
-        // ).setDescription('A natural description of the channel');
+    sendLocalPush(fullname, message) {
+        if (Platform.OS === 'android') {
+            const channel = new firebase.notifications.Android.Channel(
+                'channelId',
+                'Channel Name',
+                firebase.notifications.Android.Importance.Max
+            ).setDescription('A natural description of the channel');
 
-        // firebase.notifications().android.createChannel(channel);
+            firebase.notifications().android.createChannel(channel);
 
-        const localNotification = new firebase.notifications.Notification({
-            sound: 'default',
-            show_in_foreground: true,
-        })
-            .setNotificationId('123')
-            .setTitle('hello')
-            // .setSubtitle(notification.subtitle)
-            // .setBody(notification.body)
-            // .setData(notification.data)
-            .setSound("default")
-            .android.setChannelId('NusPush') // e.g. the id you chose above
-            .android.setSmallIcon('ic_stat_notification') // create this icon in Android Studio
-            .android.setColor('#000000') // you can set a color here
-            .android.setPriority(firebase.notifications.Android.Priority.High);
+            const localNotification = new firebase.notifications.Notification({
+                sound: 'default',
+                show_in_foreground: true,
+            })
+                .setTitle(`${fullname} sent you a message`)
+                .setBody(`${message}`)
+                .setData({
+                    socketId: '123'
+                })
+                .setSound("default")
+                .android.setChannelId('channelId')
+                .android.setSmallIcon('ic_launcher')
+                .android.setColor('#f97300')
+                .android.setPriority(firebase.notifications.Android.Priority.High);
 
-        firebase.notifications()
-            .displayNotification(localNotification)
-            .catch(err => console.log('--- error : ', err));
+            firebase.notifications()
+                .displayNotification(localNotification)
+                .catch(err => console.log('--- error : ', err));
+        } else {
+            const localNotification = new firebase.notifications.Notification()
+                .setTitle(`${fullname} sent you a message`)
+                .setBody(`${message}`)
+                .setData({
+                    socketId: '123'
+                })
+                .setSound("default")
+                .ios.setBadge(1);
+
+
+            firebase.notifications()
+                .displayNotification(localNotification)
+                .catch(err => console.error(err));
+        }
+
 
     }
 
@@ -189,6 +220,7 @@ class HomePageScreen extends Layout {
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
         this.notificationListener();
+        this.notificationOpenedListener();
     }
 
 
