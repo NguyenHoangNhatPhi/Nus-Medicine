@@ -48,7 +48,7 @@ export default class Layout extends React.Component {
                             <View style={{ marginBottom: scaleSzie(15) }} >
                                 <ButtonSubmit
                                     onPress={() => this.searchUserByYear()}
-                                    title={`CLASS OFF ${this.props.profile.graduationYear}`}
+                                    title={`CLASS OF ${this.props.profile.graduationYear}`}
                                 />
                                 <View style={{ position: 'absolute', left: scaleSzie(15), top: scaleSzie(15) }} >
                                     <Image
@@ -58,7 +58,7 @@ export default class Layout extends React.Component {
                                 </View>
                             </View>
                             <ButtonGroupChat
-                                title='ALUMINI'
+                                title='ALUMNI'
                                 onPress={this.gotoOtherAlumini}
                             />
                             <View style={{ marginBottom: scaleSzie(15) }} >

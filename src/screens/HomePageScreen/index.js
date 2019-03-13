@@ -28,8 +28,20 @@ class HomePageScreen extends Layout {
         if (notificationOpen) {
             const action = notificationOpen.action;
             const notification = notificationOpen.notification;
-
-            alert(action);
+            const data = notification.data;
+            this.props.actions.chat.handleNumberMessageNotSeen({
+                isClear: true,
+                email: data.email
+            });
+            this.props.actions.chat.updateCurrentUserChat(data);
+            this.props.navigation.navigate('Chat', {
+                temptCurrentUserChat: data,
+                titleList: 'CHAT HISTORY'
+            });
+            this.props.actions.chat.updateAt({
+                email: data.email
+            });
+            this.props.actions.app.changeRouterDrawer('Messaging');
         }
         // ---- Setup Firebase -----
         const channel = new firebase.notifications.Android.Channel(

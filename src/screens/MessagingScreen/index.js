@@ -30,7 +30,7 @@ class MessagingScreen extends Layout {
 
     async searchUserByYear() {
         await this.setState({
-            titleList: `CLASS OFF ${this.props.profile.graduationYear}`
+            titleList: `CLASS OF ${this.props.profile.graduationYear}`
         })
         const { profile } = this.props;
         this.props.actions.app.searchGraduationYear(profile.graduationYear);
