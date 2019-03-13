@@ -2,6 +2,7 @@ import React from 'react';
 import { AppState, Platform } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import firebase from 'react-native-firebase';
+import DeviceInfo from 'react-native-device-info';
 
 import Configs from '../../configs/api';
 import Layout from './layout';
@@ -59,6 +60,8 @@ class HomePageScreen extends Layout {
             const enabled = await firebase.messaging().hasPermission();
             if (enabled) {
                 const fcmToken = await firebase.messaging().getToken();
+                const deviceId = DeviceInfo.getUniqueID();
+                alert(deviceId);
             } else {
                 await firebase.messaging().requestPermission();
             }

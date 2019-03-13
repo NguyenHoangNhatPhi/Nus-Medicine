@@ -172,6 +172,7 @@
     <orderEntry type="module" module-name="react-native-shimmer" />
     <orderEntry type="module" module-name="react-native-firebase" />
     <orderEntry type="module" module-name="react-native-vector-icons" />
+    <orderEntry type="module" module-name="react-native-device-info" />
     <orderEntry type="module" module-name="react-native-gesture-handler" />
   </component>
 </module>
