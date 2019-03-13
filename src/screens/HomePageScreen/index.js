@@ -21,9 +21,10 @@ class HomePageScreen extends Layout {
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
     }
 
-    componentDidMount() {
+    async  componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
+        // ---- Setup Firebase -----
         const channel = new firebase.notifications.Android.Channel(
             'NusPush',
             'NusMedicine',
@@ -31,21 +32,33 @@ class HomePageScreen extends Layout {
         ).setDescription('A natural description of the channel');
         firebase.notifications().android.createChannel(channel);
         this.setupFirebase();
+
     }
 
     async setupFirebase() {
         try {
-            const fcmToken = await firebase.messaging().getToken();
-            await firebase.messaging().requestPermission();
             const enabled = await firebase.messaging().hasPermission();
             if (enabled) {
-                this.notificationListener = firebase.notifications().onNotification((notification) => {
+                const fcmToken = await firebase.messaging().getToken();
+            } else {
+                await firebase.messaging().requestPermission();
+            }
+
+            this.notificationListener = firebase.notifications().onNotification((notification) => {
+                if (Platform.OS === 'android') {
                     notification
                         .android.setChannelId('NusPush')
                         .android.setSmallIcon('ic_launcher');
-                    firebase.notifications().displayNotification(notification);
-                });
-            }
+                    firebase.notifications().
+                        displayNotification(notification)
+                        .catch(err => console.error(err));
+
+                } else {
+                    firebase.notifications()
+                        .displayNotification(notification)
+                        .catch(err => console.error(err));
+                }
+            });
         } catch (error) {
             console.log(' ---error  : ', error)
         }
