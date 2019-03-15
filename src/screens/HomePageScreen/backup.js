@@ -114,7 +114,6 @@ class HomePageScreen extends Layout {
 
                 if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
                 ) {
-                    console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat) )
                     this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
                 }
             }

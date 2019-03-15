@@ -4,3 +4,18 @@ export function updateProfile(profile) {
         payload: profile
     }
 }
+
+export function clearProfileLocal() {
+    return {
+        type: 'CLEAR_PROFILE_LOCAL',
+        payload: {}
+    }
+}
+
+export function saveTokenFCM(payload) {
+    return {
+        type: 'SAVE_TOKEN_FCM',
+        payload
+    }
+}
+

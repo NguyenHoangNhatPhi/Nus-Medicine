@@ -59,7 +59,6 @@ function* updateListFriends(action) {
 function* handleNumberMessageNotSeen(action) {
     try {
         const responses = yield requestAPI(action);
-        console.log('HANDLE_MESSAGE_NOT_SEEN : ' +JSON.stringify(responses))
         if (responses.status) {
             // yield put({ ...action, type: "UPDATE_LIST_FRIENDS_SUCCESS", payload: responses })
         } else {
@@ -69,6 +68,14 @@ function* handleNumberMessageNotSeen(action) {
     }
 }
 
+function* setupPushNotiServer(action) {
+    try {
+        const responses = yield requestAPI(action);
+    } catch (error) {
+    }
+}
+
+
 
 export default function* saga() {
     yield all([
@@ -77,5 +84,6 @@ export default function* saga() {
         takeLatest('UPDATE_AT', updateAt),
         takeLatest('UPDATE_LIST_FRIENDS', updateListFriends),
         takeLatest('HANDLE_MESSAGE_NOT_SEEN', handleNumberMessageNotSeen),
+        takeLatest('SET_UP_PUSH_NOTIFICATION', setupPushNotiServer),
     ])
 }

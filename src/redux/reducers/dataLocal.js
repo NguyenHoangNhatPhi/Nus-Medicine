@@ -1,5 +1,6 @@
 const initialState = {
-    profile: {}
+    profile: {},
+    fcmToken: {}
 }
 
 function dataLocal(state = initialState, action) {
@@ -22,13 +23,21 @@ function dataLocal(state = initialState, action) {
         case 'LOG_OUT_APP':
             return {
                 ...state,
-                profile: {}
+                profile: {},
+                fcmToken: {}
             }
         case 'UPDATE_PROFILE_SOCKET':
             return {
                 ...state,
                 profile: { ...state.profile, socketId: action.payload.socketId }
             }
+        case 'SAVE_TOKEN_FCM':
+            return {
+                ...state,
+                fcmToken: action.payload
+            }
+
+
         default:
             return state
     }

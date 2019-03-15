@@ -3,6 +3,7 @@ import { AppState, Platform } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import firebase from 'react-native-firebase';
 import DeviceInfo from 'react-native-device-info';
+import _ from 'ramda';
 
 import Configs from '../../configs/api';
 import Layout from './layout';
@@ -59,9 +60,21 @@ class HomePageScreen extends Layout {
         try {
             const enabled = await firebase.messaging().hasPermission();
             if (enabled) {
-                const fcmToken = await firebase.messaging().getToken();
-                const deviceId = DeviceInfo.getUniqueID();
-                alert(deviceId);
+                if (_.isEmpty(this.props.fcmToken)) {
+                    const fcmToken = await firebase.messaging().getToken();
+                    const deviceId = DeviceInfo.getUniqueID();
+                    this.props.actions.chat.setupPushNotiServer({
+                        token: fcmToken,
+                        deviceId: deviceId,
+                        platform: Platform.OS
+                    });
+                    this.props.actions.dataLocal.saveTokenFCM({
+                        fcmToken,
+                        deviceId,
+                        platform: Platform.OS
+                    })
+                }
+
             } else {
                 await firebase.messaging().requestPermission();
             }
@@ -104,7 +117,6 @@ class HomePageScreen extends Layout {
                 }
             });
         } catch (error) {
-            console.log(' ---error  : ', error)
         }
 
     }
@@ -114,9 +126,9 @@ class HomePageScreen extends Layout {
         const { profile } = this.props;
         const { email, fullname, socketId } = profile;
         this.props.navigation.navigate('Auth');
-        this.props.actions.app.logOut();
+        this.props.actions.dataLocal.clearProfileLocal();
         this.props.actions.app.resetRouter();
-        this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
+        this.props.io.emit('KICK_USER', ({ email, fullname, socketId }));
     }
 
     connectSocket() {
@@ -126,20 +138,25 @@ class HomePageScreen extends Layout {
         });
         this.socket.emit('USER_CONNECTED', profile);
         this.socket.on('USER_CONNECTED', (updateProfile) => {
+            // ----- get socket ID -----
             this.props.actions.dataLocal.updateProfile(updateProfile)
         });
         this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
-            // da user vs logout 
-            if (profile.email == updateCurrentChat.email) {
-                // this.clearDataLocal();
-            } else {
-
-                if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
-                ) {
-                    console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat))
-                    this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
-                }
+            if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
+            ) {
+                this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
             }
+            // da user vs logout 
+            // if (profile.email == updateCurrentChat.email) {
+            //     this.clearDataLocal();
+            // } else {
+
+            //     if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
+            //     ) {
+            //         console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat))
+            //         this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
+            //     }
+            // }
 
         });
 
@@ -219,7 +236,7 @@ class HomePageScreen extends Layout {
 
             firebase.notifications()
                 .displayNotification(localNotification)
-                .catch(err => console.log('--- error : ', err));
+                .catch(err => {});
         } else {
             const localNotification = new firebase.notifications.Notification()
                 .setTitle(`${sender.fullname} sent you a message`)
@@ -257,6 +274,7 @@ const mapStateToProps = state => ({
     isAtChatScreen: state.chat.isAtChatScreen,
     currentUserChat: state.chat.currentUserChat,
     io: state.app.io,
+    fcmToken: state.dataLocal.fcmToken
 })
 
 export default connectRedux(mapStateToProps, HomePageScreen);

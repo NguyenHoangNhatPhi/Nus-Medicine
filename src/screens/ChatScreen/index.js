@@ -7,6 +7,7 @@ import { GiftedChat } from '../../components/react-native-gifted-chat';
 import connectRedux from '../../redux/ConnectRedux';
 import Layout from './layout';
 import { scaleSzie } from '../../utils/func';
+import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 
 // sender: { email: '', socketId: ''}
 // receiver: { email: '', socketId: ''}

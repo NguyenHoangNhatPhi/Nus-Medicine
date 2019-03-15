@@ -89,7 +89,6 @@ class HomePageScreen extends Layout {
                 }
             });
         } catch (error) {
-            console.log(' ---error  : ', error)
         }
 
     }
@@ -121,7 +120,6 @@ class HomePageScreen extends Layout {
 
                 if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
                 ) {
-                    console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat))
                     this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
                 }
             }
@@ -204,7 +202,7 @@ class HomePageScreen extends Layout {
 
             firebase.notifications()
                 .displayNotification(localNotification)
-                .catch(err => console.log('--- error : ', err));
+                .catch(err => {});
         } else {
             const localNotification = new firebase.notifications.Notification()
                 .setTitle(`${sender.fullname} sent you a message`)

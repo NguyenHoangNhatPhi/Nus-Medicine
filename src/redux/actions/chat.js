@@ -89,6 +89,17 @@ export function handleNumberMessageNotSeen(body) {
         api: `${apiConfigs.BASE_API}user/handle-number-of-message`,
         token: true,
         body
-    } 
+    }
 }
+
+export function setupPushNotiServer(body) {
+    return {
+        type: 'SET_UP_PUSH_NOTIFICATION',
+        method: 'POST',
+        api: `${apiConfigs.BASE_API}user/create-device-after-signin`,
+        token: true,
+        body
+    }
+}
+
 
