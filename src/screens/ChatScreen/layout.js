@@ -3,15 +3,17 @@ import {
     View,
     Dimensions,
     ActivityIndicator,
-    Image
+    Image,
+    Text
 } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { GiftedChat } from '../../components/react-native-gifted-chat';
 // import EmojiPicker from '../../components/Emoji';
 
-import { HeaderScreen, BackgroundView, Loading } from '../../components';
+import { Button, BackgroundView, Loading } from '../../components';
 import styles from './styles';
-import { scaleSzie } from '../../utils/func';
+import { scaleSzie ,isIphoneX} from '../../utils/func';
 import Configs from '../../configs';
 
 const USER_GRADUATION = require('../../resources/graduation.png');
@@ -37,12 +39,30 @@ export default class Layout extends React.Component {
 
     render() {
         const { value, visibleEmoji } = this.state;
+        const {currentUserChat} = this.props;
+        const heightHeader = isIphoneX() ? 95 : 60;
         return (
             <BackgroundView>
                 <View style={styles.container}>
-                    <HeaderScreen
-                        navigation={this.props.navigation}
-                    />
+                    <View style={{ width, height: scaleSzie(heightHeader), backgroundColor: '#ffffff', flexDirection: 'row' }} >
+                        <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(10), paddingLeft: scaleSzie(12) }} >
+                            <Button onPress={this.back} >
+                                <MaterialIcons name={'arrow-back'} size={scaleSzie(30)} color="#000" />
+                            </Button>
+
+                        </View>
+                        <View style={{ flex: 5, alignItems: 'center',
+                    flexDirection:'row'
+                    }} >
+                            <FontAwesome  name={'wechat'} size={scaleSzie(30)} color="#F97300" />
+                            <Text style={{marginLeft:scaleSzie(10),fontWeight:'600'}} >
+                                {currentUserChat.fullname}
+                            </Text>
+                        </View>
+                        <View style={{ flex: 1 }} >
+
+                        </View>
+                    </View>
                     <View style={styles.containerContent} >
                         <GiftedChat
                             messages={this.props.messages}

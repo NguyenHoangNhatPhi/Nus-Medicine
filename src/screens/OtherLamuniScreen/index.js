@@ -15,7 +15,12 @@ class OtherLamuniScreen extends Layout {
 
     searchUser() {
         const fullname = this.searchInputRef.current.state.value;
-        this.props.actions.app.searchUser(fullname);
+        if(fullname.length === 0){
+           this.props.actions.app.setStateMessageSearch();
+        }else{
+            this.props.actions.app.searchUser(fullname);
+        }
+       
     }
 
     componentDidUpdate(prevProps, prevState) {

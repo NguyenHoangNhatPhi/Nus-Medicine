@@ -37,14 +37,14 @@ const SECTIONS = [
 
         ]
     },
-    {
-        title: 'Life-Long Learning',
-        chidlren: [
-            'Undergraduate',
-            'Graduate Programme',
-            'Graduate Research Programmer'
-        ]
-    },
+    // {
+    //     title: 'Life-Long Learning',
+    //     chidlren: [
+    //         'Undergraduate',
+    //         'Graduate Programme',
+    //         'Graduate Research Programmer'
+    //     ]
+    // },
 
 ];
 
@@ -112,6 +112,21 @@ export default class Layout extends React.Component {
                             activeOpacity: 0.5
                         }}
                     />
+                    <Button 
+                    onPress={() => this.openWebview('http://scale.nus.edu.sg/')}
+                    style={[styles.headerItemCollap, {
+                        borderTopWidth: scaleSzie(2),
+                        borderTopColor: 'rgba(256,256,256,0.2)',
+                    }]}  >
+                        <View style={{ flex: 1, justifyContent: 'center' }} >
+                            <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
+                                Life-Long Learning
+                            </Text>
+                        </View>
+                        <View style={{ justifyContent: 'center' }} >
+                            <MaterialIcons name="keyboard-arrow-right" size={30} color={'#fff'} />
+                        </View>
+                    </Button>
                 </View>
 
             </View>

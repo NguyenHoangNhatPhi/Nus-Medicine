@@ -165,5 +165,19 @@ export function requestReunion(date) {
         },
         token: true
     }
+}
 
+
+export function resetStateContactUs() {
+    return {
+        type: 'RESET_STATE_CONTACT_US',
+        payload: {}
+    }
+}
+
+export function setStateMessageSearch(){
+    return{
+        type:'SET_STATE_MESSAGE_SEARCH',
+        payload :{}
+    }
 }

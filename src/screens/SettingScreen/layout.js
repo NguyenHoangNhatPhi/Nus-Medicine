@@ -22,7 +22,7 @@ export default class Layout extends React.Component {
                         Contactable
                 </Text>
                     <Text style={styles.textDesc} >
-                        Allow other alumini to contact me via chat
+                        Allow other alumni to contact me via chat
                 </Text>
                 </View>
                 <View style={{ width: scaleSzie(45), justifyContent: 'center' }} >

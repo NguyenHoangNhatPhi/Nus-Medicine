@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { NavigationEvents } from 'react-navigation';
 
 import { HeaderScreen, Text, ButtonSubmit, BackgroundView, Button, TextInputCustom, Loading } from '../../components';
 import styles from './styles';
@@ -52,6 +53,14 @@ export default class Layout extends React.Component {
         return (
             <BackgroundView>
                 <View style={styles.container}>
+                    <NavigationEvents
+                        onDidBlur={payload =>{
+                            this.setState({
+                                content:''
+                            });
+                            this.props.actions.app.resetStateContactUs();
+                        }}
+                    />
                     <HeaderScreen
                         navigation={this.props.navigation}
                         menu={!isBack}
@@ -99,12 +108,12 @@ export default class Layout extends React.Component {
                                         placeholder="Content"
                                     />
                                 </View>
-                                <View style={{  height: scaleSzie(40), justifyContent: 'center', alignItems: 'center'}} >
+                                <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >
                                     <Text style={{ color: 'red', fontSize: scaleSzie(14), fontWeight: 'bold' }} >
                                         {this.props.statusContactUs}
                                     </Text>
                                 </View>
-                                <View style={{ width: scaleSzie(100), marginBottom:scaleSzie(10)}} >
+                                <View style={{ width: scaleSzie(100), marginBottom: scaleSzie(10) }} >
                                     <ButtonSubmit
                                         onPress={this.sendMessage}
                                         title="Submit"

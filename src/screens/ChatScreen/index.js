@@ -53,6 +53,10 @@ class ChatScreen extends Layout {
         this.props.actions.chat.getHistoryChat(checkCurrentUserChat.email);
     }
 
+    back = () => {
+        this.props.navigation.goBack();
+    }
+
     addEmoji(emoji) {
         this.setState(prevState => ({
             value: `${prevState.value}${emoji}`
@@ -119,8 +123,6 @@ class ChatScreen extends Layout {
                 this.props.actions.chat.loadmoreChat(currentUserChat.email, (page + 1));
             }
         }
-
-
     }
 
 

@@ -146,7 +146,7 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoadingContactUs: false,
-                statusContactUs: 'Send Successfull !'
+                statusContactUs: 'Thank you for reaching to us. We will get in touch with you within 1-3 working days.'
             }
         case 'CONTACT_US_FAIL':
             return {
@@ -154,6 +154,13 @@ function appReducer(state = initialState, action) {
                 isLoadingContactUs: false,
                 statusContactUs: action.payload.message
             }
+        case 'RESET_STATE_CONTACT_US':
+            return {
+                ...state,
+                isLoadingContactUs: false,
+                statusContactUs: ''
+            }
+
         case 'RESET_ROUTER':
             return {
                 ...state,
@@ -189,6 +196,12 @@ function appReducer(state = initialState, action) {
                 ...state,
                 messageSearchUserChat: ''
             }
+        case 'SET_STATE_MESSAGE_SEARCH':
+            return {
+                ...state,
+                messageSearchUserChat: 'Please enter name of person you want to search !'
+            }
+
         case 'GET_LIST_FRIENDS':
             return {
                 ...state,
