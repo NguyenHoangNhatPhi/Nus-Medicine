@@ -25,9 +25,15 @@ class HomePageScreen extends Layout {
     async  componentDidMount() {
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
+        if (Platform.OS === 'ios') {
+            firebase.notifications().setBadge(0);
+        }
         // ---- Open Noti when app closed  -----
         const notificationOpen = await firebase.notifications().getInitialNotification();
         if (notificationOpen) {
+            if (Platform.OS === 'ios') {
+                firebase.notifications().setBadge(0);
+            }
             const action = notificationOpen.action;
             const notification = notificationOpen.notification;
             const data = notification.data;
@@ -99,7 +105,10 @@ class HomePageScreen extends Layout {
             this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
                 const action = notificationOpen.action;
                 const notification = notificationOpen.notification;
-                const data = notification.data
+                const data = notification.data;
+                if (Platform.OS === 'ios') {
+                    firebase.notifications().setBadge(0);
+                }
                 if (!this.props.isAtChatScreen) {
                     this.props.actions.chat.handleNumberMessageNotSeen({
                         isClear: true,
@@ -211,7 +220,7 @@ class HomePageScreen extends Layout {
         }
     }
 
-    sendLocalPush(sender, message) {
+    async sendLocalPush(sender, message) {
         if (Platform.OS === 'android') {
             const channel = new firebase.notifications.Android.Channel(
                 'channelId',
@@ -236,15 +245,16 @@ class HomePageScreen extends Layout {
 
             firebase.notifications()
                 .displayNotification(localNotification)
-                .catch(err => {});
+                .catch(err => { });
         } else {
+            let countBadge = await firebase.notifications().getBadge();
+            countBadge++;
             const localNotification = new firebase.notifications.Notification()
                 .setTitle(`${sender.fullname} sent you a message`)
                 .setBody(`${message}`)
                 .setData(sender)
                 .setSound("default")
-                .ios.setBadge(1);
-
+                .ios.setBadge(countBadge);
 
             firebase.notifications()
                 .displayNotification(localNotification)
