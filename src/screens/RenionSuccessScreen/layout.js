@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { HeaderScreen, Text, ModalCustom, Button, BackgroundView, Loading } from '../../components';
+import { HeaderScreen, Text, ButtonSubmit, Button, BackgroundView, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
@@ -31,8 +31,13 @@ export default class Layout extends React.Component {
                             <Text style={[styles.textContent, { marginBottom: scaleSzie(30) }]} >
                                 Thank you for your Class Reunion request. We will get in touch with you within 1 - 3 working days.
                         </Text>
+                            <ButtonSubmit
+                                onPress={() => this.props.navigation.navigate('HomePage')}
+                                title="Go back Home screen "
+                            />
                         </View>
                     </View>
+
                 </View>
             </BackgroundView>
         );
