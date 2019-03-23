@@ -18,6 +18,7 @@ const initialState = {
     // ==== Contact Us ====,
     isLoadingContactUs: false,
     statusContactUs: '',
+    sendContactUsSuccess : false,
 
     // ===== SEARCH_USER ====
     isLoadingSearchUser: false,
@@ -140,12 +141,14 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoadingContactUs: true,
-                statusContactUs: ''
+                statusContactUs: '',
+                sendContactUsSuccess: false
             }
         case 'CONTACT_US_SUCCESS':
             return {
                 ...state,
                 isLoadingContactUs: false,
+                sendContactUsSuccess: true,
                 statusContactUs: 'Thank you for reaching to us. We will get in touch with you within 1-3 working days.'
             }
         case 'CONTACT_US_FAIL':
@@ -158,7 +161,8 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoadingContactUs: false,
-                statusContactUs: ''
+                statusContactUs: '',
+                sendContactUsSuccess: false
             }
 
         case 'RESET_ROUTER':

@@ -186,8 +186,12 @@ class HomePageScreen extends Layout {
             this.state.appState.match(/inactive|background/) &&
             nextAppState === 'active'
         ) {
+            if (Platform.OS === 'ios') {
+                firebase.notifications().setBadge(0);
+            }
             this.connectSocket();
         } else {
+            this.props.io.emit('IS_BACKGROUND', this.props.profile);
             this.props.actions.chat.setFlagChatScreen(false);
         }
         this.setState({ appState: nextAppState });
@@ -213,8 +217,13 @@ class HomePageScreen extends Layout {
                     isAdd: true,
                     email: sender.email
                 });
+                console.log('active : ', this.state.appState)
                 // ---- local push -----
-                this.sendLocalPush(sender, message.message);
+                if (this.state.appState === 'active') {
+                    this.sendLocalPush(sender, message.message);
+                } else {
+                    console.log('app is runing background');
+                }
 
             }
         }

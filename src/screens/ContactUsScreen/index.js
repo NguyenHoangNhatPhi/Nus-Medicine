@@ -1,9 +1,9 @@
 import React from 'react';
-import { Linking } from 'react-native';
+import { Keyboard } from 'react-native';
 import _ from 'ramda';
 
 import Layout from './layout';
-import { validateEmail,openBrowser } from '../../utils/func';
+import { validateEmail, openBrowser } from '../../utils/func';
 import connectRedux from '../../redux/ConnectRedux';
 
 
@@ -52,12 +52,23 @@ class ContactUsScreen extends Layout {
         openBrowser(urlSocial);
     }
 
+    async componentDidUpdate(prevProps, prevState) {
+        if (this.props.sendContactUsSuccess && prevProps.isLoadingContactUs !== this.props.isLoadingContactUs) {
+            Keyboard.dismiss();
+            await this.setState({
+                content: ''
+            });
+
+        }
+    }
+
 }
 
 const mapStateToProps = state => ({
     profile: state.dataLocal.profile,
-    isLoadingContactUs : state.app.isLoadingContactUs,
-    statusContactUs: state.app.statusContactUs
+    isLoadingContactUs: state.app.isLoadingContactUs,
+    statusContactUs: state.app.statusContactUs,
+    sendContactUsSuccess: state.app.sendContactUsSuccess
 })
 
 export default connectRedux(mapStateToProps, ContactUsScreen);
