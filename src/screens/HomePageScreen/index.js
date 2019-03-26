@@ -176,10 +176,18 @@ class HomePageScreen extends Layout {
             // }
 
         });
-        this.socket.on('RECONNECT_SOCKET',data =>{
+        this.socket.on('RECONNECT_SOCKET_khoa@abc.com',data =>{
             console.log('--- RECONNECT_SOCKET : ',data);
             // Truong hop 1: email = email cua chinh no ---> cap nhat socketID cua chinh no
             // Truong hop 2: email = voi email cua thang dang chat --> cap nhat socketID
+            // 
+        });
+
+        this.socket.on('RECONNECT_SOCKET_cr7@yahoo.com',data =>{
+            // console.log('--- RECONNECT_SOCKET : ',data);
+            // Truong hop 1: email = email cua chinh no ---> cap nhat socketID cua chinh no
+            // Truong hop 2: email = voi email cua thang dang chat --> cap nhat socketID
+            // RECONNECT_SOCKET_cr7@yahoo.com
         })
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
