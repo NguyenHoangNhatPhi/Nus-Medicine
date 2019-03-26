@@ -8,7 +8,10 @@ function* getHistoryChat(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "GET_HISTORY_CHAT_SUCCESS", payload: responses })
-        } else {
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "GET_HISTORY_CHAT_FAIL", payload: responses })
         }
     } catch (error) {
@@ -20,7 +23,11 @@ function* loadmoreChat(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "LOAD_MORE_MESSAGE_SUCCESS", payload: responses })
-        } else {
+        }
+        else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "LOAD_MORE_MESSAGE_FAIL", payload: responses })
         }
     } catch (error) {
@@ -37,8 +44,8 @@ function* updateAt(action) {
                 api: `${apiConfigs.BASE_API}user/list-friend?page=1`,
                 token: true,
             })
-        } else {
-            // yield put({ ...action, type: "LOAD_MORE_MESSAGE_FAIL", payload: responses })
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
         }
     } catch (error) {
     }
@@ -49,8 +56,8 @@ function* updateListFriends(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "UPDATE_LIST_FRIENDS_SUCCESS", payload: responses })
-        } else {
-            // yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
         }
     } catch (error) {
     }
@@ -61,8 +68,8 @@ function* handleNumberMessageNotSeen(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             // yield put({ ...action, type: "UPDATE_LIST_FRIENDS_SUCCESS", payload: responses })
-        } else {
-            // yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
         }
     } catch (error) {
     }

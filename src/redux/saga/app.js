@@ -1,4 +1,5 @@
 import { put, takeLatest, all, join } from "redux-saga/effects";
+import { NavigationActions } from 'react-navigation';
 
 import { requestAPI } from '../../utils/func';
 
@@ -28,9 +29,14 @@ function* login(action) {
 function* changePassword(action) {
     try {
         const responses = yield requestAPI(action);
-        responses.status ?
+        if (responses.status) {
             yield put({ ...action, type: "CHANG_PASSWORD_SUCCESS", payload: responses })
-            : yield put({ ...action, type: "CHANG_PASSWORD_FAIL", payload: responses })
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
+            yield put({ ...action, type: "CHANG_PASSWORD_FAIL", payload: responses })
+        }
     } catch (error) {
     }
 }
@@ -39,9 +45,11 @@ function* updateProfile(action) {
     try {
         const responses = yield requestAPI(action);
         if (responses.status) {
-            // yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses });
             yield put({ ...action, type: "SAVE_PROFILE_LOCAL", payload: responses })
-        } else {
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "UPDATE_PROFILE_FAIL", payload: responses })
         }
     } catch (error) {
@@ -52,7 +60,6 @@ function* logOut(action) {
     try {
         const responses = yield requestAPI(action);
         if (responses.status) {
-            // yield put({ ...action, type: "USER_LOGIN_SUCCESS", payload: responses });
             yield put({ ...action, type: "CLEAR_PROFILE_LOCAL", payload: responses })
         } else {
             yield put({ ...action, type: "LOG_OUT_APP_FAIL", payload: responses })
@@ -78,7 +85,10 @@ function* searchUser(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "SEARCH_USER_SUCCESS", payload: responses })
-        } else {
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "SEARCH_USER_FAIL", payload: responses })
         }
     } catch (error) {
@@ -90,7 +100,10 @@ function* contactUs(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "CONTACT_US_SUCCESS", payload: responses })
-        } else {
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "CONTACT_US_FAIL", payload: responses })
         }
     } catch (error) {
@@ -102,7 +115,10 @@ function* getListFriends(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "GET_LIST_FRIENDS_SUCCESS", payload: responses })
-        } else {
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
         }
     } catch (error) {
@@ -112,11 +128,9 @@ function* getListFriends(action) {
 function* addFriend(action) {
     try {
         const responses = yield requestAPI(action);
-        // if (responses.status) {
-        //     yield put({ ...action, type: "GET_LIST_FRIENDS_SUCCESS", payload: responses })
-        // } else {
-        //     yield put({ ...action, type: "GET_LIST_FRIENDS_FAIL", payload: responses })
-        // }
+        if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
     } catch (error) {
     }
 }
@@ -126,9 +140,25 @@ function* requestReunion(action) {
         const responses = yield requestAPI(action);
         if (responses.status) {
             yield put({ ...action, type: "REQUEST_REUNION_SUCCESS", payload: responses })
-        } else {
+        } else if (!responses.status && responses.statusCode === 401) {
+            yield put({ ...action, type: 'UNAUTHORIZED' });
+        }
+        else {
             yield put({ ...action, type: "REQUEST_REUNION_FAIL", payload: responses })
         }
+    } catch (error) {
+    }
+}
+
+function* catchUnauthorized(action) {
+    try {
+        const navigateAction = NavigationActions.navigate({
+            routeName: 'Auth'
+        });
+        action.dispatch(navigateAction);
+
+        // const {dispatch} = this.props.navigation;
+
     } catch (error) {
     }
 }
@@ -147,7 +177,8 @@ export default function* saga() {
         takeLatest('GET_LIST_FRIENDS', getListFriends),
         takeLatest('ADD_FRIEND', addFriend),
         takeLatest('REQUEST_REUNION', requestReunion),
+        takeLatest('UNAUTHORIZED', catchUnauthorized)
 
-        
+
     ])
 }

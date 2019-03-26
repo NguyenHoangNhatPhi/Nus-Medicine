@@ -126,6 +126,7 @@ export default class Layout extends React.Component {
                             disable={disableEditProfile}
                             maxLength={4}
                             keyboardType="numeric"
+                            disable={true}
 
                         />
                     </View>

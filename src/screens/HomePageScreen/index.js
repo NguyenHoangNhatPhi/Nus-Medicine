@@ -143,7 +143,11 @@ class HomePageScreen extends Layout {
     connectSocket() {
         const { profile } = this.props;
         this.socket = SocketIOClient(Configs.BASE_SOCKET, {
-            query: { token: profile.accesstoken }
+            query: { token: profile.accesstoken },
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax: 5000,
+            reconnectionAttempts: Infinity
         });
         this.socket.emit('USER_CONNECTED', profile);
         this.socket.on('USER_CONNECTED', (updateProfile) => {
@@ -168,6 +172,9 @@ class HomePageScreen extends Layout {
             // }
 
         });
+        this.socket.on('RECONNECT_AFTER_SERVER_CRASHED',data =>{
+            console.log('--- RECONNECT_AFTER_SERVER_CRASHED : ',data);
+        })
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
             if (profile.email !== userDisconnected.email && this.props.isAtChatScreen &&

@@ -48,7 +48,8 @@ export const requestAPI = async (action, headers = {}) => {
         request['body'] = JSON.stringify(action.body);
     }
     let response = await fetch(action.api, request);
-    return await response.json();
+    const data = await response.json()
+    return { ...data, statusCode: response.status };
 }
 
 export const isIphoneX = () => {
