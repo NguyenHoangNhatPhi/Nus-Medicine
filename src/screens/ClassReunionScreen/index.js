@@ -30,7 +30,8 @@ class ClassReunionScreen extends Layout {
     }
 
     pickAppoitment = () => {
-        this.props.actions.app.requestReunion(this.state.chosenDate);
+        const {dispatch} = this.props.navigation;
+        this.props.actions.app.requestReunion(this.state.chosenDate,dispatch);
     }
 
     async  showPick() {

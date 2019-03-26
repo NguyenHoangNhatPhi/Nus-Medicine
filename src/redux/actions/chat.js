@@ -1,9 +1,10 @@
 import apiConfigs from '../../configs/api';
 
-export function addMessage(message) {
+export function addMessage(message, dispatch) {
     return {
         type: 'ADD_MESSAGE',
-        payload: message
+        payload: message,
+        dispatch
     }
 }
 
@@ -14,12 +15,13 @@ export function setFlagChatScreen(isAtChatScreen) {
     }
 }
 
-export function getHistoryChat(email, page = 1) {
+export function getHistoryChat(email, dispatch, page = 1) {
     return {
         type: 'GET_HISTORY_CHAT',
         method: 'GET',
         api: `${apiConfigs.BASE_API}user/history-chat?page=${page}&email=${email}`,
         token: true,
+        dispatch
     }
 }
 
@@ -30,12 +32,13 @@ export function updateCurrentUserChat(currentUserChat) {
     }
 }
 
-export function loadmoreChat(email, page = 1) {
+export function loadmoreChat(email, page = 1, dispatch) {
     return {
         type: 'LOAD_MORE_MESSAGE',
         method: 'GET',
         api: `${apiConfigs.BASE_API}user/history-chat?page=${page}&email=${email}`,
         token: true,
+        dispatch
     }
 }
 
@@ -46,22 +49,24 @@ export function clearSocketIdCurrenChat() {
     }
 }
 
-export function getListFriends(page = 1) {
+export function getListFriends(dispatch, page = 1) {
     return {
         type: 'GET_LIST_FRIENDS',
         method: 'GET',
         api: `${apiConfigs.BASE_API}user/list-friend?page=${page}`,
         token: true,
+        dispatch
     }
 }
 
-export function addFriend(body) {
+export function addFriend(body, dispatch) {
     return {
         type: 'ADD_FRIEND',
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/add-friend`,
         body,
         token: true,
+        dispatch
     }
 }
 
@@ -72,13 +77,14 @@ export function resetMessage() {
     }
 }
 
-export function updateAt(body) {
+export function updateAt(body, dispatch) {
     return {
         type: 'UPDATE_AT',
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/update-updatedAt`,
         token: true,
-        body
+        body,
+        dispatch
     }
 }
 
@@ -88,7 +94,8 @@ export function handleNumberMessageNotSeen(body) {
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/handle-number-of-message`,
         token: true,
-        body
+        body,
+        
     }
 }
 
@@ -98,7 +105,8 @@ export function setupPushNotiServer(body) {
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/create-device-after-signin`,
         token: true,
-        body
+        body,
+        
     }
 }
 

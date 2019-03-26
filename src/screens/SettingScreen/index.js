@@ -11,18 +11,21 @@ class SettingScreen extends Layout {
 
     changeSettingContact() {
         const { isContactable, isEnablePopup } = this.props.profile;
+        const { dispatch } = this.props.navigation;
         this.props.actions.app.updateProfile({
             isContactable: !isContactable,
             // isEnablePopup
-        })
+        }, dispatch)
     }
 
     changeSettingNoti() {
         const { isEnablePopup, isContactable } = this.props.profile;
+        const { dispatch } = this.props.navigation;
+
         this.props.actions.app.updateProfile({
             isEnablePopup: !isEnablePopup,
             // isContactable
-        })
+        }, dispatch)
     }
 
     gotoProfile() {

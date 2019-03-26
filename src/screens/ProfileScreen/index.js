@@ -40,6 +40,8 @@ class ProfileScreen extends Layout {
     submitEditProfile() {
         const fullname = this.fullnameRef.current.state.text;
         const graduationYear = this.graduationYearRef.current.state.text;
+        const { dispatch } = this.props.navigation;
+
         if (fullname.length < 4) {
             alert('The full name must be over 2 words !');
             return;
@@ -51,7 +53,7 @@ class ProfileScreen extends Layout {
         this.props.actions.app.updateProfile({
             fullname,
             graduationYear: parseInt(graduationYear)
-        })
+        }, dispatch)
         this.setState({
             disableEditProfile: true
         })

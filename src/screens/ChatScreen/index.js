@@ -47,10 +47,11 @@ class ChatScreen extends Layout {
 
     componentDidMount() {
         const { currentUserChat, navigation } = this.props;
+        const {dispatch} = this.props.navigation;
         const temptCurrentUserChat = navigation.getParam('temptCurrentUserChat', { email: '' });
         const checkCurrentUserChat = currentUserChat.email ? currentUserChat : temptCurrentUserChat
         this.props.actions.chat.setFlagChatScreen(true);
-        this.props.actions.chat.getHistoryChat(checkCurrentUserChat.email);
+        this.props.actions.chat.getHistoryChat(checkCurrentUserChat.email,dispatch);
     }
 
     back = () => {
@@ -96,10 +97,12 @@ class ChatScreen extends Layout {
 
     onSend(messagesSend = []) {
         const { profile, currentUserChat, messages } = this.props;
+        const {dispatch} = this.props.navigation;
+
         if (this.state.isUpdateListfriends && this.state.isCheckUpdateListFriends) {
             this.props.actions.chat.updateAt({
                 email: currentUserChat.email
-            });
+            },dispatch);
             this.setState({
                 isUpdateListfriends: false
             })
@@ -108,7 +111,7 @@ class ChatScreen extends Layout {
         if (messages.length === 0) {
             this.props.actions.chat.addFriend({
                 email: currentUserChat.email
-            });
+            },dispatch);
         }
         this.props.io.emit('PRIVATE_MESSAGE', ({
             sender: { socketId: profile.socketId, email: profile.email, fullname: profile.fullname },
@@ -118,9 +121,11 @@ class ChatScreen extends Layout {
 
     loadmoreMessage = () => {
         const { page, totalPage, currentUserChat, isLoadingEarlier } = this.props;
+        const {dispatch} = this.props.navigation;
+
         if (!isLoadingEarlier) {
             if ((page + 1) <= totalPage) {
-                this.props.actions.chat.loadmoreChat(currentUserChat.email, (page + 1));
+                this.props.actions.chat.loadmoreChat(currentUserChat.email, (page + 1),dispatch);
             }
         }
     }

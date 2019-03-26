@@ -20,7 +20,9 @@ class MessagingScreen extends Layout {
 
     searchUser() {
         const fullname = this.searchInputRef.current.state.value;
-        this.props.actions.app.searchUser(fullname);
+        const {dispatch} = this.props.navigation;
+
+        this.props.actions.app.searchUser(fullname,dispatch);
     }
 
     gotoOtherAlumini() {
@@ -33,14 +35,17 @@ class MessagingScreen extends Layout {
             titleList: `CLASS OF ${this.props.profile.graduationYear}`
         })
         const { profile } = this.props;
-        this.props.actions.app.searchGraduationYear(profile.graduationYear);
+        const {dispatch} = this.props.navigation;
+        this.props.actions.app.searchGraduationYear(profile.graduationYear,dispatch);
     }
 
     getListFriends = async () => {
         await this.setState({
             titleList: `CHAT HISTORY`
-        })
-        this.props.actions.chat.getListFriends();
+        });
+        const {dispatch} = this.props.navigation;
+
+        this.props.actions.chat.getListFriends(dispatch);
 
     }
 

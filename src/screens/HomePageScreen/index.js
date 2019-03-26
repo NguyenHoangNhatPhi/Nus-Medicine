@@ -23,6 +23,8 @@ class HomePageScreen extends Layout {
     }
 
     async  componentDidMount() {
+        const {dispatch} = this.props.navigation;
+
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
         if (Platform.OS === 'ios') {
@@ -48,7 +50,7 @@ class HomePageScreen extends Layout {
             });
             this.props.actions.chat.updateAt({
                 email: data.email
-            });
+            },dispatch);
             this.props.actions.app.changeRouterDrawer('Messaging');
         }
         // ---- Setup Firebase -----
@@ -65,6 +67,8 @@ class HomePageScreen extends Layout {
     async setupFirebase() {
         try {
             const enabled = await firebase.messaging().hasPermission();
+            const {dispatch} = this.props.navigation;
+
             if (enabled) {
                 if (_.isEmpty(this.props.fcmToken)) {
                     const fcmToken = await firebase.messaging().getToken();
@@ -121,7 +125,7 @@ class HomePageScreen extends Layout {
                     });
                     this.props.actions.chat.updateAt({
                         email: data.email
-                    });
+                    },dispatch);
                     this.props.actions.app.changeRouterDrawer('Messaging');
                 }
             });
@@ -172,8 +176,10 @@ class HomePageScreen extends Layout {
             // }
 
         });
-        this.socket.on('RECONNECT_AFTER_SERVER_CRASHED',data =>{
-            console.log('--- RECONNECT_AFTER_SERVER_CRASHED : ',data);
+        this.socket.on('RECONNECT_SOCKET',data =>{
+            console.log('--- RECONNECT_SOCKET : ',data);
+            // Truong hop 1: email = email cua chinh no ---> cap nhat socketID cua chinh no
+            // Truong hop 2: email = voi email cua thang dang chat --> cap nhat socketID
         })
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
@@ -208,6 +214,8 @@ class HomePageScreen extends Layout {
     addMessage(message) {
         if (message && message.message) {
             const { profile } = this.props;
+            const {dispatch} = this.props.navigation;
+
             const sender = message.sender;
             const temptMessage = [{
                 _id: message.time,
@@ -218,7 +226,7 @@ class HomePageScreen extends Layout {
                     avatar: 'https://placeimg.com/140/140/any',
                 }
             }];
-            this.props.actions.chat.addMessage(temptMessage);
+            this.props.actions.chat.addMessage(temptMessage,dispatch);
             if (profile.email !== sender.email && !this.props.isAtChatScreen) {
                 this.props.actions.chat.handleNumberMessageNotSeen({
                     isAdd: true,

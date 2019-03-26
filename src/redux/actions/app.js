@@ -55,23 +55,25 @@ export function changeRouterDrawer(router) {
     }
 }
 
-export function changePassword(body) {
+export function changePassword(body,dispatch) {
     return {
         type: 'CHANG_PASSWORD',
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/change-password`,
         body,
         token: true,
+        dispatch
     }
 }
 
-export function updateProfile(body) {
+export function updateProfile(body,dispatch) {
     return {
         type: 'UPDATE_PROFILE',
         method: 'POST',
         api: `${apiConfigs.BASE_API}user/update-user-info`,
         body,
         token: true,
+        dispatch
     }
 }
 
@@ -99,21 +101,23 @@ export function resetStateForgotPassword() {
     }
 }
 
-export function searchUser(fullname, page = 1) {
+export function searchUser(fullname,dispatch, page = 1) {
     return {
         type: 'SEARCH_USER',
         method: 'GET',
         api: `${apiConfigs.BASE_API}user/search-users?page=${page}&fullname=${fullname}`,
         token: true,
+        dispatch
     }
 }
 
-export function contactUs(body) {
+export function contactUs(body,dispatch) {
     return {
         type: 'CONTACT_US',
         method: 'POST',
         api: `${apiConfigs.BASE_API}contact-us`,
-        body
+        body,
+        dispatch
     }
 }
 
@@ -131,13 +135,14 @@ export function setUpSocket(socket) {
     }
 }
 
-export function searchGraduationYear(year) {
+export function searchGraduationYear(year,dispatch) {
     return {
         type: 'SEARCH_USER',
         method: 'GET',
         api: `${apiConfigs.BASE_API}user/search-users?graduationYear=${year}`,
         token: true,
-        graduationYear: true
+        graduationYear: true,
+        dispatch
     }
 }
 
@@ -155,7 +160,7 @@ export function resetListchat() {
     }
 }
 
-export function requestReunion(date) {
+export function requestReunion(date,dispatch) {
     return {
         type: 'REQUEST_REUNION',
         method: 'POST',
@@ -163,7 +168,8 @@ export function requestReunion(date) {
         body: {
             reunionDate: date
         },
-        token: true
+        token: true,
+        dispatch
     }
 }
 

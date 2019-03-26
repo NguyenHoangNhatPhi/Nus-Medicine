@@ -30,6 +30,8 @@ class ContactUsScreen extends Layout {
 
     sendMessage() {
         const email = this.emailInputRef.current.state.value;
+        const { dispatch } = this.props.navigation;
+
         if (!validateEmail(email)) {
             alert('Wrong Email');
             return;
@@ -41,7 +43,7 @@ class ContactUsScreen extends Layout {
         this.props.actions.app.contactUs({
             email,
             message: this.state.content
-        })
+        }, dispatch)
     }
 
     focusTextInputContent() {

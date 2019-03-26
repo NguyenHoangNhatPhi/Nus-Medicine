@@ -48,10 +48,11 @@ class ChangePasswordScreen extends Layout {
             return;
         }
         Keyboard.dismiss();
+        const {dispatch} = this.props.navigation;
         this.props.actions.app.changePassword({
             oldPassword,
             newPassword
-        });
+        },dispatch);
     }
 
     focusTextInputConfirmNewPassword() {

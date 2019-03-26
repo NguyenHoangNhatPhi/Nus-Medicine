@@ -156,9 +156,6 @@ function* catchUnauthorized(action) {
             routeName: 'Auth'
         });
         action.dispatch(navigateAction);
-
-        // const {dispatch} = this.props.navigation;
-
     } catch (error) {
     }
 }
