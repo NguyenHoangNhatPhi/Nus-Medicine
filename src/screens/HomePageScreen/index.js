@@ -18,12 +18,13 @@ class HomePageScreen extends Layout {
             appState: AppState.currentState,
         }
 
+        this.replyMessage = this.replyMessage.bind(this);
         this.addMessage = this.addMessage.bind(this);
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
     }
 
     async  componentDidMount() {
-        const {dispatch} = this.props.navigation;
+        const { dispatch } = this.props.navigation;
 
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
@@ -50,7 +51,7 @@ class HomePageScreen extends Layout {
             });
             this.props.actions.chat.updateAt({
                 email: data.email
-            },dispatch);
+            }, dispatch);
             this.props.actions.app.changeRouterDrawer('Messaging');
         }
         // ---- Setup Firebase -----
@@ -67,7 +68,7 @@ class HomePageScreen extends Layout {
     async setupFirebase() {
         try {
             const enabled = await firebase.messaging().hasPermission();
-            const {dispatch} = this.props.navigation;
+            const { dispatch } = this.props.navigation;
 
             if (enabled) {
                 if (_.isEmpty(this.props.fcmToken)) {
@@ -118,6 +119,8 @@ class HomePageScreen extends Layout {
                         isClear: true,
                         email: data.email
                     });
+                    this.props.actions.chat.resetMessage();
+                    this.props.actions.chat.getHistoryChat(data.email, dispatch);
                     this.props.actions.chat.updateCurrentUserChat(data);
                     this.props.navigation.navigate('Chat', {
                         temptCurrentUserChat: data,
@@ -125,7 +128,7 @@ class HomePageScreen extends Layout {
                     });
                     this.props.actions.chat.updateAt({
                         email: data.email
-                    },dispatch);
+                    }, dispatch);
                     this.props.actions.app.changeRouterDrawer('Messaging');
                 }
             });
@@ -153,42 +156,24 @@ class HomePageScreen extends Layout {
             reconnectionDelayMax: 5000,
             reconnectionAttempts: Infinity
         });
-        this.socket.emit('USER_CONNECTED', profile);
-        this.socket.on('USER_CONNECTED', (updateProfile) => {
-            // ----- get socket ID -----
-            this.props.actions.dataLocal.updateProfile(updateProfile)
-        });
-        this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
-            if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
-            ) {
-                this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
-            }
-            // da user vs logout 
-            // if (profile.email == updateCurrentChat.email) {
-            //     this.clearDataLocal();
-            // } else {
 
-            //     if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
-            //     ) {
-            //         console.log('updateCurrentUserChat :' + JSON.stringify(updateCurrentChat))
-            //         this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
-            //     }
-            // }
+        // this.socket.emit('USER_CONNECTED', profile);
 
-        });
-        this.socket.on('RECONNECT_SOCKET_khoa@abc.com',data =>{
-            console.log('--- RECONNECT_SOCKET : ',data);
-            // Truong hop 1: email = email cua chinh no ---> cap nhat socketID cua chinh no
-            // Truong hop 2: email = voi email cua thang dang chat --> cap nhat socketID
-            // 
-        });
+        // this.socket.on('USER_CONNECTED', (updateProfile) => {
+        //     this.props.actions.dataLocal.updateProfile(updateProfile);
+        // });
 
-        this.socket.on('RECONNECT_SOCKET_cr7@yahoo.com',data =>{
-            // console.log('--- RECONNECT_SOCKET : ',data);
-            // Truong hop 1: email = email cua chinh no ---> cap nhat socketID cua chinh no
-            // Truong hop 2: email = voi email cua thang dang chat --> cap nhat socketID
-            // RECONNECT_SOCKET_cr7@yahoo.com
-        })
+        // this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
+        //     if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
+        //     ) {
+        //         this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
+        //     }
+        // });
+
+        this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
+            console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
+            this.props.actions.dataLocal.updateProfile(data);
+        });
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
             if (profile.email !== userDisconnected.email && this.props.isAtChatScreen &&
@@ -198,7 +183,9 @@ class HomePageScreen extends Layout {
             }
         })
 
-        this.socket.on('REPLY_PRIVATE_MESSAGE', this.addMessage);
+        this.socket.on('REPLY_PRIVATE_MESSAGE', this.replyMessage);
+        this.socket.on('ADD_MESSAGE', this.addMessage);
+
         this.props.actions.app.setUpSocket(this.socket);
     }
 
@@ -218,13 +205,12 @@ class HomePageScreen extends Layout {
         this.setState({ appState: nextAppState });
     };
 
-
     addMessage(message) {
         if (message && message.message) {
-            const { profile } = this.props;
-            const {dispatch} = this.props.navigation;
-
+            const { profile, isAtChatScreen, currentUserChat } = this.props;
+            const { dispatch } = this.props.navigation;
             const sender = message.sender;
+            const receiver = message.receiver;
             const temptMessage = [{
                 _id: message.time,
                 text: message.message,
@@ -234,21 +220,86 @@ class HomePageScreen extends Layout {
                     avatar: 'https://placeimg.com/140/140/any',
                 }
             }];
-            this.props.actions.chat.addMessage(temptMessage,dispatch);
-            if (profile.email !== sender.email && !this.props.isAtChatScreen) {
-                this.props.actions.chat.handleNumberMessageNotSeen({
-                    isAdd: true,
-                    email: sender.email
-                });
-                console.log('active : ', this.state.appState)
-                // ---- local push -----
-                if (this.state.appState === 'active') {
+            
+            if(isAtChatScreen){
+                if(profile.email == receiver.email){
+                    this.props.actions.chat.addMessage(temptMessage, dispatch);
+                }else{
+                    this.props.actions.chat.handleNumberMessageNotSeen({
+                        isAdd: true,
+                        email: sender.email
+                    });
                     this.sendLocalPush(sender, message.message);
-                } else {
-                    console.log('app is runing background');
                 }
-
             }
+
+            // 1. Dang o man hinh chat 
+            // if (isAtChatScreen) {
+            //     if (profile.email === sender.email) {
+            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
+            //     }
+            //     if (currentUserChat.email === receiver.email) {
+            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
+            //     } else {
+            //         this.sendLocalPush(sender, message.message);
+            //         this.props.actions.chat.handleNumberMessageNotSeen({
+            //             isAdd: true,
+            //             email: receiver.email
+            //         });
+            //     }
+            // } else {
+            //     this.props.actions.chat.handleNumberMessageNotSeen({
+            //         isAdd: true,
+            //         email: receiver.email
+            //     });
+            //     this.sendLocalPush(sender, message.message);
+            // }
+
+        }
+    }
+
+    replyMessage(message) {
+        if (message && message.message) {
+            const { profile, isAtChatScreen, currentUserChat } = this.props;
+            const { dispatch } = this.props.navigation;
+            const sender = message.sender;
+            const receiver = message.receiver;
+            const temptMessage = [{
+                _id: message.time,
+                text: message.message,
+                createdAt: message.time,
+                user: {
+                    _id: message.isSender ? 1 : 2,
+                    avatar: 'https://placeimg.com/140/140/any',
+                }
+            }];
+            if (isAtChatScreen) {
+                if (profile.email === sender.email) {
+                    this.props.actions.chat.addMessage(temptMessage, dispatch);
+                }
+            }
+            // 1. Dang o man hinh chat 
+            // if (isAtChatScreen) {
+            //     if (profile.email === sender.email) {
+            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
+            //     }
+            //     if (currentUserChat.email === receiver.email) {
+            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
+            //     } else {
+            //         this.sendLocalPush(sender, message.message);
+            //         this.props.actions.chat.handleNumberMessageNotSeen({
+            //             isAdd: true,
+            //             email: receiver.email
+            //         });
+            //     }
+            // } else {
+            //     this.props.actions.chat.handleNumberMessageNotSeen({
+            //         isAdd: true,
+            //         email: receiver.email
+            //     });
+            //     this.sendLocalPush(sender, message.message);
+            // }
+
         }
     }
 

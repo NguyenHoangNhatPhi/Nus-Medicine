@@ -2,7 +2,7 @@ import { GiftedChat } from '../../components/react-native-gifted-chat';
 
 const initialState = {
   isAtChatScreen: false,
-  currentUserChat: {},
+  currentUserChat: { email: '' },
   messages: [],
   page: 0,
   totalPage: 0,
@@ -78,7 +78,9 @@ function dataLocal(state = initialState, action) {
     case 'RESET_MESSAGE':
       return {
         ...state,
-        messages: []
+        messages: [],
+        page: 0,
+        totalPage: 0,
       }
 
 

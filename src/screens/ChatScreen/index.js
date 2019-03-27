@@ -47,11 +47,30 @@ class ChatScreen extends Layout {
 
     componentDidMount() {
         const { currentUserChat, navigation } = this.props;
-        const {dispatch} = this.props.navigation;
+        const { dispatch } = this.props.navigation;
         const temptCurrentUserChat = navigation.getParam('temptCurrentUserChat', { email: '' });
         const checkCurrentUserChat = currentUserChat.email ? currentUserChat : temptCurrentUserChat
         this.props.actions.chat.setFlagChatScreen(true);
-        this.props.actions.chat.getHistoryChat(checkCurrentUserChat.email,dispatch);
+        this.props.actions.chat.getHistoryChat(checkCurrentUserChat.email, dispatch);
+        this.setupUserChatSocket();
+    }
+
+    setupUserChatSocket() {
+        const { currentUserChat, isAtChatScreen } = this.props;
+        this.props.io.on(`RECONNECT_SOCKET_${currentUserChat.email}`, data => {
+             console.log(`------RECONNECT_SOCKET_${this.props.currentUserChat.email} : `, data);
+            if (currentUserChat.email === data.email) {
+                this.props.actions.chat.updateCurrentUserChat(data);
+            }
+           
+            // if (isAtChatScreen && currentUserChat.email === data.email
+            // ) {
+            //     console.log('+++++ : ',isAtChatScreen)
+            //     this.props.actions.chat.updateCurrentUserChat(data);
+            // }else{
+            //     console.log('------ : ',isAtChatScreen)
+            // }
+        })
     }
 
     back = () => {
@@ -97,12 +116,12 @@ class ChatScreen extends Layout {
 
     onSend(messagesSend = []) {
         const { profile, currentUserChat, messages } = this.props;
-        const {dispatch} = this.props.navigation;
+        const { dispatch } = this.props.navigation;
 
         if (this.state.isUpdateListfriends && this.state.isCheckUpdateListFriends) {
             this.props.actions.chat.updateAt({
                 email: currentUserChat.email
-            },dispatch);
+            }, dispatch);
             this.setState({
                 isUpdateListfriends: false
             })
@@ -111,7 +130,7 @@ class ChatScreen extends Layout {
         if (messages.length === 0) {
             this.props.actions.chat.addFriend({
                 email: currentUserChat.email
-            },dispatch);
+            }, dispatch);
         }
         this.props.io.emit('PRIVATE_MESSAGE', ({
             sender: { socketId: profile.socketId, email: profile.email, fullname: profile.fullname },
@@ -121,17 +140,19 @@ class ChatScreen extends Layout {
 
     loadmoreMessage = () => {
         const { page, totalPage, currentUserChat, isLoadingEarlier } = this.props;
-        const {dispatch} = this.props.navigation;
+        const { dispatch } = this.props.navigation;
 
         if (!isLoadingEarlier) {
             if ((page + 1) <= totalPage) {
-                this.props.actions.chat.loadmoreChat(currentUserChat.email, (page + 1),dispatch);
+                this.props.actions.chat.loadmoreChat(currentUserChat.email, (page + 1), dispatch);
             }
         }
     }
 
 
     componentWillUnmount() {
+        // const {dispatch} = this.props.navigation;
+        // this.props.actions.chat.getHistoryChat(this.props.currentUserChat.email, dispatch);
         this.props.actions.chat.setFlagChatScreen(false);
         this.props.actions.chat.resetMessage();
     }
@@ -146,7 +167,8 @@ const mapStateToProps = state => ({
     loadingGetHistory: state.chat.loadingGetHistory,
     page: state.chat.page,
     totalPage: state.chat.totalPage,
-    isLoadingEarlier: state.chat.isLoadingEarlier
+    isLoadingEarlier: state.chat.isLoadingEarlier,
+    isAtChatScreen: state.chat.isAtChatScreen,
 })
 
 export default connectRedux(mapStateToProps, ChatScreen);
