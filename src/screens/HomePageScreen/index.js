@@ -8,6 +8,7 @@ import _ from 'ramda';
 import Configs from '../../configs/api';
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
+import { cloneableGenerator } from 'redux-saga/utils';
 
 
 class HomePageScreen extends Layout {
@@ -40,19 +41,23 @@ class HomePageScreen extends Layout {
             const action = notificationOpen.action;
             const notification = notificationOpen.notification;
             const data = notification.data;
-            this.props.actions.chat.handleNumberMessageNotSeen({
-                isClear: true,
-                email: data.email
-            });
-            this.props.actions.chat.updateCurrentUserChat(data);
-            this.props.navigation.navigate('Chat', {
-                temptCurrentUserChat: data,
-                titleList: 'CHAT HISTORY'
-            });
-            this.props.actions.chat.updateAt({
-                email: data.email
-            }, dispatch);
-            this.props.actions.app.changeRouterDrawer('Messaging');
+            // console.log('------ data : ', data);
+            if (!data.type || data.type !== 'news') {
+                this.props.actions.chat.handleNumberMessageNotSeen({
+                    isClear: true,
+                    email: data.email
+                });
+                this.props.actions.chat.updateCurrentUserChat(data);
+                this.props.navigation.navigate('Chat', {
+                    temptCurrentUserChat: data,
+                    titleList: 'CHAT HISTORY'
+                });
+                this.props.actions.chat.updateAt({
+                    email: data.email
+                }, dispatch);
+                this.props.actions.app.changeRouterDrawer('Messaging');
+            }
+
         }
         // ---- Setup Firebase -----
         const channel = new firebase.notifications.Android.Channel(
@@ -111,26 +116,31 @@ class HomePageScreen extends Layout {
                 const action = notificationOpen.action;
                 const notification = notificationOpen.notification;
                 const data = notification.data;
+                // this.props.actions.chat.setFlagChatScreen(true);
                 if (Platform.OS === 'ios') {
                     firebase.notifications().setBadge(0);
                 }
-                if (!this.props.isAtChatScreen) {
-                    this.props.actions.chat.handleNumberMessageNotSeen({
-                        isClear: true,
-                        email: data.email
-                    });
-                    this.props.actions.chat.resetMessage();
-                    this.props.actions.chat.getHistoryChat(data.email, dispatch);
-                    this.props.actions.chat.updateCurrentUserChat(data);
-                    this.props.navigation.navigate('Chat', {
-                        temptCurrentUserChat: data,
-                        titleList: 'CHAT HISTORY'
-                    });
-                    this.props.actions.chat.updateAt({
-                        email: data.email
-                    }, dispatch);
-                    this.props.actions.app.changeRouterDrawer('Messaging');
+                if (!data.type || data.type !== 'news') {
+                    if (!this.props.isAtChatScreen) {
+                        this.props.actions.chat.handleNumberMessageNotSeen({
+                            isClear: true,
+                            email: data.email
+                        });
+                        this.props.actions.chat.resetMessage();
+                        this.props.actions.chat.getHistoryChat(data.email, dispatch);
+                        this.props.actions.chat.updateCurrentUserChat(data);
+                        this.props.navigation.navigate('Chat', {
+                            temptCurrentUserChat: data,
+                            titleList: 'CHAT HISTORY'
+                        });
+                        this.props.actions.chat.updateAt({
+                            email: data.email
+                        }, dispatch);
+                        this.props.actions.app.changeRouterDrawer('Messaging');
+                        this.props.actions.chat.setFlagChatScreen(true);
+                    }
                 }
+
             });
         } catch (error) {
         }
@@ -171,7 +181,7 @@ class HomePageScreen extends Layout {
         // });
 
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
-            console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
+            // console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
             this.props.actions.dataLocal.updateProfile(data);
         });
 
@@ -220,40 +230,24 @@ class HomePageScreen extends Layout {
                     avatar: 'https://placeimg.com/140/140/any',
                 }
             }];
-            
-            if(isAtChatScreen){
-                if(profile.email == receiver.email){
+
+            if (isAtChatScreen) {
+                if (currentUserChat.email == sender.email) {
                     this.props.actions.chat.addMessage(temptMessage, dispatch);
-                }else{
+                } else {
                     this.props.actions.chat.handleNumberMessageNotSeen({
                         isAdd: true,
                         email: sender.email
                     });
                     this.sendLocalPush(sender, message.message);
                 }
+            } else {
+                this.props.actions.chat.handleNumberMessageNotSeen({
+                    isAdd: true,
+                    email: sender.email
+                });
+                this.sendLocalPush(sender, message.message);
             }
-
-            // 1. Dang o man hinh chat 
-            // if (isAtChatScreen) {
-            //     if (profile.email === sender.email) {
-            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
-            //     }
-            //     if (currentUserChat.email === receiver.email) {
-            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
-            //     } else {
-            //         this.sendLocalPush(sender, message.message);
-            //         this.props.actions.chat.handleNumberMessageNotSeen({
-            //             isAdd: true,
-            //             email: receiver.email
-            //         });
-            //     }
-            // } else {
-            //     this.props.actions.chat.handleNumberMessageNotSeen({
-            //         isAdd: true,
-            //         email: receiver.email
-            //     });
-            //     this.sendLocalPush(sender, message.message);
-            // }
 
         }
     }
@@ -278,28 +272,6 @@ class HomePageScreen extends Layout {
                     this.props.actions.chat.addMessage(temptMessage, dispatch);
                 }
             }
-            // 1. Dang o man hinh chat 
-            // if (isAtChatScreen) {
-            //     if (profile.email === sender.email) {
-            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
-            //     }
-            //     if (currentUserChat.email === receiver.email) {
-            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
-            //     } else {
-            //         this.sendLocalPush(sender, message.message);
-            //         this.props.actions.chat.handleNumberMessageNotSeen({
-            //             isAdd: true,
-            //             email: receiver.email
-            //         });
-            //     }
-            // } else {
-            //     this.props.actions.chat.handleNumberMessageNotSeen({
-            //         isAdd: true,
-            //         email: receiver.email
-            //     });
-            //     this.sendLocalPush(sender, message.message);
-            // }
-
         }
     }
 
