@@ -37,7 +37,7 @@ class ContactUsScreen extends Layout {
             return;
         }
         if (this.state.content.length < 10) {
-            alert('The content must at least 10 words !');
+            alert('The message must contain at least 10 characters !');
             return;
         }
         this.props.actions.app.contactUs({
@@ -57,9 +57,9 @@ class ContactUsScreen extends Layout {
     async componentDidUpdate(prevProps, prevState) {
         if (this.props.sendContactUsSuccess && prevProps.isLoadingContactUs !== this.props.isLoadingContactUs) {
             Keyboard.dismiss();
-            await this.setState({
-                content: ''
-            });
+            // await this.setState({
+            //     content: ''
+            // });
 
         }
     }
