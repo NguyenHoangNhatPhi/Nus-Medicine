@@ -138,6 +138,23 @@ class HomePageScreen extends Layout {
                         }, dispatch);
                         this.props.actions.app.changeRouterDrawer('Messaging');
                         this.props.actions.chat.setFlagChatScreen(true);
+                    }else{
+                        if(data.email !== this.props.currentUserChat.email){
+                            this.props.actions.chat.handleNumberMessageNotSeen({
+                                isClear: true,
+                                email: data.email
+                            });
+                            this.props.actions.chat.resetMessage();
+                            this.props.actions.chat.getHistoryChat(data.email, dispatch);
+                            this.props.actions.chat.updateCurrentUserChat(data);
+                            this.props.navigation.navigate('Chat', {
+                                temptCurrentUserChat: data,
+                                titleList: 'CHAT HISTORY'
+                            });
+                            this.props.actions.chat.updateAt({
+                                email: data.email
+                            }, dispatch);
+                        }
                     }
                 }
 
