@@ -15,8 +15,11 @@ class ContactUsScreen extends Layout {
         }
         this.emailInputRef = React.createRef();
         this.contentInputRef = React.createRef();
+        this.scrollRef = React.createRef();
+
         this.sendMessage = this.sendMessage.bind(this);
         this.focusTextInputContent = this.focusTextInputContent.bind(this);
+
     }
 
     componentDidMount() {
@@ -25,7 +28,10 @@ class ContactUsScreen extends Layout {
             const { email } = profile;
             this.emailInputRef.current.setStateFromParent(email)
         }
+    }
 
+    onFocusText =() =>{
+        this.scrollRef.current.scrollToEnd();
     }
 
     sendMessage() {

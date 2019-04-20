@@ -54,9 +54,9 @@ export default class Layout extends React.Component {
             <BackgroundView>
                 <View style={styles.container}>
                     <NavigationEvents
-                        onDidBlur={payload =>{
+                        onDidBlur={payload => {
                             this.setState({
-                                content:''
+                                content: ''
                             });
                             this.props.actions.app.resetStateContactUs();
                         }}
@@ -73,6 +73,7 @@ export default class Layout extends React.Component {
                     <View style={styles.containerCard} >
                         <View style={styles.containerForm} >
                             <ScrollView
+                                ref={this.scrollRef}
                                 keyboardShouldPersistTaps="always"
                                 showsVerticalScrollIndicator={false}
                             >
@@ -106,6 +107,7 @@ export default class Layout extends React.Component {
                                         underlineColorAndroid='transparent'
                                         onSubmitEditing={this.sendMessage}
                                         placeholder="Content"
+                                        onFocus={this.onFocusText}
                                     />
                                 </View>
                                 <View style={{ height: scaleSzie(40), justifyContent: 'center', alignItems: 'center' }} >
