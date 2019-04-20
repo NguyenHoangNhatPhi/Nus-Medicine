@@ -14,6 +14,11 @@ class RenionSuccessScreen extends Layout {
         super(props);
     }
 
+    backHome =() =>{
+        this.props.navigation.goBack();
+        this.props.navigation.navigate('HomePage');
+    }
+
 
 }
 

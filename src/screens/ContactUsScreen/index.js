@@ -57,9 +57,9 @@ class ContactUsScreen extends Layout {
     async componentDidUpdate(prevProps, prevState) {
         if (this.props.sendContactUsSuccess && prevProps.isLoadingContactUs !== this.props.isLoadingContactUs) {
             Keyboard.dismiss();
-            // await this.setState({
-            //     content: ''
-            // });
+            await this.setState({
+                content: ''
+            });
 
         }
     }

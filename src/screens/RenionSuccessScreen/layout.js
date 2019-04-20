@@ -32,7 +32,7 @@ export default class Layout extends React.Component {
                                 Thank you for your Class Reunion request. We will get in touch with you within 1 - 3 working days.
                         </Text>
                             <ButtonSubmit
-                                onPress={() => this.props.navigation.navigate('HomePage')}
+                                onPress={this.backHome}
                                 title="Go back Home screen "
                             />
                         </View>
