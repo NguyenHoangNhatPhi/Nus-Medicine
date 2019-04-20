@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import AppNavigators from './src/navigators/AppNavigator';
 import configureStore from './src/redux/store';
 import { name as appName } from './app.json';
+import NavigatorServices from './src/navigators/NavigatorServices';
 
 
 class App extends React.Component {
@@ -26,7 +27,11 @@ class App extends React.Component {
                 <PersistGate
                     loading={<View />}
                     persistor={this.state.persistor}>
-                    <AppNavigators />
+                    <AppNavigators
+                        ref={navigatorRef => {
+                            NavigatorServices.setContainer(navigatorRef);
+                        }}
+                    />
                 </PersistGate>
             </Provider>
         );
@@ -37,4 +42,3 @@ class App extends React.Component {
 AppRegistry.registerComponent(appName, () => App);
 
 
-    

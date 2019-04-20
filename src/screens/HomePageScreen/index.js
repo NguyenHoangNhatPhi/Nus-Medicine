@@ -181,7 +181,7 @@ class HomePageScreen extends Layout {
         // });
 
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
-            // console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
+            console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
             this.props.actions.dataLocal.updateProfile(data);
         });
 
@@ -210,7 +210,7 @@ class HomePageScreen extends Layout {
             this.connectSocket();
         } else {
             this.props.io.emit('IS_BACKGROUND', this.props.profile);
-            this.props.actions.chat.setFlagChatScreen(false);
+            // this.props.actions.chat.setFlagChatScreen(false);
         }
         this.setState({ appState: nextAppState });
     };
@@ -267,11 +267,17 @@ class HomePageScreen extends Layout {
                     avatar: 'https://placeimg.com/140/140/any',
                 }
             }];
-            if (isAtChatScreen) {
-                if (profile.email === sender.email) {
-                    this.props.actions.chat.addMessage(temptMessage, dispatch);
-                }
+            if (profile.email === sender.email) {
+                this.props.actions.chat.addMessage(temptMessage, dispatch);
             }
+            // if (isAtChatScreen) {
+            //     console.log('----- isAtChatScreen ');
+            //     if (profile.email === sender.email) {
+            //         this.props.actions.chat.addMessage(temptMessage, dispatch);
+            //     }
+            // }else{
+            //     console.log('----- not at chat screen ');
+            // }
         }
     }
 
@@ -329,6 +335,7 @@ class HomePageScreen extends Layout {
         AppState.removeEventListener('change', this.handleAppStateChange);
         this.notificationListener();
         this.notificationOpenedListener();
+        this.props.io.disconnect();
     }
 
 

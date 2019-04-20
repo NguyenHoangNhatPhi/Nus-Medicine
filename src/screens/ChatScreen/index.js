@@ -58,7 +58,7 @@ class ChatScreen extends Layout {
     setupUserChatSocket() {
         const { currentUserChat, isAtChatScreen } = this.props;
         this.props.io.on(`RECONNECT_SOCKET_${currentUserChat.email}`, data => {
-            //  console.log(`------RECONNECT_SOCKET_${this.props.currentUserChat.email} : `, data);
+             console.log(`------RECONNECT_SOCKET_${this.props.currentUserChat.email} : `, data);
             if (currentUserChat.email === data.email) {
                 this.props.actions.chat.updateCurrentUserChat(data);
             }
