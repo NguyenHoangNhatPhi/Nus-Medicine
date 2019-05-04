@@ -138,8 +138,8 @@ class HomePageScreen extends Layout {
                         }, dispatch);
                         this.props.actions.app.changeRouterDrawer('Messaging');
                         this.props.actions.chat.setFlagChatScreen(true);
-                    }else{
-                        if(data.email !== this.props.currentUserChat.email){
+                    } else {
+                        if (data.email !== this.props.currentUserChat.email) {
                             this.props.actions.chat.handleNumberMessageNotSeen({
                                 isClear: true,
                                 email: data.email
@@ -184,18 +184,6 @@ class HomePageScreen extends Layout {
             reconnectionAttempts: Infinity
         });
 
-        // this.socket.emit('USER_CONNECTED', profile);
-
-        // this.socket.on('USER_CONNECTED', (updateProfile) => {
-        //     this.props.actions.dataLocal.updateProfile(updateProfile);
-        // });
-
-        // this.socket.on('UPDATE_USER_CONNECTED', (updateCurrentChat) => {
-        //     if (this.props.isAtChatScreen && this.props.currentUserChat.email === updateCurrentChat.email
-        //     ) {
-        //         this.props.actions.chat.updateCurrentUserChat(updateCurrentChat)
-        //     }
-        // });
 
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
             console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
@@ -217,6 +205,8 @@ class HomePageScreen extends Layout {
     }
 
     handleAppStateChange = (nextAppState) => {
+        const { isAtChatScreen, currentUserChat } = this.props;
+        const { dispatch } = this.props.navigation;
         if (
             this.state.appState.match(/inactive|background/) &&
             nextAppState === 'active'
@@ -225,6 +215,9 @@ class HomePageScreen extends Layout {
                 firebase.notifications().setBadge(0);
             }
             this.connectSocket();
+            if (isAtChatScreen) {
+                this.props.actions.chat.getHistoryChat(currentUserChat.email, dispatch);
+            }
         } else {
             this.props.io.emit('IS_BACKGROUND', this.props.profile);
             // this.props.actions.chat.setFlagChatScreen(false);
