@@ -223,6 +223,7 @@ class HomePageScreen extends Layout {
             // this.props.actions.chat.setFlagChatScreen(false);
         }
         this.setState({ appState: nextAppState });
+        console.log('------- Phi ');
     };
 
     addMessage(message) {

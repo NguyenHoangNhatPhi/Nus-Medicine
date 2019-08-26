@@ -118,14 +118,14 @@ class ChatScreen extends Layout {
         const { profile, currentUserChat, messages } = this.props;
         const { dispatch } = this.props.navigation;
 
-        if (this.state.isUpdateListfriends && this.state.isCheckUpdateListFriends) {
-            this.props.actions.chat.updateAt({
-                email: currentUserChat.email
-            }, dispatch);
-            this.setState({
-                isUpdateListfriends: false
-            })
-        }
+        // if (this.state.isUpdateListfriends && this.state.isCheckUpdateListFriends) {
+        //     this.props.actions.chat.updateAt({
+        //         email: currentUserChat.email
+        //     }, dispatch);
+        //     this.setState({
+        //         isUpdateListfriends: false
+        //     })
+        // }
 
         if (messages.length === 0) {
             this.props.actions.chat.addFriend({

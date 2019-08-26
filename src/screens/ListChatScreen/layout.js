@@ -101,31 +101,3 @@ class ItemUserChat extends React.Component {
 }
 
 
-// const ItemUserChat = props => {
-//     const { user } = props;
-//     const messageUnread = user.messageUnread ? user.messageUnread : '';
-//     return (
-//         <Button onPress={() => props.onPress()} style={{
-//             width: Configs.FULL_WIDTH, height: scaleSzie(60),
-//             flexDirection: 'row', borderBottomColor: '#fff', borderBottomWidth: 0.5
-//         }} >
-//             <View style={{ flex: 1, justifyContent: 'center', paddingLeft: scaleSzie(12) }} >
-//                 <Text style={{ color: '#fff', fontSize: scaleSzie(18), fontWeight: 'bold' }} >
-//                     {user.fullname}
-//                 </Text>
-//             </View>
-//             <View style={{
-//                 justifyContent: 'center', paddingHorizontal: scaleSzie(10)
-//             }} >
-//                 <ImageBackground source={MESSAGE} style={{
-//                     width: scaleSzie(30), height: scaleSzie(30),
-//                     justifyContent: 'center', alignItems: 'center', paddingBottom: scaleSzie(4)
-//                 }} >
-//                     <Text style={{ color: '#fff', fontSize: scaleSzie(16), fontWeight: 'bold' }} >
-//                         {`${messageUnread}`}
-//                     </Text>
-//                 </ImageBackground>
-//             </View>
-//         </Button>
-//     );
-// }
