@@ -34,7 +34,9 @@ class NewsScreen extends Layout {
     }
 
     refreshWebview = () => {
-        this.webviewRef.current.reload();
+        // this.webviewRef.current.reload(); 
+        // this.webviewRef.current.reload()
+        console.log(this.webviewRef.current);
 
     }
 

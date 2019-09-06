@@ -35,6 +35,8 @@ pod 'Crashlytics'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
+pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
 
 
 post_install do |installer|

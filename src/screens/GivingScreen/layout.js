@@ -2,9 +2,9 @@ import React from 'react';
 import {
     View,
     Image,
-    WebView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { WebView } from 'react-native-webview';
 
 import { HeaderScreen, Text, BackgroundView, TextInputCustom, Button, Loading } from '../../components';
 import styles from './styles';

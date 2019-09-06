@@ -126,7 +126,7 @@ android {
     defaultConfig {
         applicationId "com.nus.medicine"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion 28
         versionCode 13
         versionName "1.0"
         ndk {
@@ -165,6 +165,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-webview')
     compile project(':react-native-firebase')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')

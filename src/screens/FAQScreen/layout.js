@@ -3,13 +3,12 @@ import {
     View,
     TouchableOpacity,
     Dimensions,
-    WebView,
     Platform
 } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HTML from 'react-native-render-html';
-import HTMLView from 'react-native-htmlview';
+import { WebView } from 'react-native-webview';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button,BackgroundView } from '../../components';
 import styles from './styles';
