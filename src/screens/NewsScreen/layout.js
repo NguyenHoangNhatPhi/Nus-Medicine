@@ -2,9 +2,9 @@ import React from 'react';
 import {
     View,
     Image,
-    WebView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { WebView } from 'react-native-webview';
 
 import { HeaderScreen, Text, BackgroundView, TextInputCustom, Button, Loading } from '../../components';
 import styles from './styles';
@@ -52,6 +52,7 @@ export default class Layout extends React.Component {
                 <View style={{ flex: 1 }} >
                     <WebView
                         ref={this.webviewRef}
+                        useWebKit={true}
                         source={{ uri: 'http://nusmedicine.nus.edu.sg/medias/news-info' }}
                         style={{ flex: 1 }}
                         onLoadEnd={() => this.setState({ loadingWebview: false })}

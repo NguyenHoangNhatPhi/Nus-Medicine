@@ -23,6 +23,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		233511AD2238164300F4E295 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 233511AC2238164300F4E295 /* GoogleService-Info.plist */; };
+		2352A3462322BE0E00962451 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2352A3402322BE0200962451 /* libRNCWebView.a */; };
 		6141BC909D294E12B563ADC9 /* libRNLocalNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE98CA6527C4D229D340311 /* libRNLocalNotifications.a */; };
 		6BE15BA86E0E4B8381270897 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3680B5E03E49EF80A0F3F7 /* libRNGestureHandler.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -116,6 +117,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
+		};
+		2352A33F2322BE0200962451 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2352A3162322BE0200962451 /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
 		};
 		2D16E6711FA4F8DC00B85C8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -366,6 +374,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		231EF17F22395D7C000D778D /* nusmedicine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = nusmedicine.entitlements; path = nusmedicine/nusmedicine.entitlements; sourceTree = "<group>"; };
 		233511AC2238164300F4E295 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2352A3162322BE0200962451 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		23536AC9E935575A9AD7E5A7 /* libPods-nusmedicine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nusmedicine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -418,6 +427,7 @@
 				8AB9080523A6A07E58BAD692 /* libPods-nusmedicine.a in Frameworks */,
 				6141BC909D294E12B563ADC9 /* libRNLocalNotifications.a in Frameworks */,
 				098BF9948D3343FD912CDA5A /* libRNFirebase.a in Frameworks */,
+				2352A3462322BE0E00962451 /* libRNCWebView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +569,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2352A3172322BE0200962451 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2352A3402322BE0200962451 /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +607,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2352A3162322BE0200962451 /* RNCWebView.xcodeproj */,
 				D4767C9821A419BF00D7EF4C /* RNVectorIcons.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -817,6 +836,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 2352A3172322BE0200962451 /* Products */;
+					ProjectRef = 2352A3162322BE0200962451 /* RNCWebView.xcodeproj */;
+				},
+				{
 					ProductGroup = 233511A72238130C00F4E295 /* Products */;
 					ProjectRef = 130DA7742C884B198981FE2B /* RNFirebase.xcodeproj */;
 				},
@@ -909,6 +932,13 @@
 			fileType = archive.ar;
 			path = libRNFirebase.a;
 			remoteRef = 233511AA2238130C00F4E295 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2352A3402322BE0200962451 /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = 2352A33F2322BE0200962451 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */ = {
@@ -1270,7 +1300,7 @@
 				PRODUCT_NAME = nusmedicine;
 				PROVISIONING_PROFILE = "76c83e35-88e5-4755-a65d-a36de13afb46";
 				"PROVISIONING_PROFILE[arch=*]" = "76c83e35-88e5-4755-a65d-a36de13afb46";
-				PROVISIONING_PROFILE_SPECIFIER = NusmedicineAdhoc;
+				PROVISIONING_PROFILE_SPECIFIER = "Nusmedicine AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1305,7 +1335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nusmedicine.app;
 				PRODUCT_NAME = nusmedicine;
 				PROVISIONING_PROFILE = "76c83e35-88e5-4755-a65d-a36de13afb46";
-				PROVISIONING_PROFILE_SPECIFIER = NusmedicineAdhoc;
+				PROVISIONING_PROFILE_SPECIFIER = "Nusmedicine AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

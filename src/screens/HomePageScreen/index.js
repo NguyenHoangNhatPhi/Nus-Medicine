@@ -186,7 +186,7 @@ class HomePageScreen extends Layout {
 
 
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
-            console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
+            // console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
             this.props.actions.dataLocal.updateProfile(data);
         });
 
@@ -223,7 +223,7 @@ class HomePageScreen extends Layout {
             // this.props.actions.chat.setFlagChatScreen(false);
         }
         this.setState({ appState: nextAppState });
-        console.log('------- Phi ');
+        // console.log('------- Phi ');
     };
 
     addMessage(message) {
