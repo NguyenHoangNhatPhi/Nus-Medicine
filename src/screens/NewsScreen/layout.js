@@ -2,6 +2,7 @@ import React from 'react';
 import {
     View,
     Image,
+    // WebView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { WebView } from 'react-native-webview';
