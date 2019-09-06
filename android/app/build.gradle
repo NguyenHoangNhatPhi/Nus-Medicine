@@ -126,7 +126,7 @@ android {
     defaultConfig {
         applicationId "com.nus.medicine"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion 28
         versionCode 13
         versionName "1.0"
         ndk {
