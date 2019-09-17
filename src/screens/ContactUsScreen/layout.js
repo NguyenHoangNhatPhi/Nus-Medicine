@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     View,
-    TextInput, Platform
+    TextInput, Platform,ScrollView
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,7 +11,6 @@ import { HeaderScreen, Text, ButtonSubmit, BackgroundView, Button, TextInputCust
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Layout extends React.Component {
 

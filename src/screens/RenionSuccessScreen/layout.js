@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     DatePickerIOS,
-    Platform
+    Platform,
+    ScrollView
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -10,7 +11,6 @@ import { HeaderScreen, Text, ButtonSubmit, Button, BackgroundView, Loading } fro
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Layout extends React.Component {
 

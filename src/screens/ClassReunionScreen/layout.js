@@ -10,7 +10,6 @@ import { HeaderScreen, Text, ModalCustom, Button, BackgroundView,Loading } from 
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Layout extends React.Component {
 

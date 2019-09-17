@@ -174,6 +174,15 @@ class HomePageScreen extends Layout {
         this.props.io.emit('KICK_USER', ({ email, fullname, socketId }));
     }
 
+    clearDataLocal() {
+        // const { profile } = this.props;
+        // const { email, fullname, socketId } = profile;
+        this.props.navigation.navigate('Auth');
+        this.props.actions.app.logOut();
+        this.props.actions.app.resetRouter();
+        // this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
+    }
+
     connectSocket() {
         const { profile } = this.props;
         this.socket = SocketIOClient(Configs.BASE_SOCKET, {
@@ -187,10 +196,16 @@ class HomePageScreen extends Layout {
 
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
             console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
-            this.props.actions.dataLocal.updateProfile(data);
+            if(data){
+                this.props.actions.dataLocal.updateProfile(data);
+            }else{
+                this.clearDataLocal()
+            }
+            
         });
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
+            console.log(`USER_DISCONNECTED : `, userDisconnected);
             if (profile.email !== userDisconnected.email && this.props.isAtChatScreen &&
                 this.props.currentUserChat.email === userDisconnected.email
             ) {
@@ -223,7 +238,7 @@ class HomePageScreen extends Layout {
             // this.props.actions.chat.setFlagChatScreen(false);
         }
         this.setState({ appState: nextAppState });
-        console.log('------- Phi ');
+        // console.log('------- Phi ');
     };
 
     addMessage(message) {

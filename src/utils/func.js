@@ -58,6 +58,17 @@ export const isIphoneX = () => {
     );
 }
 
+export function isIPhoneXSize() {
+    const { height, width } = Dimensions.get('window');
+    return height == 812 || width == 812;
+  }
+  
+  export function isIPhoneXrSize() {
+    const { height, width } = Dimensions.get('window');
+    return height == 896 || width == 896;
+  }
+  
+
 export const validateEmail = (email) => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());

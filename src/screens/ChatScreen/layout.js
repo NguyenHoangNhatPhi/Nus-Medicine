@@ -13,7 +13,7 @@ import { GiftedChat } from '../../components/react-native-gifted-chat';
 
 import { Button, BackgroundView, Loading } from '../../components';
 import styles from './styles';
-import { scaleSzie, isIphoneX } from '../../utils/func';
+import { scaleSzie, isIphoneX,isIPhoneXSize,isIPhoneXrSize } from '../../utils/func';
 import Configs from '../../configs';
 
 const USER_GRADUATION = require('../../resources/graduation.png');
@@ -40,7 +40,7 @@ export default class Layout extends React.Component {
     render() {
         const { value, visibleEmoji } = this.state;
         const { currentUserChat } = this.props;
-        const heightHeader = isIphoneX() ? 95 : 60;
+        const heightHeader = isIphoneX() || isIPhoneXrSize() || isIPhoneXSize() ? 95 : 60;
         return (
             <BackgroundView>
                 <View style={styles.container}>
@@ -54,7 +54,7 @@ export default class Layout extends React.Component {
                         <View style={[{
                             flex: 5, alignItems: 'center',
                             flexDirection: 'row'
-                        }, isIphoneX() ? { alignItems: 'flex-end', paddingBottom: scaleSzie(18) } : {}]} >
+                        }, isIphoneX() || isIPhoneXSize() || isIPhoneXrSize() ? { alignItems: 'flex-end', paddingBottom: scaleSzie(18) } : {}]} >
                             <FontAwesome name={'wechat'} size={scaleSzie(30)} color="#F97300" />
                             <Text style={{ marginLeft: scaleSzie(10), fontWeight: '600' }} >
                                 {currentUserChat.fullname}

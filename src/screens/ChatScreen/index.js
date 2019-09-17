@@ -7,7 +7,6 @@ import { GiftedChat } from '../../components/react-native-gifted-chat';
 import connectRedux from '../../redux/ConnectRedux';
 import Layout from './layout';
 import { scaleSzie } from '../../utils/func';
-import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 
 // sender: { email: '', socketId: ''}
 // receiver: { email: '', socketId: ''}
@@ -58,7 +57,7 @@ class ChatScreen extends Layout {
     setupUserChatSocket() {
         const { currentUserChat, isAtChatScreen } = this.props;
         this.props.io.on(`RECONNECT_SOCKET_${currentUserChat.email}`, data => {
-             console.log(`------RECONNECT_SOCKET_${this.props.currentUserChat.email} : `, data);
+            //  console.log(`------RECONNECT_SOCKET_${this.props.currentUserChat.email} : `, data);
             if (currentUserChat.email === data.email) {
                 this.props.actions.chat.updateCurrentUserChat(data);
             }

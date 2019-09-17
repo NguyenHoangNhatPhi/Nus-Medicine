@@ -1,13 +1,13 @@
 import React from 'react';
 import {
     View,
+    ScrollView
 } from 'react-native';
 
 import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, BackgroundView, Loading } from '../../components';
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Layout extends React.Component {
     render() {

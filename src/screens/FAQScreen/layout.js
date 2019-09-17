@@ -4,7 +4,8 @@ import {
     TouchableOpacity,
     Dimensions,
     WebView,
-    Platform
+    Platform,
+    ScrollView
 } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -15,7 +16,6 @@ import { HeaderScreen, Text, ButtonSubmit, TextInputCustom, Button,BackgroundVie
 import styles from './styles';
 import { scaleSzie } from '../../utils/func';
 import Configs from '../../configs';
-import { ScrollView } from 'react-native-gesture-handler';
 import FAQ from '../../configs/faq';
 
 const SECTIONS = [

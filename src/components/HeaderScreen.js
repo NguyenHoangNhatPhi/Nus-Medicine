@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import { scaleSzie, isIphoneX } from '../utils/func';
+import { scaleSzie, isIphoneX, isIPhoneXSize,isIPhoneXrSize} from '../utils/func';
 import Button from './Button';
 
 const { width, height } = Dimensions.get('window');
@@ -32,7 +32,7 @@ export default class HeaderScreen extends React.PureComponent {
 
     render() {
         const iconLeft = this.props.menu ? 'menu' : 'arrow-back'
-        const heightHeader = isIphoneX() ? 95 : 60;
+        const heightHeader = isIphoneX() || isIPhoneXSize() || isIPhoneXrSize() ? 95 : 60;
         return (
             <View style={{ width, height: scaleSzie(heightHeader), backgroundColor: '#ffffff', flexDirection: 'row' }} >
                 <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(10), paddingLeft: scaleSzie(12) }} >
