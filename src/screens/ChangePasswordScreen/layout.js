@@ -64,7 +64,7 @@ export default class Layout extends React.Component {
                             </ScrollView>
                         </View>
                     </View>
-                    <Loading visible={this.props.isLoadingChangePassword} />
+                    {/* <Loading visible={this.props.isLoadingChangePassword} /> */}
                 </View>
             </BackgroundView>
         );

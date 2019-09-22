@@ -53,7 +53,7 @@ export default class Layout extends React.Component {
                         marginTop: 0, marginLeft: scaleSzie(8), color: Configs.ORANGE, fontWeight: '400',
                         textDecorationLine: "underline"
                     }]} >
-                        Cancle
+                        Cancel
                     </Text>
                 </Button>
                 {/* ====== Line ======= */}

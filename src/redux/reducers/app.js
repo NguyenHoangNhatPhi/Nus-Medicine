@@ -28,12 +28,24 @@ const initialState = {
     // ===== REQUEST REUNION ====,
     isLoadingRequestReunion: false,
     messageRequestReunion: '',
-    requestSucces: false
+    requestSucces: false,
+
+    loading: false
 
 }
 
 function appReducer(state = initialState, action) {
     switch (action.type) {
+        case 'LOADING_ROOT':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'STOP_LOADING_ROOT':
+            return {
+                ...state,
+                loading: false
+            }
         case 'REGISTER_USER':
             return {
                 ...state,

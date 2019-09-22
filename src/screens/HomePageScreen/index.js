@@ -8,7 +8,7 @@ import _ from 'ramda';
 import Configs from '../../configs/api';
 import Layout from './layout';
 import connectRedux from '../../redux/ConnectRedux';
-import { cloneableGenerator } from 'redux-saga/utils';
+import { openBrowser } from '../../utils/func';
 
 
 class HomePageScreen extends Layout {
@@ -165,14 +165,24 @@ class HomePageScreen extends Layout {
     }
 
 
+    // clearDataLocal() {
+    //     const { profile } = this.props;
+    //     const { email, fullname, socketId } = profile;
+    //     this.props.navigation.navigate('Auth');
+    //     this.props.actions.dataLocal.clearProfileLocal();
+    //     this.props.actions.app.resetRouter();
+    //     this.props.io.emit('KICK_USER', ({ email, fullname, socketId }));
+    // }
+
     clearDataLocal() {
-        const { profile } = this.props;
-        const { email, fullname, socketId } = profile;
+        // const { profile } = this.props;
+        // const { email, fullname, socketId } = profile;
         this.props.navigation.navigate('Auth');
-        this.props.actions.dataLocal.clearProfileLocal();
+        this.props.actions.app.logOut();
         this.props.actions.app.resetRouter();
-        this.props.io.emit('KICK_USER', ({ email, fullname, socketId }));
+        // this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
     }
+
 
     connectSocket() {
         const { profile } = this.props;
@@ -186,8 +196,14 @@ class HomePageScreen extends Layout {
 
 
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
-            console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
-            this.props.actions.dataLocal.updateProfile(data);
+            // console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
+            // this.props.actions.dataLocal.updateProfile(data);
+            if(data){
+                this.props.actions.dataLocal.updateProfile(data);
+            }else{
+                this.clearDataLocal()
+            }
+
         });
 
         this.socket.on('USER_DISCONNECTED', userDisconnected => {
@@ -340,6 +356,10 @@ class HomePageScreen extends Layout {
         this.props.navigation.navigate(type);
         this.props.actions.app.changeRouterDrawer(type);
 
+    }
+
+    openBrowserGivingPortal =() =>{
+        openBrowser('https://nusmedicine.nus.edu.sg/giving/')
     }
 
     componentWillUnmount() {

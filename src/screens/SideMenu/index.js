@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import connectRedux from '../../redux/ConnectRedux';
 import styles from './styles';
-import { scaleSzie } from '../../utils/func';
+import { scaleSzie,openBrowser } from '../../utils/func';
 import { Text, Button } from '../../components';
 import Configs from '../../configs';
 
@@ -87,6 +87,26 @@ class SideMenu extends Component {
       </Button>
     );
   }
+  
+
+  renderItemGivingPortal(icon, title, route) {
+    const { routeName } = this.props;
+    const temptIconColor = routeName === route ? Configs.ORANGE : "#fff";
+    const temptTitleColor = routeName === route ? Configs.ORANGE : "#fff";
+    return (
+      <Button onPress={() =>   openBrowser('https://nusmedicine.nus.edu.sg/giving/')}
+       style={{ flexDirection: 'row', height: scaleSzie(48) }} >
+        <View style={{ width: scaleSzie(70), paddingLeft: scaleSzie(15), justifyContent: 'flex-end' }} >
+          <Entypo name={icon} size={25} color={temptIconColor} />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: scaleSzie(5) }} >
+          <Text style={[styles.textMenu, { color: temptTitleColor }]} >
+            {title}
+          </Text>
+        </View>
+      </Button>
+    );
+  }
 
 
   render() {
@@ -108,7 +128,7 @@ class SideMenu extends Component {
           {this.renderItemSideImage(NEWS, 'News', { width: scaleSzie(28), height: scaleSzie(28) }, 'News')}
           {this.renderItemSideImage(CHAT, 'Messaging', { width: scaleSzie(28), height: scaleSzie(28) }, 'Messaging')}
           {this.renderItemSideImage(USER_GRADUATION, 'Class Reunion', { width: scaleSzie(28), height: scaleSzie(28) }, 'ClassReunion')}
-          {this.renderItemSideVector('hand', 'Giving Portal','Giving')}
+          {this.renderItemGivingPortal('hand', 'Giving Portal','Giving')}
           {this.renderItemSideVector('info-with-circle', 'Useful Info','UseFul')}
           {this.renderItemSideImage(CONTACT, 'Contact Us', { width: scaleSzie(28), height: scaleSzie(28) }, 'ContactUs')}
           {this.renderItemSideVectorIonicons('md-settings', 'Settings','Settings')}

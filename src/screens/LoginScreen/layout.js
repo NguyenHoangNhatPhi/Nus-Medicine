@@ -74,7 +74,7 @@ export default class Layout extends React.Component {
 
                         </View>
                     </View>
-                    <Loading visible={this.props.loadingLogin} />
+                    {/* <Loading visible={this.props.loadingLogin} /> */}
                 </View>
             </BackgroundView>
         );

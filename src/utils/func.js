@@ -28,6 +28,15 @@ export const scaleSzie = size => {
     return width * size / Configs.DEFAULT_WIDTH;
 }
 
+function fetchWithTimeout(url, options, timeout = 10000) {
+    return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) =>
+            setTimeout(() => reject('timeout'), timeout)
+        )
+    ]);
+}
+
 export const requestAPI = async (action, headers = {}) => {
 
     let method = action.method || 'GET';
@@ -47,9 +56,16 @@ export const requestAPI = async (action, headers = {}) => {
     if ((method == "POST" || method == "DELETE" || method == "PUT") && action.body) {
         request['body'] = JSON.stringify(action.body);
     }
-    let response = await fetch(action.api, request);
-    const data = await response.json()
-    return { ...data, statusCode: response.status };
+    // let response = await fetch(action.api, request);
+    // const data = await response.json()
+    // return { ...data, statusCode: response.status };
+    try {
+        let response = await fetchWithTimeout(action.api, request, 10000);
+        const data = await response.json()
+        return { ...data, statusCode: response.status };
+    } catch (error) {
+        throw (error);
+    }
 }
 
 export const isIphoneX = () => {

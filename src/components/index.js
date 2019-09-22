@@ -7,6 +7,7 @@ import ModalCustom from './ModalCustom';
 import Loading from './Loading';
 import AutoGrowingTextInput from './AutoGrowingTextInput';
 import BackgroundView from './BackgroundView';
+import LoadingRootApp from './LoadingRootApp';
 
 module.exports = {
     Button,
@@ -17,5 +18,6 @@ module.exports = {
     ModalCustom,
     Loading,
     AutoGrowingTextInput,
-    BackgroundView
+    BackgroundView,
+    LoadingRootApp
 }

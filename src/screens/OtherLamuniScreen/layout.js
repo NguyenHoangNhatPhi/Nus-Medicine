@@ -55,7 +55,7 @@ export default class Layout extends React.Component {
                         </View>
                     </View>
                 </View>
-                <Loading visible={this.props.isLoadingSearchUser} />
+                {/* <Loading visible={this.props.isLoadingSearchUser} /> */}
             </BackgroundView>
         );
     }

@@ -35,7 +35,7 @@ export default class Layout extends React.Component {
                         <Text style={styles.textHomePage} >
                             CLASS REUNION CONCIERGE
                     </Text>
-                        <Button onPress={() => this.gotoRenuion('Giving')} >
+                        <Button onPress={this.openBrowserGivingPortal} >
                             <Entypo name="hand" size={40} color="#fff" />
                         </Button>
                         <Text style={styles.textHomePage} >
