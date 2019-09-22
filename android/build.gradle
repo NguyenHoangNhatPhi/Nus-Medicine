@@ -4,9 +4,14 @@ buildscript {
     ext {
         buildToolsVersion = "27.0.3"
         minSdkVersion = 16
-        compileSdkVersion = 27
-        targetSdkVersion = 26
-        supportLibVersion = "27.1.1"
+        compileSdkVersion = 28
+        targetSdkVersion = 28
+//        supportLibVersion = "27.1.1"
+        supportLibVersion = '1.0.2'
+        googlePlayServicesVersion = "17.0.0"
+        mediaCompatVersion = '1.0.1'
+        supportV4Version = '1.0.0'
+
     }
     repositories {
         google()
@@ -14,7 +19,7 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath 'io.fabric.tools:gradle:1.+'
         classpath 'com.google.gms:google-services:4.0.1'
         // NOTE: Do not place your application dependencies here; they belong
@@ -35,7 +40,12 @@ allprojects {
 }
 
 
-task wrapper(type: Wrapper) {
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '4.4'
+//    distributionUrl = distributionUrl.replace("bin", "all")
+//}
+
+wrapper {
     gradleVersion = '4.4'
     distributionUrl = distributionUrl.replace("bin", "all")
 }

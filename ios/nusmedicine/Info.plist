@@ -45,7 +45,7 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>http://13.228.84.156:3000</key>
-			<string></string>
+			<string/>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -66,6 +66,14 @@
 		<string>Foundation.ttf</string>
 		<string>Ionicons.ttf</string>
 		<string>MaterialIcons.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
