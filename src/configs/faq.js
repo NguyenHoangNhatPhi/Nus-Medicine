@@ -73,15 +73,16 @@ const FAQ = [
         heightContent:Platform.OS === 'ios' ? 80 : 100
 
     },
-    {
-        title:`<p class="p2">&nbsp;</p>
-        <ul class="ul1">
-            <li class="li2"><strong>Which operating system platforms is the app available on?</strong></li>
-        </ul>`,
-        content:`<p class="p2">The app is supported on iOS and Android platforms.</p>`,
-        heightContent:Platform.OS === 'ios' ? 80 : 100
+    // {
+    //     title:`<p class="p2">&nbsp;</p>
+    //     <ul class="ul1">
+    //         <li class="li2"><strong>Which operating system platforms is the app available on?</strong></li>
+    //     </ul>`,
+    //     content:`<p class="p2">The app is supported on iOS and Android platforms.</p>`,
+    //     heightContent:Platform.OS === 'ios' ? 80 : 100
 
-    },{
+    // },
+    {
         title:`<p class="p2">&nbsp;</p>
         <ul class="ul1">
             <li class="li2"><strong>My app is not working properly. What should I do?</strong></li>

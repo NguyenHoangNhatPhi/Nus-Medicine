@@ -69,9 +69,16 @@ export const requestAPI = async (action, headers = {}) => {
 }
 
 export const isIphoneX = () => {
-    const { height, width } = Dimensions.get('window');
-    return (Platform.OS === 'ios' && (height === 812 || width === 812)
-    );
+    // const { height, width } = Dimensions.get('window');
+    // return (Platform.OS === 'ios' && (height === 812 || width === 812)
+    // );
+    const dimen = Dimensions.get('window');
+  return (
+    Platform.OS === 'ios' &&
+    !Platform.isPad &&
+    !Platform.isTVOS &&
+    ((dimen.height === 812 || dimen.width === 812) || (dimen.height === 896 || dimen.width === 896))
+  );
 }
 
 export const validateEmail = (email) => {

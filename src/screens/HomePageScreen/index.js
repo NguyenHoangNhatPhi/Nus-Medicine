@@ -26,7 +26,6 @@ class HomePageScreen extends Layout {
 
     async  componentDidMount() {
         const { dispatch } = this.props.navigation;
-
         this.connectSocket();
         AppState.addEventListener('change', this.handleAppStateChange);
         if (Platform.OS === 'ios') {
@@ -74,11 +73,14 @@ class HomePageScreen extends Layout {
         try {
             const enabled = await firebase.messaging().hasPermission();
             const { dispatch } = this.props.navigation;
+            console.log('--- enabled : ',enabled);
 
             if (enabled) {
                 if (_.isEmpty(this.props.fcmToken)) {
                     const fcmToken = await firebase.messaging().getToken();
+                    console.log('fcmToken : ',fcmToken);
                     const deviceId = DeviceInfo.getUniqueID();
+                    console.log('deviceId : ',deviceId);
                     this.props.actions.chat.setupPushNotiServer({
                         token: fcmToken,
                         deviceId: deviceId,
@@ -160,6 +162,7 @@ class HomePageScreen extends Layout {
 
             });
         } catch (error) {
+            console.log('error : ',error);
         }
 
     }
@@ -175,12 +178,12 @@ class HomePageScreen extends Layout {
     // }
 
     clearDataLocal() {
-        // const { profile } = this.props;
-        // const { email, fullname, socketId } = profile;
+        const { profile } = this.props;
+        const { email, fullname, socketId } = profile;
         this.props.navigation.navigate('Auth');
         this.props.actions.app.logOut();
         this.props.actions.app.resetRouter();
-        // this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
+        this.props.io.emit('LOGOUT', ({ email, fullname, socketId }));
     }
 
 
@@ -239,7 +242,7 @@ class HomePageScreen extends Layout {
             // this.props.actions.chat.setFlagChatScreen(false);
         }
         this.setState({ appState: nextAppState });
-        console.log('------- Phi ');
+        // console.log('------- Phi ');
     };
 
     addMessage(message) {
@@ -364,8 +367,8 @@ class HomePageScreen extends Layout {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
-        this.notificationListener();
-        this.notificationOpenedListener();
+        this.notificationListener = true;
+        this.notificationOpenedListener =  true;
         this.props.io.disconnect();
     }
 

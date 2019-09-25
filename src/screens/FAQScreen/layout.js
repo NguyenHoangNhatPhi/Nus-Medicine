@@ -18,20 +18,6 @@ import Configs from '../../configs';
 import { ScrollView } from 'react-native-gesture-handler';
 import FAQ from '../../configs/faq';
 
-const SECTIONS = [
-    {
-        title: 'First',
-        content: 'Lorem ipsum...',
-    },
-    {
-        title: 'Second',
-        content: 'Lorem ipsum...',
-    },
-    {
-        title: 'Third',
-        content: 'Lorem ipsum...',
-    },
-];
 
 export default class Layout extends React.Component {
 
