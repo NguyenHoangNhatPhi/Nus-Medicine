@@ -73,14 +73,14 @@ class HomePageScreen extends Layout {
         try {
             const enabled = await firebase.messaging().hasPermission();
             const { dispatch } = this.props.navigation;
-            console.log('--- enabled : ',enabled);
+            // console.log('--- enabled : ', enabled);
 
             if (enabled) {
                 if (_.isEmpty(this.props.fcmToken)) {
                     const fcmToken = await firebase.messaging().getToken();
-                    console.log('fcmToken : ',fcmToken);
-                    const deviceId = DeviceInfo.getUniqueID();
-                    console.log('deviceId : ',deviceId);
+                    const deviceId = await DeviceInfo.getUniqueId();
+                    // console.log('deviceId : ', deviceId);
+                   
                     this.props.actions.chat.setupPushNotiServer({
                         token: fcmToken,
                         deviceId: deviceId,
@@ -162,7 +162,8 @@ class HomePageScreen extends Layout {
 
             });
         } catch (error) {
-            console.log('error : ',error);
+            // alert(error)
+            // console.log('error : ', error);
         }
 
     }
@@ -201,9 +202,9 @@ class HomePageScreen extends Layout {
         this.socket.on(`RECONNECT_SOCKET_${profile.email}`, data => {
             // console.log(`RECONNECT_SOCKET_${profile.email} : `, data);
             // this.props.actions.dataLocal.updateProfile(data);
-            if(data){
+            if (data) {
                 this.props.actions.dataLocal.updateProfile(data);
-            }else{
+            } else {
                 this.clearDataLocal()
             }
 
@@ -361,14 +362,14 @@ class HomePageScreen extends Layout {
 
     }
 
-    openBrowserGivingPortal =() =>{
+    openBrowserGivingPortal = () => {
         openBrowser('https://nusmedicine.nus.edu.sg/giving/')
     }
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
         this.notificationListener = true;
-        this.notificationOpenedListener =  true;
+        this.notificationOpenedListener = true;
         this.props.io.disconnect();
     }
 
