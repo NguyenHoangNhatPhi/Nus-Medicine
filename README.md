@@ -4,7 +4,7 @@ Instruction for setup and running the Nus Medicine Application.
 
 ## Requirements
 
-Follow these instructions in the website [React Native](https://cocoapods.org/) before going to the next step.
+Follow these instructions in the website [React Native](https://facebook.github.io/react-native/docs/getting-started) before going to the next step.
 
 Supported target operating systems are >= Android 4.1 (API 16) and >= iOS 9.0.
 
